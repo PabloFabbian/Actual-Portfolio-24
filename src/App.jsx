@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import ProjectsSection from './components/ProjectsSection'
-import SelfSummary from './components/SelfSummary'
+import SelfSummary from './components/Self-Summary'
 import TechStack from './components/TechStack'
 import ContactForm from './components/ContactForm'
 

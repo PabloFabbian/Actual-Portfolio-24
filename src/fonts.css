@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'LTSoul';
+    src: url('./assets/fonts/LTSoul-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LTSoul';
+    src: url('./assets/fonts/LTSoul-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LTSoul';
+    src: url('./assets/fonts/LTSoul-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LTSoul';
+    src: url('./assets/fonts/LTSoul-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}

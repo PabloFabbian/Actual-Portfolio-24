@@ -3,7 +3,7 @@ import React from 'react'
 function SelfSummary() {
     return (
         <>
-            <section className="bg-gradient-to-b from-orange-100 to-orange-300 py-12">
+            <section className="bg-gradient-to-b from-orange-100 to-orange-300 py-12" id="About">
                 {/* Container to Center the Content */}
                 <div className="container mx-auto text-center">
                     {/* Title */}

@@ -1,24 +1,117 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../assets/Logo.webp';
+import '../fonts.css';
 
 function Navbar() {
+  const [showLogoAndButton, setShowLogoAndButton] = useState(true);
+  const [activeSection, setActiveSection] = useState('');
+  const [scrollTimeout, setScrollTimeout] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const sections = ['Home', 'About', 'Projects', 'Tech-Stack'];
+
+      // Determine which section is currently in view
+      let closestSection = '';
+      let minDistance = Infinity;
+
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const windowCenter = window.innerHeight / 2;
+          const distance = Math.abs(sectionCenter - windowCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSection = section;
+          }
+        }
+      });
+
+      setActiveSection(closestSection);
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        if (!isScrollingDown) {
+          setIsScrollingDown(true);
+          if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+          }
+          const newTimeout = setTimeout(() => {
+            setShowLogoAndButton(false);
+          }, 4000); // Hide after 4 seconds
+          setScrollTimeout(newTimeout);
+        }
+      } else {
+        // Scrolling up
+        setIsScrollingDown(false);
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        setShowLogoAndButton(true);
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [scrollTimeout, isScrollingDown]);
+
+  const handleSelect = (section) => {
+    setActiveSection(section);
+  };
+
+  const handleButtonClick = () => {
+    document.getElementById('Contact').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-      <nav className="bg-[#E6CCB2]">
-        <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-          <div className="flex items-center mx-6">
-            <span className="font-black text-3xl text-[#9C6644]">PF Portfolio</span>
-            <img src={Logo} alt="Logo" className="ml-2 mt-0.5 h-9 w-auto" />
+      <nav className="bg-transparent fixed top-0 left-0 right-0 z-50 backdrop-blur-lg">
+        <div className={`container mx-auto align-middle px-6 py-3 flex justify-between items-center transition-transform duration-500`}>
+          <div
+            className={`flex items-center mx-12 hover:cursor-pointer transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}
+          >
+            <img src={Logo} alt="Logo" className="mr-1 mt-0.5 h-[3.8rem] w-auto drop-shadow-lg" />
+            <div>
+              <span className="text-gradient-PF block font-black text-3xl -mb-2 drop-shadow-lg">PF</span>
+              <span className="text-gradient-PF block font-black text-3xl drop-shadow-lg">Portfolio</span>
+            </div>
           </div>
-          <div className="flex bg-[#9C6644] py-3.5 px-32 rounded-full text-[#EDE0D4] space-x-32">
-            <a href="#" className="hover:text-[#EDE0D4]">Home</a>
-            <a href="#" className="hover:text-[#EDE0D4]">About</a>
-            <a href="#" className="hover:text-[#EDE0D4]">Projects</a>
-            <a href="#" className="hover:text-[#EDE0D4]">Contact</a>
+          <div className="flex flex-grow justify-center">
+            <div className="flex bg-gradient-to-r from-[#9C6644] to-[#9C6649] pt-3 pb-2 px-32 rounded-full text-lg text-[#EDE0D4] space-x-32 drop-shadow-lg">
+              {['Home', 'Projects', 'About', 'Tech-Stack'].map((section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  onClick={() => handleSelect(section)}
+                  className={`relative group flex items-center font-lt-soul ${activeSection === section ? 'text-[#FFD275]' : ''}`}
+                >
+                  {section}
+                  <span
+                    className={`absolute left-1/2 bottom-0.5 w-full h-0.5 transition-transform -translate-x-1/2 scale-x-0 group-hover:scale-x-100 origin-center rounded-full ${activeSection === section ? 'bg-[#FFD275] scale-x-100' : 'bg-[#EDE0D4]'}`}
+                  ></span>
+                </a>
+              ))}
+            </div>
           </div>
           <button
             type="button"
-            className="bg-[#DB5A42] text-white px-12 py-2 rounded-xl hover:bg-red-500 hover:border-red-500 mx-6"
+            onClick={handleButtonClick}
+            className={`bg-[#DB5A42] text-white px-12 py-2 rounded-xl hover:bg-red-500 hover:border-red-500 mx-12 drop-shadow-lg transition delay-50 duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}
             style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
           >
             Let's Talk

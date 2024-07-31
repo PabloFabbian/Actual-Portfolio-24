@@ -30,3 +30,17 @@
 .animate-marquee-right {
     animation: marquee-right 10s linear infinite;
 }
+
+.text-gradient {
+    background: linear-gradient(to right, #FF694E, #FFB524);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Para navegadores que soportan esta propiedad */
+}
+
+.text-gradient-PF {
+    background: linear-gradient(to right, #FDB3DF, #ff8db1, #ff6999, #ff5fa2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

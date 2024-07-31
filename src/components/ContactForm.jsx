@@ -3,7 +3,7 @@ import React from 'react'
 function ContactForm() {
     return (
         <>
-            <section className="bg-gradient-to-b from-orange-100 to-orange-300 py-12">
+            <section className="bg-gradient-to-b from-orange-100 to-orange-300 py-12" id="Contact">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col justify-center">
                         {/* Contact Text */}
