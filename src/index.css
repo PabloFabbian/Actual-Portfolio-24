@@ -44,3 +44,21 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+/* Estilos para cambiar el color de los íconos cuando se hace hover sobre el enlace */
+.social-pills a:hover img {
+    filter: brightness(0) saturate(100%) invert(38%) sepia(63%) saturate(680%) hue-rotate(340deg) brightness(96%) contrast(91%);
+}
+
+/* Opcional: para especificar diferentes colores para diferentes íconos, puedes usar clases adicionales */
+.social-pills .linkedin-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(21%) sepia(89%) saturate(1217%) hue-rotate(203deg) brightness(102%) contrast(97%);
+}
+
+.social-pills .github-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(20%) sepia(40%) saturate(400%) hue-rotate(220deg) brightness(90%) contrast(90%);
+}
+
+.social-pills .twitter-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(30%) sepia(68%) saturate(1600%) hue-rotate(203deg) brightness(98%) contrast(101%);
+}

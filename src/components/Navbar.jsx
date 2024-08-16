@@ -80,7 +80,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-transparent fixed top-0 left-0 right-0 z-50 backdrop-blur-lg">
+      <nav className="bg-transparent fixed top-0 left-0 right-0 z-50">
         <div className={`container mx-auto align-middle px-6 py-3 flex justify-between items-center transition-transform duration-500`}>
           <div
             className={`flex items-center mx-12 hover:cursor-pointer transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}

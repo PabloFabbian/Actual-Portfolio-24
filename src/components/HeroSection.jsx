@@ -1,15 +1,22 @@
 import React from 'react';
-import Olas from '../assets/olas.jpg';
+import Olas from '../assets/olas2.png';
+import BuenosAiresSVG from '../assets/svg/world-location-icon.svg';
+import LinkedinSVG from '../assets/svg/linkedin-icon.svg'
+import GithubSVG from '../assets/svg/github-icon.svg'
+import ThreadsSVG from '../assets/svg/twitter-icon.svg'
 
 function HeroSection() {
   return (
     <>
-      <section className="bg-[#E6CCB2] pt-24" id="Home">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-center h-[65vh] pb-16 -mb-32">
-          <div className="flex-1 md:mr-12 md:-mb-6">
+      <section className="bg-[#E6CCB2] pt-24 pb-36" id="Home">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-center h-[65vh] pt-16 pb-16 -mb-32">
+          <div className="flex-1">
+            <h2 className="text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D] -mb-5">
+              Hi there, the name's
+            </h2>
             <h2 className="text-[5rem] font-extrabold inline-flex items-center text-gradient -mb-3">
               Pablo Fabbian
-              <svg className="h-[4.5rem] ml-6 -mb-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <svg className="h-[4.5rem] ml-8 -mb-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#FFB524">
@@ -41,15 +48,27 @@ function HeroSection() {
                 </g>
               </svg>
             </h2>
-            <p className="font-lt-soul font-semibold text-4xl text-[#9C6644] ml-1 mt-4 pr-40 pb-2">is a frontend developer who’s passionate about UX/UI and creating beautiful and functional digital experiences.</p>
-            <div className="flex items-center mt-4 text-xl text-gray-600">
-              <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 7 7 13 7 13s7-6 7-13c0-3.87-3.13-7-7-7zm0 9.75A2.75 2.75 0 119 9c0 1.518 1.232 2.75 2.75 2.75z"></path>
-              </svg>
+            <p className="font-lt-soul font-semibold text-4xl text-[#9C6644] ml-1 mt-4 pr-40 pb-2">I'm the frontend developer who’s passionate about UX/UI and creating beautiful and functional digital experiences.</p>
+            <div className="flex items-center mt-4 text-lg text-gray-600">
+              <img src={BuenosAiresSVG} alt="Buenos Aires, Argentina" className="w-6 h-6 ml-2 mr-4" />
               Buenos Aires, Argentina
+              <div className="social-pills flex justify-left ml-6">
+                <a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" className="inline-flex items-center rounded-full border border-black h-12 w-auto mr-4 px-4 transition-transform transition duration-275 group hover:scale-[1.1] hover:border-blue-500 hover:text-blue-700 linkedin-icon">
+                  <img src={LinkedinSVG} className="fa-brands fa-linkedin text-xl h-7 w-7 mr-2" aria-hidden="true" />
+                  Linkedin
+                </a>
+                <a href="https://github.com/PabloFabbian" target="_blank" className="inline-flex items-center rounded-full border border-black h-12 w-auto mr-4 px-4 transition-transform transition duration-275 group hover:scale-[1.1] hover:border-violet-500 hover:text-violet-700 github-icon">
+                  <img src={GithubSVG} className="fa-brands fa-github text-xl h-7 w-7 mr-2" aria-hidden="true" />
+                  Github
+                </a>
+                <a href="https://www.threads.net/@pablo.fabbian" target="_blank" className="inline-flex items-center rounded-full border border-black h-12 w-auto px-4 transition-transform transition duration-275 group hover:scale-[1.1] hover:border-indigo-500 hover:text-indigo-700 twitter-icon">
+                  <img src={ThreadsSVG} className="fa-brands fa-threads text-xl h-7 w-7 mr-2" aria-hidden="true" />
+                  Twitter
+                </a>
+              </div>
             </div>
           </div>
-          <img src={Olas} alt="Avatar" className="w-80 h-80 rounded-full" />
+          <img src={Olas} alt="Avatar" className="w-96 h-96 rounded-full" />
         </div>
       </section>
     </>
