@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Agrega esto en tu archivo CSS global para personalizar la barra de desplazamiento */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: #FFD275 #7F5539;
+    /* Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    /* Tamaño del scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #E6CCB2;
+    /* Color de fondo del track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #7F5539;
+    /* Color del thumb */
+    border-radius: 10px;
+    /* Redondeo del thumb */
+}
 
 @keyframes marquee-left {
     from {
@@ -61,4 +85,18 @@
 
 .social-pills .twitter-icon:hover img {
     filter: brightness(0) saturate(100%) invert(30%) sepia(68%) saturate(1600%) hue-rotate(203deg) brightness(98%) contrast(101%);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 45s linear infinite;
 }

@@ -11,10 +11,10 @@ function HeroSection() {
       <section className="bg-[#E6CCB2] pt-24 pb-36" id="Home">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center h-[65vh] pt-16 pb-16 -mb-32">
           <div className="flex-1">
-            <h2 className="text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D] -mb-5">
+            <h2 className="text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
               Hi there, the name's
             </h2>
-            <h2 className="text-[5rem] font-extrabold inline-flex items-center text-gradient -mb-3">
+            <h2 className="text-[5rem] font-extrabold inline-flex items-center text-gradient -mb-3 -mt-8">
               Pablo Fabbian
               <svg className="h-[4.5rem] ml-8 -mb-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
                 <defs>

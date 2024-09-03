@@ -2,51 +2,94 @@ import React from 'react'
 
 function SelfSummary() {
     return (
-        <>
-            <section className="bg-gradient-to-b from-orange-100 to-orange-300 py-12" id="About">
-                {/* Container to Center the Content */}
-                <div className="container mx-auto text-center">
-                    {/* Title */}
-                    <h2 className="text-5xl font-extrabold text-orange-700 mb-8">Self-Summary</h2>
-                    {/* Grid Container */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* First Grid: Avatar and Name */}
-                        <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl">
-                            <div className="flex items-center mb-4">
-                                {/* Avatar Image */}
-                                <img src="avatar.jpg" alt="Pablo Fabbian" className="w-16 h-16 rounded-full mr-4" />
-                                <div>
-                                    {/* Name */}
-                                    <h3 className="text-xl font-bold text-orange-700">Pablo Fabbian</h3>
-                                    {/* Job Title */}
-                                    <p className="text-gray-700">Frontend React Developer</p>
-                                </div>
-                            </div>
-                            {/* Description */}
-                            <p className="text-gray-800">Graduated in Frontend React Development, passionate about creating intuitive and attractive interfaces. I enjoy collaborating in a team and am looking for a job that allows me to grow professionally while continuing my education.</p>
-                        </div>
-                        {/* Second Grid: Work Experience */}
-                        <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl">
-                            <h4 className="text-lg font-semibold text-orange-600">EXPERIENCE</h4>
-                            <p className="text-gray-700 mt-2">Trial Class Manager | Kodland, Londres, UK</p>
-                            <p className="text-gray-600 text-sm mt-2">Capacitación a empleados de diversas áreas, soporte y control de actividades.</p>
-                        </div>
-                        {/* Third Grid: Education */}
-                        <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl">
-                            <h4 className="text-lg font-semibold text-orange-600">EDUCATION</h4>
-                            <p className="text-gray-700 mt-2">2007 - 2009 | Bachiller en Ciencias Sociales</p>
-                            <p className="text-gray-700 mt-2">Coderehouse, e-learning Universidad de Buenos Aires</p>
-                        </div>
-                        {/* Fourth Grid: Current Education */}
-                        <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl">
-                            <h4 className="text-lg font-semibold text-orange-600">EDUCATION</h4>
-                            <p className="text-gray-700 mt-2">2022 - Actualidad | Technical Degree in Frontend React</p>
-                            <p className="text-gray-600 text-sm mt-2">Implementation of efficient systems in diverse environments.</p>
-                        </div>
+        <section className="bg-[#7F5539] pt-12" id="About">
+            <div className="container mx-auto px-4">
+                <h2 className="font-lt-soul text-7xl font-medium text-center text-[#FFD275] mb-12">
+                    Self-Summary
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {/* Perfil Profesional */}
+                    <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-6 rounded-lg shadow-lg col-span-2 text-white">
+                        <h3 className="text-2xl font-bold mb-4">Breve Perfil Profesional</h3>
+                        <p className="mb-2">
+                            <strong>Qué me Inspira:</strong> Transformar ideas en experiencias digitales es mi pasión.
+                        </p>
+                        <p>
+                            <strong>Visión Personal:</strong> Creo en la simplicidad y en el poder de un buen diseño para resolver problemas.
+                        </p>
+                    </div>
+
+                    {/* Datos Curiosos */}
+                    <div className="bg-gradient-to-br from-green-400 to-blue-500 p-6 rounded-lg shadow-lg text-white">
+                        <h3 className="text-2xl font-bold mb-4">Datos Curiosos</h3>
+                        <p>
+                            Cuando no estoy codificando, me encontrarás explorando nuevas tendencias en diseño UX o creando interfaces para proyectos personales.
+                        </p>
+                    </div>
+
+                    {/* Imagen 1 */}
+                    <div className="relative rounded-lg shadow-lg overflow-hidden h-48">
+                        <img
+                            src="/placeholder.svg?height=192&width=384"
+                            alt="Imagen representativa de desarrollo web"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    {/* Proyectos Destacados */}
+                    <div className="bg-gradient-to-br from-yellow-400 to-orange-500 p-6 rounded-lg shadow-lg text-white col-span-2">
+                        <h3 className="text-2xl font-bold mb-4">Proyectos Destacados</h3>
+                        <p className="mb-2">
+                            <strong>Logro Clave:</strong> Desarrollé una aplicación que facilitó la gestión de proyectos para equipos remotos.
+                        </p>
+                        <p>
+                            <strong>Impacto:</strong> Incrementó la eficiencia del 20%.
+                        </p>
+                    </div>
+
+                    {/* Cita Personal */}
+                    <div className="bg-gradient-to-br from-pink-500 to-red-500 p-6 rounded-lg shadow-lg text-white">
+                        <h3 className="text-2xl font-bold mb-4">Cita Personal</h3>
+                        <p className="text-xl italic">
+                            "El diseño es la inteligencia hecha visible."
+                        </p>
+                    </div>
+
+                    {/* Estilo de Trabajo */}
+                    <div className="bg-gradient-to-br from-teal-400 to-blue-500 p-6 rounded-lg shadow-lg text-white">
+                        <h3 className="text-2xl font-bold mb-4">Estilo de Trabajo</h3>
+                        <p className="mb-2">
+                            <strong>Metodología:</strong> Utilizo un enfoque centrado en el usuario para asegurar que cada proyecto sea funcional y estéticamente agradable.
+                        </p>
+                        <p>
+                            <strong>Colaboración:</strong> Disfruto trabajando en equipo para lograr soluciones innovadoras.
+                        </p>
+                    </div>
+
+                    {/* Imagen 2 */}
+                    <div className="relative rounded-lg shadow-lg overflow-hidden h-50">
+                        <img
+                            src="/placeholder.svg?height=192&width=384"
+                            alt="Imagen representativa de diseño web"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+            <div style={{ height: '150px', overflow: 'hidden' }} className="bg-[#E6CCB2]">
+                <svg
+                    viewBox="0 0 500 150"
+                    preserveAspectRatio="none"
+                    style={{ height: '100%', width: '100%', transform: 'rotate(180deg)' }}
+                >
+                    <path
+                        d="M-43.73,193.92 C128.38,-52.77 372.17,-43.89 562.36,206.75 L246.89,203.80 L233.92,202.80 Z"
+                        style={{ stroke: 'none', fill: '#7F5539' }}
+                    />
+                </svg>
+            </div>
+
+        </section>
     )
 }
 
