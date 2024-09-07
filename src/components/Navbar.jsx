@@ -72,6 +72,10 @@ function Navbar() {
 
   const handleSelect = (section) => {
     setActiveSection(section);
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleButtonClick = () => {
@@ -94,9 +98,8 @@ function Navbar() {
           <div className="flex flex-grow justify-center">
             <div className="flex bg-gradient-to-r from-[#9C6644] to-[#9C6649] pt-3 pb-2 px-32 rounded-full text-lg text-[#EDE0D4] space-x-32 drop-shadow-lg">
               {['Home', 'Projects', 'About', 'Tech-Stack'].map((section) => (
-                <a
+                <button
                   key={section}
-                  href={`#${section}`}
                   onClick={() => handleSelect(section)}
                   className={`relative group flex items-center font-lt-soul ${activeSection === section ? 'text-[#FFD275]' : ''}`}
                 >
@@ -104,7 +107,7 @@ function Navbar() {
                   <span
                     className={`absolute left-1/2 bottom-0.5 w-full h-0.5 transition-transform -translate-x-1/2 scale-x-0 group-hover:scale-x-100 origin-center rounded-full ${activeSection === section ? 'bg-[#FFD275] scale-x-100' : 'bg-[#EDE0D4]'}`}
                   ></span>
-                </a>
+                </button>
               ))}
             </div>
           </div>

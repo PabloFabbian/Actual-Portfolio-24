@@ -25,7 +25,7 @@ function ContactForm() {
             <div className="container mx-auto px-4">
                 <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-2">
-                        <div className="bg-gradient-to-br from-[#9C6548] to-[#7F5539] p-12 text-white">
+                        <div className="bg-gradient-to-br from-[#9C6548] to-[#7F5539] p-12 text-[#ECDED2]">
                             <h2 className="font-lt-soul text-5xl font-bold mb-6">
                                 Contact Me
                             </h2>
@@ -53,7 +53,7 @@ function ContactForm() {
                                 </div>
                             </div>
                         </div>
-                        <div className="p-12">
+                        <div className="p-12 bg-[#ECDED2]">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-[#9C6548] mb-1">Nombre</label>
@@ -63,7 +63,7 @@ function ContactForm() {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 border border-[#E6CCB2] rounded-lg focus:ring-2 focus:ring-[#9C6548] focus:border-transparent transition duration-300 ease-in-out"
+                                        className="w-full px-4 py-2 border border-[#9C6548] bg-[#E1D4C7] rounded-lg focus:ring-2 focus:ring-[#9C6548] focus:border-transparent transition duration-300 ease-in-out"
                                         required
                                     />
                                 </div>
@@ -75,7 +75,7 @@ function ContactForm() {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-2 border border-[#E6CCB2] rounded-lg focus:ring-2 focus:ring-[#9C6548] focus:border-transparent transition duration-300 ease-in-out"
+                                        className="w-full px-4 py-2 border border-[#9C6548] bg-[#E1D4C7] rounded-lg focus:ring-2 focus:ring-[#9C6548] focus:border-transparent transition duration-300 ease-in-out"
                                         required
                                     />
                                 </div>
@@ -87,14 +87,14 @@ function ContactForm() {
                                         value={formData.message}
                                         onChange={handleChange}
                                         rows="4"
-                                        className="w-full px-4 py-2 border border-[#E6CCB2] rounded-lg focus:ring-2 focus:ring-[#9C6548] focus:border-transparent transition duration-300 ease-in-out"
+                                        className="w-full px-4 py-2 border border-[#9C6548] bg-[#E1D4C7] rounded-lg focus:ring-2 focus:ring-[#9C6548] focus:border-transparent transition duration-300 ease-in-out"
                                         required
                                     ></textarea>
                                 </div>
                                 <div>
                                     <button
                                         type="submit"
-                                        className="w-full bg-[#9C6548] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#7F5539] focus:outline-none focus:ring-2 focus:ring-[#9C6548] focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center justify-center"
+                                        className="w-full bg-[#9C6548] text-[#ECDED2] font-bold py-3 px-6 rounded-lg hover:bg-[#7F5539] focus:outline-none focus:ring-2 focus:ring-[#9C6548] focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center justify-center"
                                     >
                                         Enviar Mensaje
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
