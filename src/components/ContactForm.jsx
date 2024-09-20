@@ -21,7 +21,7 @@ function ContactForm() {
     }
 
     return (
-        <section className="bg-[#E6CCB2] py-16" id="Contact">
+        <section className="bg-[#F3D5B5] py-16" id="Contact">
             <div className="container mx-auto px-4">
                 <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-2">

@@ -8,7 +8,7 @@ import ThreadsSVG from '../assets/svg/twitter-icon.svg'
 function HeroSection() {
   return (
     <>
-      <section className="bg-[#E6CCB2] pt-24 pb-36" id="Home">
+      <section className="bg-[#F3D5B5] pt-24 pb-36" id="Home">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center h-[65vh] pt-16 pb-16 -mb-32">
           <div className="flex-1">
             <h2 className="text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
@@ -68,7 +68,7 @@ function HeroSection() {
               </div>
             </div>
           </div>
-          <img src={Olas} alt="Avatar" className="w-96 h-96 rounded-full" />
+          <img src={Olas} alt="Avatar" className="w-96 h-96 rounded-full drop-shadow-md" />
         </div>
       </section>
     </>

@@ -42,7 +42,7 @@ function ProjectsSection() {
     return (
         <>
             {/* SVG Background Wave */}
-            <div style={{ height: '150px', overflow: 'hidden' }} className="bg-[#E6CCB2]" id="Projects">
+            <div style={{ height: '150px', overflow: 'hidden' }} className="bg-[#F3D5B5]" id="Projects">
                 <svg
                     viewBox="0 0 500 150"
                     preserveAspectRatio="none"

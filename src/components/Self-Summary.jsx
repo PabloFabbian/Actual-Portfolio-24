@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+import CvDoble from '../assets/CvDoble.png'
 
 function SelfSummary() {
+    const pdfUrl = "https://drive.google.com/file/d/1bgoJh80yXdfkdtZQ6FeTzuAWuGxHMjYt/view?usp=sharing";
+
     return (
         <section className="bg-[#7F5539] pt-12" id="About">
             <div className="container mx-auto px-4">
@@ -8,75 +11,74 @@ function SelfSummary() {
                     Self-Summary
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Perfil Profesional */}
+                    {/* Professional Profile */}
                     <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-6 rounded-lg shadow-lg col-span-2 text-white">
-                        <h3 className="text-2xl font-bold mb-4">Breve Perfil Profesional</h3>
+                        <h3 className="text-2xl font-bold mb-4">Brief Professional Profile</h3>
                         <p className="mb-2">
-                            <strong>Qué me Inspira:</strong> Transformar ideas en experiencias digitales es mi pasión.
+                            <strong>What Inspires Me:</strong> Technology and creativity. My goal is to connect technical solutions with meaningful human experiences.
                         </p>
                         <p>
-                            <strong>Visión Personal:</strong> Creo en la simplicidad y en el poder de un buen diseño para resolver problemas.
+                            <strong>Personal Vision:</strong> Minimalism and functionality are key to solving future problems with smart designs.
                         </p>
                     </div>
 
-                    {/* Datos Curiosos */}
+                    {/* Fun Facts */}
                     <div className="bg-gradient-to-br from-green-400 to-blue-500 p-6 rounded-lg shadow-lg text-white">
-                        <h3 className="text-2xl font-bold mb-4">Datos Curiosos</h3>
+                        <h3 className="text-2xl font-bold mb-4">Fun Facts</h3>
                         <p>
-                            Cuando no estoy codificando, me encontrarás explorando nuevas tendencias en diseño UX o creando interfaces para proyectos personales.
+                            Besides software development, I enjoy urban photography and long-distance cycling. These hobbies help me keep a clear and creative mind.
                         </p>
                     </div>
 
-                    {/* Imagen 1 */}
+                    {/* PDF Thumbnail */}
                     <div className="relative rounded-lg shadow-lg overflow-hidden h-48">
-                        <img
-                            src="/placeholder.svg?height=192&width=384"
-                            alt="Imagen representativa de desarrollo web"
-                            className="w-full h-full object-cover"
-                        />
+                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                            <img
+                                src={CvDoble}
+                                alt="Curriculum Vitae Thumbnail"
+                                className="w-full h-full object-contain cursor-pointer"
+                            />
+                        </a>
                     </div>
 
-                    {/* Proyectos Destacados */}
+                    {/* Featured Projects */}
                     <div className="bg-gradient-to-br from-yellow-400 to-orange-500 p-6 rounded-lg shadow-lg text-white col-span-2">
-                        <h3 className="text-2xl font-bold mb-4">Proyectos Destacados</h3>
+                        <h3 className="text-2xl font-bold mb-4">Featured Projects</h3>
                         <p className="mb-2">
-                            <strong>Logro Clave:</strong> Desarrollé una aplicación que facilitó la gestión de proyectos para equipos remotos.
+                            <strong>Key Achievement:</strong> Developed an e-commerce platform that allowed over 500 local stores to increase their online sales during the pandemic.
                         </p>
                         <p>
-                            <strong>Impacto:</strong> Incrementó la eficiencia del 20%.
+                            <strong>Impact:</strong> Increased conversions by 35% through optimizing the user interface and improving load times.
                         </p>
                     </div>
 
-                    {/* Cita Personal */}
+                    {/* Personal Quote */}
                     <div className="bg-gradient-to-br from-pink-500 to-red-500 p-6 rounded-lg shadow-lg text-white">
-                        <h3 className="text-2xl font-bold mb-4">Cita Personal</h3>
+                        <h3 className="text-2xl font-bold mb-4">Personal Quote</h3>
                         <p className="text-xl italic">
-                            "El diseño es la inteligencia hecha visible."
+                            "Design is not just what it looks like and feels like. Design is how it works."
                         </p>
                     </div>
 
-                    {/* Estilo de Trabajo */}
+                    {/* Work Style */}
                     <div className="bg-gradient-to-br from-teal-400 to-blue-500 p-6 rounded-lg shadow-lg text-white">
-                        <h3 className="text-2xl font-bold mb-4">Estilo de Trabajo</h3>
+                        <h3 className="text-2xl font-bold mb-4">Work Style</h3>
                         <p className="mb-2">
-                            <strong>Metodología:</strong> Utilizo un enfoque centrado en el usuario para asegurar que cada proyecto sea funcional y estéticamente agradable.
+                            <strong>Methodology:</strong> I work with agile methodologies to deliver iterative results that meet clients' changing needs.
                         </p>
                         <p>
-                            <strong>Colaboración:</strong> Disfruto trabajando en equipo para lograr soluciones innovadoras.
+                            <strong>Collaboration:</strong> I enjoy working in teams, sharing ideas, and learning from others to build products that have a positive impact.
                         </p>
                     </div>
 
-                    {/* Imagen 2 */}
+                    {/* Image 2 */}
                     <div className="relative rounded-lg shadow-lg overflow-hidden h-50">
-                        <img
-                            src="/placeholder.svg?height=192&width=384"
-                            alt="Imagen representativa de diseño web"
-                            className="w-full h-full object-cover"
-                        />
+                        <img src="https://via.placeholder.com/384x192" alt="Curriculum Vitae Thumbnail" className="w-full h-full object-cover cursor-pointer" />
                     </div>
                 </div>
             </div>
-            <div style={{ height: '150px', overflow: 'hidden' }} className="bg-[#E6CCB2]">
+
+            <div style={{ height: '150px', overflow: 'hidden' }} className="bg-[#F3D5B5]">
                 <svg
                     viewBox="0 0 500 150"
                     preserveAspectRatio="none"
@@ -88,9 +90,8 @@ function SelfSummary() {
                     />
                 </svg>
             </div>
-
         </section>
-    )
+    );
 }
 
-export default SelfSummary
+export default SelfSummary;

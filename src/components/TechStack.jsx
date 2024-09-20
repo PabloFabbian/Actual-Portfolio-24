@@ -16,7 +16,7 @@ function TechStack() {
     ]
 
     return (
-        <div className="bg-[#E6CCB2] pt-12" id='Tech-Stack'>
+        <div className="bg-[#F3D5B5] pt-12" id='Tech-Stack'>
             <h2 className="font-lt-soul text-7xl font-bold text-center text-[#9C6548] mb-12">
                 Tech Stack
             </h2>
