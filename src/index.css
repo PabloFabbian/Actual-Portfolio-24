@@ -2,29 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Agrega esto en tu archivo CSS global para personalizar la barra de desplazamiento */
+/* Projects Scrollbar */
 .custom-scrollbar {
     scrollbar-width: thin;
-    /* Firefox */
     scrollbar-color: #FFD275 #7F5539;
-    /* Firefox */
 }
-
 .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
-    /* Tamaño del scrollbar */
 }
-
 .custom-scrollbar::-webkit-scrollbar-track {
     background: #E6CCB2;
-    /* Color de fondo del track */
 }
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #7F5539;
-    /* Color del thumb */
     border-radius: 10px;
-    /* Redondeo del thumb */
+}
+
+.text-gradient-PF {
+    background: linear-gradient(to right, #FDB3DF, #ff8db1, #ff6999, #ff5fa2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #FF694E, #FFB524);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Home-pills Hover */
+.social-pills a:hover img {
+    filter: brightness(0) saturate(100%) invert(38%) sepia(63%) saturate(680%) hue-rotate(340deg) brightness(96%) contrast(91%);
+}
+.social-pills .linkedin-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(21%) sepia(89%) saturate(1217%) hue-rotate(203deg) brightness(102%) contrast(97%);
+}
+.social-pills .github-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(2600%) hue-rotate(250deg) brightness(95%) contrast(90%);
+}
+.social-pills .twitter-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(30%) sepia(68%) saturate(1600%) hue-rotate(203deg) brightness(98%) contrast(101%);
 }
 
 @keyframes marquee-left {
@@ -53,38 +72,6 @@
 
 .animate-marquee-right {
     animation: marquee-right 10s linear infinite;
-}
-
-.text-gradient {
-    background: linear-gradient(to right, #FF694E, #FFB524);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* Para navegadores que soportan esta propiedad */
-}
-
-.text-gradient-PF {
-    background: linear-gradient(to right, #FDB3DF, #ff8db1, #ff6999, #ff5fa2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Estilos para cambiar el color de los íconos cuando se hace hover sobre el enlace */
-.social-pills a:hover img {
-    filter: brightness(0) saturate(100%) invert(38%) sepia(63%) saturate(680%) hue-rotate(340deg) brightness(96%) contrast(91%);
-}
-
-/* Opcional: para especificar diferentes colores para diferentes íconos, puedes usar clases adicionales */
-.social-pills .linkedin-icon:hover img {
-    filter: brightness(0) saturate(100%) invert(21%) sepia(89%) saturate(1217%) hue-rotate(203deg) brightness(102%) contrast(97%);
-}
-
-.social-pills .github-icon:hover img {
-    filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(2600%) hue-rotate(250deg) brightness(95%) contrast(90%);
-}
-
-.social-pills .twitter-icon:hover img {
-    filter: brightness(0) saturate(100%) invert(30%) sepia(68%) saturate(1600%) hue-rotate(203deg) brightness(98%) contrast(101%);
 }
 
 @keyframes marquee {

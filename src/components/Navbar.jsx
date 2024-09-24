@@ -7,6 +7,7 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [scrollTimeout, setScrollTimeout] = useState(null);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Nuevo estado para el menú
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -15,7 +16,6 @@ function Navbar() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const sections = ['Home', 'About', 'Projects', 'Tech-Stack'];
 
-      // Determine which section is currently in view
       let closestSection = '';
       let minDistance = Infinity;
 
@@ -37,7 +37,6 @@ function Navbar() {
       setActiveSection(closestSection);
 
       if (scrollTop > lastScrollTop) {
-        // Scrolling down
         if (!isScrollingDown) {
           setIsScrollingDown(true);
           if (scrollTimeout) {
@@ -45,11 +44,10 @@ function Navbar() {
           }
           const newTimeout = setTimeout(() => {
             setShowLogoAndButton(false);
-          }, 4000); // Hide after 4 seconds
+          }, 4000);
           setScrollTimeout(newTimeout);
         }
       } else {
-        // Scrolling up
         setIsScrollingDown(false);
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);
@@ -57,7 +55,7 @@ function Navbar() {
         setShowLogoAndButton(true);
       }
 
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -76,26 +74,27 @@ function Navbar() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMenuOpen(false);
   };
 
   const handleButtonClick = () => {
     document.getElementById('Contact').scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
   };
 
   return (
     <>
       <nav className="bg-transparent fixed top-0 left-0 right-0 z-50">
-        <div className={`container mx-auto align-middle px-6 py-3 flex justify-between items-center transition-transform duration-500`}>
-          <div
-            className={`flex items-center mx-12 hover:cursor-pointer transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}
-          >
+        <div className="container mx-auto px-6 py-3 flex justify-between items-center transition-transform duration-500">
+          <div className={`flex items-center mx-0 md:mx-12 hover:cursor-pointer transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
             <img src={Logo} alt="Logo" className="mr-1 mt-0.5 h-[3.8rem] w-auto drop-shadow-lg" />
-            <div>
+            <div className="hidden md:inline">
               <span className="text-gradient-PF block font-black text-3xl -mb-2 drop-shadow-lg">PF</span>
               <span className="text-gradient-PF block font-black text-3xl drop-shadow-lg">Portfolio</span>
             </div>
           </div>
-          <div className="flex flex-grow justify-center">
+
+          <div className="hidden md:flex flex-grow justify-center">
             <div className="flex bg-gradient-to-r from-[#9C6644] to-[#9C6649] pt-3 pb-2 px-32 rounded-full text-lg text-[#EDE0D4] space-x-32 drop-shadow-lg">
               {['Home', 'Projects', 'About', 'Tech-Stack'].map((section) => (
                 <button
@@ -111,16 +110,71 @@ function Navbar() {
               ))}
             </div>
           </div>
+
           <button
             type="button"
             onClick={handleButtonClick}
-            className={`bg-[#DB5A42] text-white px-12 py-2 rounded-xl hover:bg-red-500 hover:border-red-500 mx-12 drop-shadow-lg transition delay-50 duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}
+            className={`hidden md:block bg-[#DB5A42] text-white px-12 py-2 rounded-xl hover:bg-red-500 hover:border-red-500 mx-12 drop-shadow-lg transition delay-50 duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}
             style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
           >
             Let's Talk
           </button>
+
+          {/* Burger Menu for Mobile */}
+          <div className="md:hidden">
+            <button
+              className="z-50 relative focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {/* Icon changes */}
+              <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
+                <span className="block w-8 h-1 bg-[#DB5A42] mb-1"></span>
+                <span className="block w-8 h-1 bg-[#DB5A42] mb-1"></span>
+                <span className="block w-8 h-1 bg-[#DB5A42]"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed top-0 left-0 w-full h-full bg-[rgba(156,102,68,0.9)] z-40 transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className="flex flex-col items-center justify-center h-full space-y-12 text-3xl text-[#FFD275]">
+            {['Home', 'Projects', 'About', 'Tech-Stack'].map((section) => (
+              <button
+                key={section}
+                onClick={() => handleSelect(section)}
+                className={`font-lt-soul ${activeSection === section ? 'text-[#FFD275]' : ''}`}
+              >
+                {section}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={handleButtonClick}
+              className="bg-[#DB5A42] text-white px-12 py-2 rounded-xl"
+              style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
+            >
+              Let's Talk
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Custom styles for burger */}
+      <style jsx>{`
+        .hamburger span {
+          transition: all 0.3s ease-in-out;
+        }
+        .hamburger.open span:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.open span:nth-child(2) {
+          opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      `}</style>
     </>
   );
 }
