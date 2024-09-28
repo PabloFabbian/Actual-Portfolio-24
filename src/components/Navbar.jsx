@@ -159,22 +159,6 @@ function Navbar() {
           </div>
         </div>
       </nav>
-
-      {/* Custom styles for burger */}
-      <style jsx>{`
-        .hamburger span {
-          transition: all 0.3s ease-in-out;
-        }
-        .hamburger.open span:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger.open span:nth-child(2) {
-          opacity: 0;
-        }
-        .hamburger.open span:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
-        }
-      `}</style>
     </>
   );
 }

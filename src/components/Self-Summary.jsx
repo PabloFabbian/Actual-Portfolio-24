@@ -1,19 +1,62 @@
-import React from 'react';
-import CvDoble from '../assets/CvDoble.png'
+import React, { useState, useEffect } from 'react';
+import CvDoble from '../assets/CvDoble.png';
+import desarrolloImg from '../assets/Certificates/Desarrollo.png';
+import javascriptImg from '../assets/Certificates/Javascript.png';
+import reactImg from '../assets/Certificates/React.png';
+import frontendImg from '../assets/Certificates/Frontend.png';
+import campImg from '../assets/Certificates/Camp.png';
+
+const images = [
+    desarrolloImg,
+    javascriptImg,
+    reactImg,
+    frontendImg,
+    campImg,
+];
 
 function SelfSummary() {
-    const pdfUrl = "https://drive.google.com/file/d/1bgoJh80yXdfkdtZQ6FeTzuAWuGxHMjYt/view?usp=sharing";
+    const [hovered, setHovered] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 3500);
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <section className="bg-[#7F5539] pt-12" id="About">
-            <div className="container mx-auto px-4">
-                <h2 className="font-lt-soul text-7xl font-medium text-center text-[#FFD275] mb-12">
+            <div className="container mx-auto px-4 mb-10">
+                {/* Título principal */}
+                <h2 className="font-lt-soul text-5xl md:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-12">
                     Self-Summary
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Professional Profile */}
-                    <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-6 rounded-lg shadow-lg col-span-2 text-white">
-                        <h3 className="text-2xl font-bold mb-4">Brief Professional Profile</h3>
+
+                {/* Grilla responsiva */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    {/* Perfil Profesional */}
+                    <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl col-span-1 md:col-span-2 text-white w-full h-full transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#9C6644] rounded-full">
+                            {/* Icono simple SVG */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Brief Professional Profile</h3>
                         <p className="mb-2">
                             <strong>What Inspires Me:</strong> Technology and creativity. My goal is to connect technical solutions with meaningful human experiences.
                         </p>
@@ -22,28 +65,57 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* Fun Facts */}
-                    <div className="bg-gradient-to-br from-green-400 to-blue-500 p-6 rounded-lg shadow-lg text-white">
-                        <h3 className="text-2xl font-bold mb-4">Fun Facts</h3>
+                    {/* Datos Curiosos */}
+                    <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#7F5539] rounded-full">
+                            {/* Icono SVG */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m-6-8h6m-9 8h.01M3 12h.01M3 16h.01M3 8h.01M21 12h.01M21 16h.01M21 8h.01M12 21a9 9 0 100-18 9 9 0 000 18z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Fun Facts</h3>
                         <p>
                             Besides software development, I enjoy urban photography and long-distance cycling. These hobbies help me keep a clear and creative mind.
                         </p>
                     </div>
 
                     {/* PDF Thumbnail */}
-                    <div className="relative rounded-lg shadow-lg overflow-hidden h-48">
-                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                    <div 
+                        className="bg-[#333333] relative rounded-lg shadow-xl overflow-hidden h-40 md:h-[17.2rem] transition transform hover:scale-105 duration-300"
+                        onMouseEnter={() => setHovered(true)}
+                        onMouseLeave={() => setHovered(false)}
+                    >
+                        <a 
+                            href="./src/assets/Pablo E. Fabbian [Frontend Developer].pdf"
+                            download="Pablo E. Fabbian [Frontend Developer].pdf"
+                            className="w-full h-full flex items-center justify-center"
+                        >
                             <img
                                 src={CvDoble}
                                 alt="Curriculum Vitae Thumbnail"
-                                className="w-full h-full object-contain cursor-pointer"
+                                className="w-full h-full object-contain pr-1.5"
                             />
+                            {(hovered || isMobile) && (  // Mostrar el overlay si está en mobile o si está en hover
+                                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-lg font-bold">
+                                    <svg viewBox="0 0 24 24" fill="white" className="h-10 w-10" stroke="white" strokeWidth="0.5">
+                                        <path d="M17.07,20.61H9.79a2,2,0,0,1-2-2,2,2,0,0,1,2-2h1.87L5,9.86a2,2,0,0,1-.19-2.65,1.88,1.88,0,0,1,1.47-.68,1.84,1.84,0,0,1,1.35.55l4.06,4.06,4.08-3.06a1.91,1.91,0,0,1,2.5.18h0A17.18,17.18,0,0,1,22.42,15l.06.19"></path>
+                                        <path d="M10.63,10.12A4.73,4.73,0,0,0,11,8.17A4.78,4.78,0,1,0,6.26,13a4.67,4.67,0,0,0,1.55-.26"></path>
+                                    </svg>
+                                    Click to download my CV
+                                </div>
+                            )}
                         </a>
                     </div>
 
-                    {/* Featured Projects */}
-                    <div className="bg-gradient-to-br from-yellow-400 to-orange-500 p-6 rounded-lg shadow-lg text-white col-span-2">
-                        <h3 className="text-2xl font-bold mb-4">Featured Projects</h3>
+                    {/* Proyectos Destacados */}
+                    <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white col-span-1 md:col-span-2 w-full h-full transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#9C6644] rounded-full">
+                            {/* Icono SVG */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Featured Projects</h3>
                         <p className="mb-2">
                             <strong>Key Achievement:</strong> Developed an e-commerce platform that allowed over 500 local stores to increase their online sales during the pandemic.
                         </p>
@@ -52,17 +124,29 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* Personal Quote */}
-                    <div className="bg-gradient-to-br from-pink-500 to-red-500 p-6 rounded-lg shadow-lg text-white">
-                        <h3 className="text-2xl font-bold mb-4">Personal Quote</h3>
-                        <p className="text-xl italic">
+                    {/* Cita Personal */}
+                    <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#7F5539] rounded-full">
+                            {/* Icono SVG */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Personal Quote</h3>
+                        <p className="text-lg md:text-xl italic">
                             "Design is not just what it looks like and feels like. Design is how it works."
                         </p>
                     </div>
 
-                    {/* Work Style */}
-                    <div className="bg-gradient-to-br from-teal-400 to-blue-500 p-6 rounded-lg shadow-lg text-white">
-                        <h3 className="text-2xl font-bold mb-4">Work Style</h3>
+                    {/* Estilo de Trabajo */}
+                    <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#9C6644] rounded-full">
+                            {/* Icono SVG */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Work Style</h3>
                         <p className="mb-2">
                             <strong>Methodology:</strong> I work with agile methodologies to deliver iterative results that meet clients' changing needs.
                         </p>
@@ -71,23 +155,32 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* Image 2 */}
-                    <div className="relative rounded-lg shadow-lg overflow-hidden h-50">
-                        <img src="https://via.placeholder.com/384x192" alt="Curriculum Vitae Thumbnail" className="w-full h-full object-cover cursor-pointer" />
+                    {/* Imagen 2 */}
+                    <div className="relative rounded-lg shadow-xl overflow-hidden h-40 md:h-[20.25rem] transition transform hover:scale-105 duration-300">
+                        <img
+                            src={images[currentIndex]}
+                            alt={`Imagen ${currentIndex + 1}`}
+                            className="w-full h-full object-cover cursor-pointer"
+                        />
                     </div>
                 </div>
             </div>
 
-            <div style={{ height: '150px', overflow: 'hidden' }} className="bg-[#F3D5B5]">
+            {/* SVG al final */}
+            <div style={{ height: '100px', overflow: 'hidden' }} className={`bg-[#F3D5B5] mt-8 ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`}>
                 <svg
                     viewBox="0 0 500 150"
                     preserveAspectRatio="none"
-                    style={{ height: '100%', width: '100%', transform: 'rotate(180deg)' }}
+                    style={{
+                        height: isMobile ? '70%' : '100%',
+                        width: '100%',
+                        transform: 'rotate(180deg)'
+                    }}
                 >
                     <path
                         d="M-43.73,193.92 C128.38,-52.77 372.17,-43.89 562.36,206.75 L246.89,203.80 L233.92,202.80 Z"
                         style={{ stroke: 'none', fill: '#7F5539' }}
-                    />
+                    ></path>
                 </svg>
             </div>
         </section>

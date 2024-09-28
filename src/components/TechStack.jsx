@@ -16,30 +16,32 @@ function TechStack() {
     ]
 
     return (
-        <div className="bg-[#F3D5B5] pt-12" id='Tech-Stack'>
-            <h2 className="font-lt-soul text-7xl font-bold text-center text-[#9C6548] mb-12">
+        <div className="bg-[#F3D5B5] overflow-hidden relative pt-12">
+            <h2 className="font-lt-soul text-5xl md:text-7xl font-bold text-center text-[#9C6548] mb-0 md:mb-9" id="Tech-Stack">
                 Tech Stack
             </h2>
-            <div className="relative w-full h-32 overflow-hidden">
-                <div className="absolute top-0 left-0 flex animate-marquee whitespace-nowrap">
+            <div className="marquee">
+                <div className="animate-scroll">
                     {technologies.map((tech, index) => (
-                        <div key={index} className="flex-shrink-0 mx-10">
-                            {tech.svg}
-                            <div className="text-center mt-2 text-gray-700">{tech.name}</div>
+                        <div key={index} className="flex-shrink-0 py-4 px-1.5 md:px-9">
+                            <div className="flex flex-col items-center scale-[.75] md:scale-100">
+                                {tech.svg}
+                                <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
+                            </div>
                         </div>
                     ))}
-                </div>
-                <div className="absolute top-0 left-[102%] flex animate-marquee whitespace-nowrap">
                     {technologies.map((tech, index) => (
-                        <div key={index} className="flex-shrink-0 mx-10">
-                            {tech.svg}
-                            <div className="text-center mt-2 text-gray-700">{tech.name}</div>
+                        <div key={index + technologies.length} className="flex-shrink-0 py-4 px-1.5 md:px-9">
+                            <div className="flex flex-col items-center scale-[.75] md:scale-100">
+                                {tech.svg}
+                                <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
         </div>
     );
-}
+}    
 
 export default TechStack;
