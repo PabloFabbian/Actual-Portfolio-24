@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; 
 import CvDoble from '../assets/CvDoble.png';
 import desarrolloImg from '../assets/Certificates/Desarrollo.png';
 import javascriptImg from '../assets/Certificates/Javascript.png';
@@ -18,10 +18,15 @@ function SelfSummary() {
     const [hovered, setHovered] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(true);
+
+    const totalImages = images.length;
+    const transitionDuration = 1000;
+    const carouselRef = useRef(null);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
+            setIsMobile(window.innerWidth < 1440);
         };
 
         handleResize();
@@ -29,17 +34,41 @@ function SelfSummary() {
 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-    
+
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+            setCurrentIndex((prevIndex) => prevIndex + 1);
         }, 3500);
         return () => clearInterval(intervalId);
     }, []);
 
+    useEffect(() => {
+        if (currentIndex === totalImages + 1) {
+            setTimeout(() => {
+                setIsTransitioning(false);
+                setCurrentIndex(1);
+            }, transitionDuration);
+        }
+
+        if (currentIndex === 0) {
+            setTimeout(() => {
+                setIsTransitioning(false);
+                setCurrentIndex(totalImages);
+            }, transitionDuration);
+        }
+    }, [currentIndex, totalImages]);
+
+    useEffect(() => {
+        if (!isTransitioning) {
+            setTimeout(() => {
+                setIsTransitioning(true);
+            }, 50);
+        }
+    }, [isTransitioning]);
+
     return (
         <section className="bg-[#7F5539] pt-12" id="About">
-            <div className="container mx-auto px-4 mb-10">
+            <div className="container mx-auto px-12 mb-10">
                 {/* Título principal */}
                 <h2 className="font-lt-soul text-5xl md:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-12">
                     Self-Summary
@@ -155,13 +184,41 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* Imagen 2 */}
-                    <div className="relative rounded-lg shadow-xl overflow-hidden h-40 md:h-[20.25rem] transition transform hover:scale-105 duration-300">
-                        <img
-                            src={images[currentIndex]}
-                            alt={`Imagen ${currentIndex + 1}`}
-                            className="w-full h-full object-cover cursor-pointer"
-                        />
+                    <div className="relative rounded-lg shadow-xl overflow-hidden h-40 md:h-[22rem]">
+                        <div
+                            className={`flex w-full h-full transition-transform duration-${transitionDuration} ease-in-out`}
+                            ref={carouselRef}
+                            style={{
+                                transform: `translateX(-${currentIndex * 100}%)`,
+                                transition: isTransitioning ? `transform ${transitionDuration}ms ease-in-out` : 'none'
+                            }}
+                        >
+                            {/* Duplicamos la última imagen al inicio */}
+                            <img
+                                src={images[totalImages - 1]}
+                                alt={`Imagen duplicada`}
+                                className="w-full h-full object-cover"
+                                style={{ flexShrink: 0, width: '100%' }}
+                            />
+
+                            {images.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Imagen ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                    style={{ flexShrink: 0, width: '100%' }}
+                                />
+                            ))}
+
+                            {/* Duplicamos la primera imagen al final */}
+                            <img
+                                src={images[0]}
+                                alt={`Imagen duplicada`}
+                                className="w-full h-full object-cover"
+                                style={{ flexShrink: 0, width: '100%' }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

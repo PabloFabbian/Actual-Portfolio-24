@@ -61,7 +61,7 @@ function ProjectsSection() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 640);
+            setIsMobile(window.innerWidth <= 1440);
         };
 
         handleResize();
@@ -105,9 +105,9 @@ function ProjectsSection() {
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
                     {/* Imagen del Proyecto (Derecha) */}
-                    <div className="w-11/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6f">
+                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6">
                         <div
-                            className="overflow-hidden relative h-[27.5vh] md:h-[68vh] rounded-md shadow-lg"
+                            className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
                             onMouseLeave={() => setIsImageHovered(false)}
                         >
