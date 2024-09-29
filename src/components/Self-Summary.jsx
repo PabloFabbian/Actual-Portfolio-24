@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'; 
 import CvDoble from '../assets/CvDoble.png';
-import desarrolloImg from '../assets/Certificates/Desarrollo.png';
-import javascriptImg from '../assets/Certificates/Javascript.png';
-import reactImg from '../assets/Certificates/React.png';
-import frontendImg from '../assets/Certificates/Frontend.png';
-import campImg from '../assets/Certificates/Camp.png';
+import desarrolloImg from '../assets/Certificates/Desarrollo.webp';
+import javascriptImg from '../assets/Certificates/Javascript.webp';
+import reactImg from '../assets/Certificates/React.webp';
+import frontendImg from '../assets/Certificates/Frontend.webp';
+import campImg from '../assets/Certificates/Camp.webp';
 
 const images = [
     desarrolloImg,
@@ -68,7 +68,7 @@ function SelfSummary() {
 
     return (
         <section className="bg-[#7F5539] pt-12" id="About">
-            <div className="container mx-auto px-12 mb-10">
+            <div className="container mx-auto px-6 md:mb-10">
                 {/* Título principal */}
                 <h2 className="font-lt-soul text-5xl md:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-12">
                     Self-Summary
@@ -184,7 +184,7 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    <div className="relative rounded-lg shadow-xl overflow-hidden h-40 md:h-[22rem]">
+                    <div className="relative rounded-lg shadow-xl overflow-hidden h-5/6 md:h-[22rem]">
                         <div
                             className={`flex w-full h-full transition-transform duration-${transitionDuration} ease-in-out`}
                             ref={carouselRef}
@@ -224,7 +224,7 @@ function SelfSummary() {
             </div>
 
             {/* SVG al final */}
-            <div style={{ height: '100px', overflow: 'hidden' }} className={`bg-[#F3D5B5] mt-8 ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`}>
+            <div style={{ height: '100px', overflow: 'hidden' }} className={`bg-[#F3D5B5] ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`}>
                 <svg
                     viewBox="0 0 500 150"
                     preserveAspectRatio="none"

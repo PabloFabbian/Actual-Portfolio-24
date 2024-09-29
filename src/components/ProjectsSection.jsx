@@ -1,62 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import ChevronSVG from '../assets/svg/chevron-arrow-icon.svg';
-import RedlineImage from '../assets/ProjectsImg/Redline.png';
-import KutaCoffeeImage from '../assets/ProjectsImg/Kuta2.png';
-import PixelPulseImage from '../assets/ProjectsImg/Pixelpulse2.png';
-import VooidImage from '../assets/ProjectsImg/Vooid.png';
-import TowerSoftwareImage from '../assets/ProjectsImg/Tower2.png';
-import RucaviImage from '../assets/ProjectsImg/Rucavi.png';
+import RedlineImage from '../assets/ProjectsImg/Redline2.webp';
+import KutaCoffeeImage from '../assets/ProjectsImg/Kuta2.webp';
+import PixelPulseImage from '../assets/ProjectsImg/Pixelpulse2.webp';
+import VooidImage from '../assets/ProjectsImg/Vooid2.webp';
+import TowerSoftwareImage from '../assets/ProjectsImg/Tower2.webp';
+import RucaviImage from '../assets/ProjectsImg/Rucavi2.webp';
 
 function ProjectsSection() {
     const [hoveredProject, setHoveredProject] = useState('Tower Software');
     const [isMobile, setIsMobile] = useState(false);
     const [isImageHovered, setIsImageHovered] = useState(false);
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga de la imagen
+    const projectRefs = useRef([]);
 
     const projects = [
-        {
-            name: 'Tower Software',
-            description: 'Webflow and React development for a software company.',
-            image: TowerSoftwareImage,
-        },
-        {
-            name: 'Rucavi',
-            description: 'React development for an IT consultancy company.',
-            image: RucaviImage,
-        },
-        {
-            name: 'Vooid Indumentaria',
-            description: 'Branding, React development, and e-commerce website design.',
-            image: VooidImage,
-        },
-        {
-            name: 'PixelPulse Studio',
-            description: 'Creative website design and React development for a digital studio.',
-            image: PixelPulseImage,
-        },
-        {
-            name: 'Red Line',
-            description: 'Website design and sales funnel optimization.',
-            image: RedlineImage,
-        },
-        {
-            name: 'Kuta Coffee',
-            description: 'React development and website design for a coffee brand.',
-            image: KutaCoffeeImage,
-        },
+        { name: 'Tower Software', description: 'Webflow and React development for a software company.', image: TowerSoftwareImage },
+        { name: 'Rucavi', description: 'React development for an IT consultancy company.', image: RucaviImage },
+        { name: 'Vooid Indumentaria', description: 'Branding, React development, and e-commerce website design.', image: VooidImage },
+        { name: 'PixelPulse Studio', description: 'Creative website design and React development for a digital studio.', image: PixelPulseImage },
+        { name: 'Red Line', description: 'Website design and sales funnel optimization.', image: RedlineImage },
+        { name: 'Kuta Coffee', description: 'React development and website design for a coffee brand.', image: KutaCoffeeImage },
     ];
 
     const handleNextProject = () => {
         setCurrentProjectIndex((prevIndex) =>
             prevIndex === projects.length - 1 ? 0 : prevIndex + 1
         );
+        setIsLoading(true);
     };
 
     const handlePreviousProject = () => {
         setCurrentProjectIndex((prevIndex) =>
             prevIndex === 0 ? projects.length - 1 : prevIndex - 1
         );
+        setIsLoading(true);
     };
 
     useEffect(() => {
@@ -72,7 +52,37 @@ function ProjectsSection() {
     const handleProjectHover = (index) => {
         setHoveredProject(projects[index].name);
         setCurrentProjectIndex(index);
+        setIsLoading(true);
     };
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const index = projectRefs.current.indexOf(entry.target);
+                    if (index >= 0) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                }
+            });
+        }, options);
+
+        projectRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => {
+            projectRefs.current.forEach((ref) => {
+                if (ref) observer.unobserve(ref);
+            });
+        };
+    }, [projectRefs]);
 
     return (
         <>
@@ -111,6 +121,11 @@ function ProjectsSection() {
                             onMouseEnter={() => setIsImageHovered(true)}
                             onMouseLeave={() => setIsImageHovered(false)}
                         >
+                            {isLoading && (
+                                <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded-lg">
+                                    <div className="h-full w-full bg-gray-100 rounded-lg"></div>
+                                </div>
+                            )}
                             <motion.div
                                 key={projects[currentProjectIndex].name}
                                 className="absolute inset-0 bg-cover bg-top"
@@ -119,6 +134,7 @@ function ProjectsSection() {
                                     backgroundSize: 'cover',
                                     backgroundPositionY: isImageHovered ? '100%' : '0%',
                                 }}
+                                onLoad={() => setIsLoading(false)}
                                 animate={{ backgroundPositionY: isImageHovered ? '100%' : '0%' }}
                                 transition={{
                                     duration: 5,
@@ -157,6 +173,9 @@ function ProjectsSection() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5 }}
+                                    style={{
+                                        transitionDelay: '0.5s',
+                                    }}
                                 >
                                     {projects[currentProjectIndex].description}
                                 </motion.p>
@@ -179,19 +198,28 @@ function ProjectsSection() {
                                 {projects.map((project, index) => (
                                     <motion.div
                                         key={project.name}
-                                        className={`w-full p-4 cursor-pointer transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[#E6BD6A]'} ${index < projects.length - 1 ? 'border-b border-[#FFD275]' : ''}`}
+                                        className={`w-full p-4 cursor-pointer transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.9)] transition transform'} ${index < projects.length - 1 ? 'border-b border-[#FFD275]' : ''}`}
                                         onMouseEnter={() => handleProjectHover(index)}
                                         onClick={() => handleProjectHover(index)}
                                     >
-                                        <h3 className="text-4xl md:text-6xl font-lt-soul">
+                                        <motion.h3
+                                            className="text-4xl md:text-6xl font-lt-soul"
+                                            initial={{ opacity: 0, x: -100 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        >
                                             {project.name}
-                                        </h3>
+                                        </motion.h3>
                                         {hoveredProject === project.name && (
                                             <motion.p
                                                 className="text-lg mt-2"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                                initial={{ opacity: 0, y: -20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{
+                                                    duration: 0.3,
+                                                    ease: 'easeInOut',
+                                                    delay: 0.075,
+                                                }}
                                             >
                                                 {project.description}
                                             </motion.p>

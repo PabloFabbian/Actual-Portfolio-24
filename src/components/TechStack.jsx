@@ -16,31 +16,34 @@ function TechStack() {
     ]
 
     return (
-        <div className="bg-[#F3D5B5] overflow-hidden relative pt-12">
-            <h2 className="font-lt-soul text-5xl md:text-7xl font-bold text-center text-[#9C6548] mb-0 md:mb-9" id="Tech-Stack">
-                Tech Stack
-            </h2>
-            <div className="marquee">
-                <div className="animate-scroll">
-                    {technologies.map((tech, index) => (
-                        <div key={index} className="flex-shrink-0 py-4 px-1.5 md:px-9">
-                            <div className="flex flex-col items-center scale-[.75] md:scale-100">
-                                {tech.svg}
-                                <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
-                            </div>
+<div className="bg-[#F3D5B5] overflow-hidden relative pt-12">
+    <h2 className="font-lt-soul text-5xl md:text-7xl font-bold text-center text-[#9C6548] mb-0 md:mb-9" id="Tech-Stack">
+        Tech Stack
+    </h2>
+    <div className="curved-container relative">
+        <div className="marquee">
+            <div className="animate-scroll flex items-center justify-center">
+                {technologies.map((tech, index) => (
+                    <div key={index} className="flex-shrink-0 py-4 px-1.5 md:px-9">
+                        <div className="flex flex-col items-center scale-[.75] md:scale-100">
+                            {tech.svg}
+                            <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
                         </div>
-                    ))}
-                    {technologies.map((tech, index) => (
-                        <div key={index + technologies.length} className="flex-shrink-0 py-4 px-1.5 md:px-9">
-                            <div className="flex flex-col items-center scale-[.75] md:scale-100">
-                                {tech.svg}
-                                <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
-                            </div>
+                    </div>
+                ))}
+                {technologies.map((tech, index) => (
+                    <div key={index + technologies.length} className="flex-shrink-0 py-4 px-1.5 md:px-9">
+                        <div className="flex flex-col items-center scale-[.75] md:scale-100">
+                            {tech.svg}
+                            <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </div>
+    </div>
+</div>
+
     );
 }    
 

@@ -4,6 +4,7 @@ import ProjectsSection from './components/ProjectsSection'
 import SelfSummary from './components/Self-Summary'
 import TechStack from './components/TechStack'
 import ContactForm from './components/ContactForm'
+import { Toaster } from 'sonner';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <SelfSummary />
       <TechStack />
       <ContactForm />
+      <Toaster richColors position="bottom-center" />
     </>
   )
 }

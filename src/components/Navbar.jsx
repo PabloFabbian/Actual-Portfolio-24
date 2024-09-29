@@ -7,7 +7,7 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [scrollTimeout, setScrollTimeout] = useState(null);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Nuevo estado para el menú
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -111,6 +111,7 @@ function Navbar() {
             </div>
           </div>
 
+          {/* Button for Desktop */}
           <button
             type="button"
             onClick={handleButtonClick}
@@ -121,12 +122,19 @@ function Navbar() {
           </button>
 
           {/* Burger Menu for Mobile */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <button
+              type="button"
+              onClick={handleButtonClick}
+              className="bg-[#DB5A42] text-white px-12 mr-10 -mt-1 py-2 rounded-xl mr-4"
+              style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
+            >
+              Let's Talk
+            </button>
             <button
               className="z-50 relative focus:outline-none"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {/* Icon changes */}
               <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
                 <span className="block w-8 h-1 bg-[#DB5A42] mb-1"></span>
                 <span className="block w-8 h-1 bg-[#DB5A42] mb-1"></span>
@@ -148,14 +156,6 @@ function Navbar() {
                 {section}
               </button>
             ))}
-            <button
-              type="button"
-              onClick={handleButtonClick}
-              className="bg-[#DB5A42] text-white px-12 py-2 rounded-xl"
-              style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
-            >
-              Let's Talk
-            </button>
           </div>
         </div>
       </nav>

@@ -2,19 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {width: 14px;}
+::-webkit-scrollbar-track {background-color: #F3D5B5;border-radius: 6px;}
+::-webkit-scrollbar-thumb {background-color: #7A4D36;border-radius: 6px;border: 3px solid #F3D5B5;}
+::-webkit-scrollbar-thumb:hover {background-color: #A05B45;}
+::-webkit-scrollbar-thumb:active {background-color: #9C6649;}
 
 .hamburger span {
     transition: all 0.3s ease-in-out;
-    }
-    .hamburger.open span:nth-child(1) {
+}
+.hamburger.open span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
-    }
-    .hamburger.open span:nth-child(2) {
+}
+.hamburger.open span:nth-child(2) {
     opacity: 0;
-    }
-    .hamburger.open span:nth-child(3) {
+}
+.hamburger.open span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
-    }
+}
 
 /* Projects Scrollbar */
 .custom-scrollbar {
