@@ -102,7 +102,7 @@ function HeroSection() {
                 rel="noopener noreferrer"
                 className="linkedin-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
                 variants={item}
-                whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} // Hover LinkedIn
+                whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }}
               >
                 <img src={LinkedinSVG} className="h-7 w-7 mr-2" alt="Linkedin" />
                 Linkedin
@@ -113,7 +113,7 @@ function HeroSection() {
                 rel="noopener noreferrer"
                 className="github-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
                 variants={item}
-                whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} // Hover GitHub
+                whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }}
               >
                 <img src={GithubSVG} className="h-7 w-7 mr-2" alt="Github" />
                 Github
@@ -124,7 +124,7 @@ function HeroSection() {
                 rel="noopener noreferrer"
                 className="twitter-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
                 variants={item}
-                whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }} // Hover Threads
+                whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }}
               >
                 <img src={ThreadsSVG} className="h-7 w-7 mr-2" alt="Threads" />
                 Threads

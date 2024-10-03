@@ -86,6 +86,7 @@ function Navbar() {
     <>
       <nav className="bg-transparent fixed top-0 left-0 right-0 z-50">
         <div className="container mx-auto px-6 py-3 flex justify-between items-center transition-transform duration-500">
+        <a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer">
           <div className={`flex items-center mx-0 md:mx-12 hover:cursor-pointer transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
             <img src={Logo} alt="Logo" className="mr-1 mt-0.5 h-[3.8rem] w-auto drop-shadow-lg" />
             <div className="hidden md:inline">
@@ -93,6 +94,7 @@ function Navbar() {
               <span className="text-gradient-PF block font-black text-3xl drop-shadow-lg">Portfolio</span>
             </div>
           </div>
+        </a>
 
           <div className="hidden md:flex flex-grow justify-center">
             <div className="flex bg-gradient-to-r from-[#9C6644] to-[#9C6649] pt-3 pb-2 px-32 rounded-full text-lg text-[#EDE0D4] space-x-32 drop-shadow-lg">

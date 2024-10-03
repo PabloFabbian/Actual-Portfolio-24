@@ -89,8 +89,11 @@ function SelfSummary() {
                         <p className="mb-2">
                             <strong>What Inspires Me:</strong> Technology and creativity. My goal is to connect technical solutions with meaningful human experiences.
                         </p>
-                        <p>
+                        <p className="mb-2">
                             <strong>Personal Vision:</strong> Minimalism and functionality are key to solving future problems with smart designs.
+                        </p>
+                        <p>
+                            <strong>Core Values:</strong> I believe continuous learning and adaptability are essential for growth in all areas of life.
                         </p>
                     </div>
 
@@ -104,7 +107,7 @@ function SelfSummary() {
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Fun Facts</h3>
                         <p>
-                            Besides software development, I enjoy urban photography and long-distance cycling. These hobbies help me keep a clear and creative mind.
+                        Beyond software development, I am fervently passionate about immersive gaming experiences, exploring literature on personal development, and curating compelling content for social media.
                         </p>
                     </div>
 
@@ -146,10 +149,10 @@ function SelfSummary() {
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Featured Projects</h3>
                         <p className="mb-2">
-                            <strong>Key Achievement:</strong> Developed an e-commerce platform that allowed over 500 local stores to increase their online sales during the pandemic.
+                            <strong>Key Achievement:</strong> Successfully delivered multiple freelance projects that improved user experiences and client satisfaction.
                         </p>
                         <p>
-                            <strong>Impact:</strong> Increased conversions by 35% through optimizing the user interface and improving load times.
+                            <strong>Impact:</strong> Transitioned a WordPress site to React, significantly enhancing performance and increasing load speeds by a considerable percentage.
                         </p>
                     </div>
 
@@ -162,9 +165,11 @@ function SelfSummary() {
                             </svg>
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Personal Quote</h3>
-                        <p className="text-lg md:text-xl italic">
-                            "Design is not just what it looks like and feels like. Design is how it works."
-                        </p>
+                        <div className="flex flex-col items-center justify-center min-h-[142.5px]">
+                            <p className="text-lg md:text-[1.6rem] italic font-lt-soul text-center leading-9">
+                                "Design goes beyond appearance and sensation; it encompasses functionality."
+                            </p>
+                        </div>
                     </div>
 
                     {/* Estilo de Trabajo */}
@@ -176,7 +181,7 @@ function SelfSummary() {
                             </svg>
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Work Style</h3>
-                        <p className="mb-2">
+                        <p className="mt-6 mb-4">
                             <strong>Methodology:</strong> I work with agile methodologies to deliver iterative results that meet clients' changing needs.
                         </p>
                         <p>
