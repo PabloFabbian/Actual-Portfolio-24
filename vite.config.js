@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://pablofabbian.dev.com',
+  base: 'https://pablofabbian.vercel.app',
   server: {
     host: true,
   },
