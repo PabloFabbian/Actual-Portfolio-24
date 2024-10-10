@@ -119,7 +119,7 @@ function SelfSummary() {
                     >
                         <a 
                             href='./src/assets/Pablo_Fabbian-Frontend_Developer.pdf'
-                            download="Pablo E. Fabbian [Frontend Developer].pdf"
+                            download="Pablo_Fabbian-Frontend_Developer.pdf"
                             className="w-full h-full flex items-center justify-center"
                         >
                             <img
