@@ -31,10 +31,10 @@ function ContactForm() {
                 import.meta.env.VITE_EMAILJS_SERVICE_ID,
                 import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
                 templateParams
-            );            
+            );
             console.log('Email sent successfully:', response);
             toast.success('Form sent successfully. Thank you for contacting me!');
-            
+
             setFormData({ name: '', email: '', message: '' });
         } catch (error) {
             console.error('Error sending email:', error);
