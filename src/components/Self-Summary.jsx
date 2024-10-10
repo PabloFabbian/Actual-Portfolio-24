@@ -118,7 +118,7 @@ function SelfSummary() {
                         onMouseLeave={() => setHovered(false)}
                     >
                         <a 
-                            href='./src/assets/Pablo_Fabbian-Frontend_Developer.pdf'
+                            href='/assets/Pablo_Fabbian-Frontend_Developer.pdf'
                             download="Pablo_Fabbian-Frontend_Developer.pdf"
                             className="w-full h-full flex items-center justify-center"
                         >
