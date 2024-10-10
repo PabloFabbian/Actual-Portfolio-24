@@ -10,7 +10,7 @@ function ContactForm() {
     });
     const [loading, setLoading] = useState(false);
 
-    emailjs.init(process.env.REACT_APP_EMAILJS_USER_ID);
+    emailjs.init("nJenqIBnz8z2GP05O");
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,11 +27,7 @@ function ContactForm() {
         };
 
         try {
-            const response = await emailjs.send(
-                process.env.REACT_APP_EMAILJS_SERVICE_ID,
-                process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-                templateParams
-            );
+            const response = await emailjs.send("service_01ijrdq", "template_uyqprzm", templateParams);
             console.log('Email sent successfully:', response);
             toast.success('Form sent successfully. Thank you for contacting me!');
             
