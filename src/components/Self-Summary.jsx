@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'; 
-import CvDoble from '../assets/CvDoble.png';
+import CvDoble from '../assets/CvDoble.webp';
 import desarrolloImg from '../assets/Certificates/Desarrollo.webp';
 import javascriptImg from '../assets/Certificates/Javascript.webp';
 import reactImg from '../assets/Certificates/React.webp';
