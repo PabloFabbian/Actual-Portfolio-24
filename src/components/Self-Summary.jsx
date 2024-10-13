@@ -164,7 +164,7 @@ function SelfSummary() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Personal Quote</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold md:mb-2">Personal Quote</h3>
                         <div className="flex flex-col items-center justify-center min-h-[142.5px]">
                             <p className="text-lg md:text-[1.6rem] italic font-lt-soul text-center leading-9">
                                 "Design goes beyond appearance and sensation; it encompasses functionality."

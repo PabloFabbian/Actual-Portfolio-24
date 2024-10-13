@@ -1,14 +1,16 @@
-import Navbar from './components/Navbar'
-import HeroSection from './components/HeroSection'
-import ProjectsSection from './components/ProjectsSection'
-import SelfSummary from './components/Self-Summary'
-import TechStack from './components/TechStack'
-import ContactForm from './components/ContactForm'
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import ProjectsSection from './components/ProjectsSection';
+import SelfSummary from './components/Self-Summary';
+import TechStack from './components/TechStack';
+import ContactForm from './components/ContactForm';
 import { Toaster } from 'sonner';
+import CustomCursor from './components/CustomCursor';
 
 export default function App() {
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <HeroSection />
       <ProjectsSection />
@@ -17,5 +19,5 @@ export default function App() {
       <ContactForm />
       <Toaster richColors position="bottom-center" />
     </>
-  )
+  );
 }

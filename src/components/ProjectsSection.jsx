@@ -153,7 +153,7 @@ function ProjectsSection() {
                             {/* Flecha izquierda */}
                             <button
                                 onClick={handlePreviousProject}
-                                className="text-[#FFD275] text-3xl px-4 -mt-5"
+                                className="text-[#FFD275] text-3xl px-4 -mt-1.5"
                             >
                                 &#8249;
                             </button>
@@ -170,7 +170,7 @@ function ProjectsSection() {
                                     {projects[currentProjectIndex].name}
                                 </motion.h3>
                                 <motion.p
-                                    className="text-lg text-[#FFD275] mt-2"
+                                    className="text-md text-[#FFD275] mt-2"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5 }}
@@ -185,7 +185,7 @@ function ProjectsSection() {
                             {/* Flecha derecha */}
                             <button
                                 onClick={handleNextProject}
-                                className="text-[#FFD275] text-3xl px-4 -mt-5"
+                                className="text-[#FFD275] text-3xl px-4 -mt-1.5"
                             >
                                 &#8250;
                             </button>

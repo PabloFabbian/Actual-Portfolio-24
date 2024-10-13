@@ -100,7 +100,7 @@ function HeroSection() {
                 href="https://www.linkedin.com/in/pablofabbian/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="linkedin-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
+                className="linkedin-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group hover:cursor-none"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }}
               >
@@ -111,7 +111,7 @@ function HeroSection() {
                 href="https://github.com/PabloFabbian"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="github-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
+                className="github-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group hover:cursor-none"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }}
               >
@@ -122,7 +122,7 @@ function HeroSection() {
                 href="https://www.threads.net/@pablo.fabbian"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="threads-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
+                className="threads-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group hover:cursor-none"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }}
               >

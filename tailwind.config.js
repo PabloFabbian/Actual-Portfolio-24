@@ -14,8 +14,7 @@ export default {
         'sm': '834px', // Para tablets
         'md': '1440px', // Para laptops
         'lg': '2560px', // Para pantallas grandes
-      }
+      },
     },
   },
-  plugins: [],
 }

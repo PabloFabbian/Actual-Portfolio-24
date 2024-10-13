@@ -84,10 +84,10 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-transparent fixed top-0 left-0 right-0 z-50">
+      <nav className="bg-transparent fixed top-0 left-0 right-0 z-40">
         <div className="container mx-auto px-6 py-3 flex justify-between items-center transition-transform duration-500">
         <a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer">
-          <div className={`flex items-center mx-0 md:mx-12 hover:cursor-pointer transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
+          <div className={`flex items-center mx-0 md:mx-12 hover:translate-y-1 transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
             <img src={Logo} alt="Logo" className="mr-1 mt-0.5 h-[3.8rem] w-auto drop-shadow-lg" />
             <div className="hidden md:inline">
               <span className="text-gradient-PF block font-black text-3xl -mb-2 drop-shadow-lg">PF</span>
@@ -114,33 +114,51 @@ function Navbar() {
           </div>
 
           {/* Button for Desktop */}
-          <button
-            type="button"
-            onClick={handleButtonClick}
-            className={`hidden md:block bg-[#DB5A42] text-white px-12 py-2 rounded-xl hover:bg-red-500 hover:border-red-500 mx-12 drop-shadow-lg transition delay-50 duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}
-            style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
-          >
-            Let's Talk
-          </button>
+          <div className={`relative inline-block mx-12 transition-all hidden md:inline ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
+            {/* Div que actúa como sombra */}
+            <div
+              className="absolute top-1 left-1 w-full h-full bg-[#2B2B2B] rounded-lg"
+              aria-hidden="true"
+            ></div>
 
-          {/* Burger Menu for Mobile */}
-          <div className="md:hidden flex items-center">
+            {/* Botón que se hunde hacia la sombra */}
             <button
               type="button"
               onClick={handleButtonClick}
-              className="bg-[#DB5A42] text-white px-12 mr-10 -mt-1 py-2 rounded-xl mr-4"
-              style={{ boxShadow: '5px 5px 0px #2B2B2B', border: '2px solid #DB5A42' }}
+              className={`relative bg-[#DB5A42] text-white px-12 py-2 rounded-lg hover:bg-[#C95440] hover:border-[#C95440] drop-shadow-lg transition-all duration-200 transform active:translate-x-1 active:translate-y-1 active:scale-95`}
+              style={{ border: '2px solid #DB5A42' }}
             >
               Let's Talk
             </button>
+          </div>
+
+          {/* Burger Menu for Mobile */}
+          <div className="md:hidden flex items-center">
+            {/* Botón Let's Talk con animación de hundimiento */}
+            <div className="relative mr-6">
+              <div
+                className="absolute top-1.5 left-1.5 w-full h-full bg-[#2B2B2B] rounded-lg"
+                aria-hidden="true"
+              ></div>
+              <button
+                type="button"
+                onClick={handleButtonClick}
+                className="relative bg-[#DB5A42] text-white px-6 py-2 rounded-lg transition-all duration-200 transform active:translate-x-1.5 active:translate-y-1.5 active:scale-95"
+                style={{ border: '2px solid #DB5A42' }}
+              >
+                Let's Talk
+              </button>
+            </div>
+
+            {/* Botón de hamburguesa */}
             <button
-              className="z-50 relative focus:outline-none"
+              className="z-50 relative focus:outline-none mt-0.5"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
-                <span className="block w-8 h-1 bg-[#DB5A42] mb-1"></span>
-                <span className="block w-8 h-1 bg-[#DB5A42] mb-1"></span>
-                <span className="block w-8 h-1 bg-[#DB5A42]"></span>
+                <span className="block w-8 h-1 bg-[#DB5A42] mb-1 transition-transform duration-300"></span>
+                <span className="block w-8 h-1 bg-[#DB5A42] mb-1 transition-transform duration-300"></span>
+                <span className="block w-8 h-1 bg-[#DB5A42] transition-transform duration-300"></span>
               </div>
             </button>
           </div>
