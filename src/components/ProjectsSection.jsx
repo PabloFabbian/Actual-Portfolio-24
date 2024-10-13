@@ -13,16 +13,16 @@ function ProjectsSection() {
     const [isMobile, setIsMobile] = useState(false);
     const [isImageHovered, setIsImageHovered] = useState(false);
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-    const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga de la imagen
+    const [isLoading, setIsLoading] = useState(true);
     const projectRefs = useRef([]);
 
     const projects = [
-        { name: 'Tower Software', description: 'Webflow and React development for a software company.', image: TowerSoftwareImage },
-        { name: 'Rucavi', description: 'React development for an IT consultancy company.', image: RucaviImage },
-        { name: 'Vooid Indumentaria', description: 'Branding, React development, and e-commerce website design.', image: VooidImage },
-        { name: 'PixelPulse Studio', description: 'Creative website design and React development for a digital studio.', image: PixelPulseImage },
-        { name: 'Red Line', description: 'Website design and sales funnel optimization.', image: RedlineImage },
-        { name: 'Kuta Coffee', description: 'React development and website design for a coffee brand.', image: KutaCoffeeImage },
+        { name: 'Tower Software', description: 'Colaboré en el Frontend de esta página utilizando React. Integrando Next UI, Tailwind CSS y Framer Motion para el diseño visual, mejorando la experiencia de usuario con i18next para la gestión de idiomas.', image: TowerSoftwareImage },
+        { name: 'Rucavi', description: 'Landing page para una consultora de IT, desarrollada con React, empleando Tailwind y CSS3 para estilos consistentes y responsivos, junto a EmailJS para un envío de formularios eficiente.', image: RucaviImage },
+        { name: 'Vooid Indumentaria', description: 'Desarrollé una tienda online diseñada en Figma, usando React para una experiencia de usuario fluida con Radix UI e integrando pagos con Mercado Pago.', image: VooidImage },
+        { name: 'PixelPulse Studio', description: 'Un sitio web creativo desarrollado en React, con Framer Motion, Flowbite UI y Tailwind CSS para un diseño responsive y atractivo. Para optimizar el flujo de trabajo, utilicé Vite y ESlint.', image: PixelPulseImage },
+        { name: 'Red Line', description: 'Primer proyecto desarrollado en HTML5 y CSS3, con animaciones nativas y un carrito de compras funcional mediante local storage.', image: RedlineImage },
+        { name: 'Kuta Coffee', description: 'Desarrollo en React y diseño de un sitio web para una marca de café, utilizando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para la gestión de datos, y React Router junto con Bootstrap para una navegación fluida y responsiva.', image: KutaCoffeeImage },
     ];
 
     const handleNextProject = () => {
@@ -104,6 +104,7 @@ function ProjectsSection() {
                     <div className="relative flex flex-col items-center -mt-16 md:-mt-36">
                         <img
                             src={ChevronSVG}
+                            loading='lazy'
                             className="h-10 w-10 rotate-180 mb-4"
                             aria-hidden="true"
                         />
@@ -115,9 +116,9 @@ function ProjectsSection() {
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
                     {/* Imagen del Proyecto (Derecha) */}
-                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6">
+                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6 hover:cursor-pointer">
                         <div
-                            className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] rounded-md shadow-lg"
+                            className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] max-h-[36rem] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
                             onMouseLeave={() => setIsImageHovered(false)}
                         >
@@ -198,7 +199,7 @@ function ProjectsSection() {
                                 {projects.map((project, index) => (
                                     <motion.div
                                         key={project.name}
-                                        className={`w-full p-4 cursor-pointer transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.9)] transition transform'} ${index < projects.length - 1 ? 'border-b border-[#FFD275]' : ''}`}
+                                        className={`w-full p-4 cursor-pointer transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.9)] transition transform'} ${index < projects.length - 1 ? 'border-b border-[#FFD275] delay-300' : ''}`}
                                         onMouseEnter={() => handleProjectHover(index)}
                                         onClick={() => handleProjectHover(index)}
                                     >
@@ -212,7 +213,7 @@ function ProjectsSection() {
                                         </motion.h3>
                                         {hoveredProject === project.name && (
                                             <motion.p
-                                                className="text-lg mt-2"
+                                                className="text-lg mt-2 mb-1.5"
                                                 initial={{ opacity: 0, y: -20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{

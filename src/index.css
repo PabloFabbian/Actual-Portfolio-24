@@ -61,7 +61,7 @@
 .social-pills .github-icon:hover img {
     filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(2600%) hue-rotate(250deg) brightness(95%) contrast(90%);
 }
-.social-pills .twitter-icon:hover img {
+.social-pills .threads-icon:hover img {
     filter: brightness(0) saturate(100%) invert(30%) sepia(68%) saturate(1600%) hue-rotate(203deg) brightness(98%) contrast(101%);
 }
 
@@ -71,9 +71,8 @@
 
 .animate-scroll {
     display: flex;
-    /* Asegúrate de que la longitud de la animación sea suficiente */
     animation: scroll linear infinite;
-    animation-duration: 30s; /* Ajusta la duración para controlar la velocidad */
+    animation-duration: 30s;
 }
 
 .marquee {

@@ -42,7 +42,7 @@ function HeroSection() {
         <div className="flex-1 text-center md:text-left">
           <motion.div className="-mt-20 md:mt-0 mb-6" variants={fadeInUp}>
             <h1 className="text-[2.12rem] md:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
-              Hi there, the name's
+              Hi there, the name's &nbsp;
             </h1>
             <motion.h2
               className="text-[2.5rem] md:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-4 md:-mt-8"
@@ -122,7 +122,7 @@ function HeroSection() {
                 href="https://www.threads.net/@pablo.fabbian"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="twitter-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
+                className="threads-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }}
               >
