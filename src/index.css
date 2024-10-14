@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body, a, input, textarea, button {
+body, a, input, textarea, button, label {
     cursor: none;
 }
 
@@ -33,6 +33,7 @@ body, a, input, textarea, button {
 .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #FFD275 #7F5539;
+    cursor:none;
 }
 .custom-scrollbar::-webkit-scrollbar {
     width: 8px;

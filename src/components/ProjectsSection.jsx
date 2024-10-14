@@ -116,7 +116,7 @@ function ProjectsSection() {
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
                     {/* Imagen del Proyecto (Derecha) */}
-                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6 hover:cursor-pointer">
+                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6">
                         <div
                             className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] max-h-[36rem] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
@@ -199,7 +199,7 @@ function ProjectsSection() {
                                 {projects.map((project, index) => (
                                     <motion.div
                                         key={project.name}
-                                        className={`w-full p-4 cursor-pointer transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.9)] transition transform'} ${index < projects.length - 1 ? 'border-b border-[#FFD275] delay-300' : ''}`}
+                                        className={`w-full p-4 transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.9)] transition transform'} ${index < projects.length - 1 ? 'border-b border-[#FFD275] delay-300' : ''}`}
                                         onMouseEnter={() => handleProjectHover(index)}
                                         onClick={() => handleProjectHover(index)}
                                     >
