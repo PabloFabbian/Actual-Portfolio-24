@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import ChevronSVG from '../assets/svg/chevron-arrow-icon.svg';
-import RedlineImage from '../assets/ProjectsImg/Redline2.webp';
-import KutaCoffeeImage from '../assets/ProjectsImg/Kuta2.webp';
-import PixelPulseImage from '../assets/ProjectsImg/Pixelpulse2.webp';
-import VooidImage from '../assets/ProjectsImg/Vooid2.webp';
-import TowerSoftwareImage from '../assets/ProjectsImg/Tower2.webp';
-import RucaviImage from '../assets/ProjectsImg/Rucavi2.webp';
+import RedlineImage from '../assets/ProjectsImg/Redline.webp';
+import KutaCoffeeImage from '../assets/ProjectsImg/Kuta.webp';
+import PixelPulseImage from '../assets/ProjectsImg/Pixelpulse.webp';
+import VooidImage from '../assets/ProjectsImg/Vooid.webp';
+import TowerSoftwareImage from '../assets/ProjectsImg/Tower.webp';
+import RucaviImage from '../assets/ProjectsImg/Rucavi.webp';
+import OnMentalImage from '../assets/ProjectsImg/OnMental.webp';
 
 function ProjectsSection() {
     const [hoveredProject, setHoveredProject] = useState('Tower Software');
@@ -22,6 +23,7 @@ function ProjectsSection() {
         { name: 'Vooid Indumentaria', description: 'Desarrollé una tienda online diseñada en Figma, usando React para una experiencia de usuario fluida con Radix UI e integrando pagos con Mercado Pago.', image: VooidImage },
         { name: 'PixelPulse Studio', description: 'Un sitio web creativo desarrollado en React, con Framer Motion, Flowbite UI y Tailwind CSS para un diseño responsive y atractivo. Para optimizar el flujo de trabajo, utilicé Vite y ESlint.', image: PixelPulseImage },
         { name: 'Red Line', description: 'Primer proyecto desarrollado en HTML5 y CSS3, con animaciones nativas y un carrito de compras funcional mediante local storage.', image: RedlineImage },
+        { name: 'On Mental', description: 'Desarrollé la sección de servicios, la tarjeta de certificación de entornos mentalmente saludables y el navbar de On Mental, utilizando React, Tailwind CSS y Framer Motion para un diseño dinámico y responsivo.', image: OnMentalImage },
         { name: 'Kuta Coffee', description: 'Desarrollo en React y diseño de un sitio web para una marca de café, utilizando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para la gestión de datos, y React Router junto con Bootstrap para una navegación fluida y responsiva.', image: KutaCoffeeImage },
     ];
 
