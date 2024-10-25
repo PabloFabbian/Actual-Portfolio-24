@@ -42,7 +42,7 @@ function HeroSection() {
         <div className="flex-1 text-center md:text-left">
           <motion.div className="-mt-20 md:mt-0 mb-6" variants={fadeInUp}>
             <h1 className="text-[2.12rem] md:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
-              Hi there, the name's &nbsp;
+              Hi there, my name is&nbsp;
             </h1>
             <motion.h2
               className="text-[2.5rem] md:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-4 md:-mt-8"
