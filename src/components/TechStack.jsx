@@ -21,24 +21,24 @@ function TechStack() {
     ]
 
     return (
-        <div className="bg-[#F3D5B5] overflow-hidden relative pt-12">
-            <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-bold text-center text-[#9C6548] mb-0 md:mb-6 2xl:mb-9" id="Tech-Stack">
+        <div className="bg-[#F3D5B5] overflow-hidden relative pt-0 md:pt-8 2xl:pt-12">
+            <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-bold text-center text-[#9C6548] mb-2 md:mb-6 2xl:mb-9" id="Tech-Stack">
                 Tech Stack
             </h2>
             <div className="curved-container relative">
                 <div className="marquee">
                     <div className="animate-scroll flex items-center justify-center">
                         {technologies.map((tech, index) => (
-                            <div key={index} className="flex-shrink-0 md:py-0 2xl:py-4 px-1.5 md:px-6 2xl:px-9">
-                                <div className="flex flex-col items-center scale-[.75] md:scale-90 2xl:scale-100">
+                            <div key={index} className="flex-shrink-0 pb-6 md:py-0 2xl:py-4 px-0 md:px-6 2xl:px-9">
+                                <div className="flex flex-col items-center scale-[.7] md:scale-90 2xl:scale-100">
                                     {tech.svg}
                                     <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
                                 </div>
                             </div>
                         ))}
                         {technologies.map((tech, index) => (
-                            <div key={index + technologies.length} className="flex-shrink-0 md:py-0 2xl:py-4 px-1.5 md:px-6 2xl:px-9">
-                                <div className="flex flex-col items-center scale-[.75] md:scale-90 2xl:scale-100">
+                            <div key={index + technologies.length} className="flex-shrink-0 pb-6 md:py-0 2xl:py-4 px-0 md:px-6 2xl:px-9">
+                                <div className="flex flex-col items-center scale-[.7] md:scale-90 2xl:scale-100">
                                     {tech.svg}
                                     <span className="text-[#4B5563] text-xl md:text-base mt-4 md:mt-2 text-center">{tech.name}</span>
                                 </div>

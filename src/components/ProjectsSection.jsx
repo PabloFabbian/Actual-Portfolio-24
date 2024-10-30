@@ -24,7 +24,7 @@ function ProjectsSection() {
         { name: 'PixelPulse Studio', description: 'Un sitio web creativo desarrollado en React, con Framer Motion, Flowbite UI y Tailwind CSS para un diseño responsive y atractivo. Para optimizar el flujo de trabajo, utilicé Vite y ESlint.', image: PixelPulseImage },
         { name: 'Red Line', description: 'Primer proyecto desarrollado en HTML5 y CSS3, con animaciones nativas y un carrito de compras funcional mediante local storage.', image: RedlineImage },
         { name: 'On Mental', description: 'Desarrollé la sección de servicios, la tarjeta de certificación de entornos mentalmente saludables y el navbar de On Mental, utilizando React, Tailwind CSS y Framer Motion para un diseño dinámico y responsivo.', image: OnMentalImage },
-        { name: 'Kuta Coffee', description: 'Desarrollo en React y diseño de un sitio web para una marca de café, utilizando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para la gestión de datos, y React Router junto con Bootstrap para una navegación fluida y responsiva.', image: KutaCoffeeImage },
+        { name: 'Kuta Coffee', description: 'Desarrollo de una web app para un café con React, usando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para datos y React Router con Bootstrap para una navegación fluida.', image: KutaCoffeeImage },
     ];
 
     const handleNextProject = () => {
@@ -103,11 +103,11 @@ function ProjectsSection() {
 
             <section className="bg-[#7F5539] md:pb-6 md:pt-12 2xl:py-12 relative">
                 <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-8">
-                    <div className="relative flex flex-col items-center -mt-16 md:-mt-36">
+                    <div className="relative flex flex-col items-center -mt-10 md:-mt-36">
                         <img
                             src={ChevronSVG}
                             loading='lazy'
-                            className="h-10 w-10 rotate-180 mb-3 md:-ml-1 2xl:-ml-2 2xl:mb-4"
+                            className="h-10 w-10 rotate-180 mb-3 -ml-1 md:-ml-1 2xl:-ml-2 2xl:mb-4"
                             aria-hidden="true"
                         />
                         <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-medium text-center text-[#FFD275]">
@@ -118,7 +118,7 @@ function ProjectsSection() {
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
                     {/* Imagen del Proyecto (Derecha) */}
-                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto -mt-3 md:order-2 md:mx-6 2xl:mx-5 mb-6">
+                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-7 md:order-2 md:mx-6 2xl:mx-5 mb-6">
                         <div
                             className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] max-h-[36rem] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
@@ -146,7 +146,7 @@ function ProjectsSection() {
 
                     {/* Carrusel en Mobile */}
                     {isMobile && (
-                        <div className="flex justify-between items-center w-full mt-4">
+                        <div className="flex justify-between items-center w-full mt-0">
                             {/* Flecha izquierda */}
                             <button
                                 onClick={handlePreviousProject}
@@ -156,7 +156,7 @@ function ProjectsSection() {
                             </button>
 
                             {/* Proyecto Actual */}
-                            <div className="flex flex-col items-center text-center mx-4 mt-2">
+                            <div className="flex flex-col items-center text-center mx-0 mt-2">
                                 <motion.h3
                                     className="text-4xl md:text-6xl font-lt-soul text-[#FFD275]"
                                     key={projects[currentProjectIndex].name}
@@ -167,7 +167,7 @@ function ProjectsSection() {
                                     {projects[currentProjectIndex].name}
                                 </motion.h3>
                                 <motion.p
-                                    className="text-md text-[#FFD275] mt-2"
+                                    className="text-pretty text-md text-[#FFD275] mt-2"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5 }}

@@ -79,9 +79,9 @@ function SelfSummary() {
 
                     {/* Perfil Profesional */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl col-span-1 md:col-span-2 text-white w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
+                        <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono simple SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="md:h-6 2xl:h-8 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                             </svg>
                         </div>
@@ -99,9 +99,9 @@ function SelfSummary() {
 
                     {/* Datos Curiosos */}
                     <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16   mb-4 bg-[#7F5539] rounded-full">
+                        <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
                             {/* Icono SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m-6-8h6m-9 8h.01M3 12h.01M3 16h.01M3 8h.01M21 12h.01M21 16h.01M21 8h.01M12 21a9 9 0 100-18 9 9 0 000 18z" />
                             </svg>
                         </div>
@@ -113,7 +113,7 @@ function SelfSummary() {
 
                     {/* PDF Thumbnail */}
                     <div 
-                        className="bg-[#333333] relative rounded-lg shadow-xl overflow-hidden h-40 md:h-[17.2rem] transition transform hover:scale-105 duration-300"
+                        className="bg-[#333333] relative rounded-lg shadow-xl overflow-hidden h-52 md:h-[17.2rem] transition transform hover:scale-105 duration-300"
                         onMouseEnter={() => setHovered(true)}
                         onMouseLeave={() => setHovered(false)}
                     >
@@ -141,9 +141,9 @@ function SelfSummary() {
 
                     {/* Proyectos Destacados */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white col-span-1 md:col-span-2 w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
+                        <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </div>
@@ -158,9 +158,9 @@ function SelfSummary() {
 
                     {/* Cita Personal */}
                     <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
+                        <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
                             {/* Icono SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </div>
@@ -174,9 +174,9 @@ function SelfSummary() {
 
                     {/* Estilo de Trabajo */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
+                        <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                             </svg>
                         </div>
