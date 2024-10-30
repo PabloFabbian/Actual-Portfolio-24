@@ -79,7 +79,7 @@ function HeroSection() {
             </motion.h2>
           </motion.div>
           <motion.p
-            className="font-lt-soul font-semibold text-xl md:text-2xl 2xl:text-4xl text-[#9C6644] md:ml-1 mt-4 md:pr-40 pb-0 md:pb-0 2xl:pb-2 mx-1"
+            className="font-lt-soul font-semibold text-xl md:text-2xl 2xl:text-4xl text-[#9C6644] md:ml-1 mt-4 md:pr-40 pb-0 md:pb-0 2xl:pb-2 mx-1 text-pretty"
             variants={fadeInUp}
           >
             I'm a frontend developer who’s passionate about UX/UI and creating beautiful and functional digital experiences.
