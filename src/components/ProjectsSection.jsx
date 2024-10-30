@@ -43,7 +43,7 @@ function ProjectsSection() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 1440);
+            setIsMobile(window.innerWidth <= 768);
         };
 
         handleResize();
@@ -101,16 +101,16 @@ function ProjectsSection() {
                 </svg>
             </div>
 
-            <section className="bg-[#7F5539] py-12 relative">
-                <div className="container mx-auto flex flex-col items-center mb-8">
+            <section className="bg-[#7F5539] md:pb-6 md:pt-12 2xl:py-12 relative">
+                <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-8">
                     <div className="relative flex flex-col items-center -mt-16 md:-mt-36">
                         <img
                             src={ChevronSVG}
                             loading='lazy'
-                            className="h-10 w-10 rotate-180 mb-4"
+                            className="h-10 w-10 rotate-180 mb-3 md:-ml-1 2xl:-ml-2 2xl:mb-4"
                             aria-hidden="true"
                         />
-                        <h2 className="font-lt-soul text-5xl md:text-7xl font-medium text-center text-[#FFD275]">
+                        <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-medium text-center text-[#FFD275]">
                             Projects
                         </h2>
                     </div>
@@ -118,17 +118,12 @@ function ProjectsSection() {
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
                     {/* Imagen del Proyecto (Derecha) */}
-                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-1.5 md:order-2 md:mx-10 mb-6">
+                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto -mt-3 md:order-2 md:mx-6 2xl:mx-5 mb-6">
                         <div
                             className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] max-h-[36rem] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
                             onMouseLeave={() => setIsImageHovered(false)}
                         >
-                            {isLoading && (
-                                <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded-lg">
-                                    <div className="h-full w-full bg-gray-100 rounded-lg"></div>
-                                </div>
-                            )}
                             <motion.div
                                 key={projects[currentProjectIndex].name}
                                 className="absolute inset-0 bg-cover bg-top"
@@ -196,7 +191,7 @@ function ProjectsSection() {
 
                     {/* Acordeón de Proyectos en Escritorio */}
                     {!isMobile && (
-                        <div className="w-full md:w-1/3 overflow-x-auto max-h-[36rem] custom-scrollbar mt-4 md:-mt-0 order-2 md:order-1">
+                        <div className="w-full md:w-1/3 overflow-x-auto md:max-h-[27.3rem] 2xl:max-h-[36rem] custom-scrollbar mt-4 md:-mt-4 md:mx-6 2xl:mx-5 order-2 md:order-1">
                             <div className="flex flex-col items-start">
                                 {projects.map((project, index) => (
                                     <motion.div
@@ -206,7 +201,7 @@ function ProjectsSection() {
                                         onClick={() => handleProjectHover(index)}
                                     >
                                         <motion.h3
-                                            className="text-4xl md:text-6xl font-lt-soul"
+                                            className="text-4xl md:text-5xl 2xl:text-6xl font-lt-soul"
                                             initial={{ opacity: 0, x: -100 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -215,7 +210,7 @@ function ProjectsSection() {
                                         </motion.h3>
                                         {hoveredProject === project.name && (
                                             <motion.p
-                                                className="text-lg mt-2 mb-1.5"
+                                                className="md:text-base 2xl:text-lg mt-1 mb-1.5"
                                                 initial={{ opacity: 0, y: -20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{

@@ -26,7 +26,7 @@ function SelfSummary() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 1440);
+            setIsMobile(window.innerWidth < 1280);
         };
 
         handleResize();
@@ -68,9 +68,9 @@ function SelfSummary() {
 
     return (
         <section className="bg-[#7F5539] pt-12" id="About">
-            <div className="container mx-auto px-6 md:mb-10">
+            <div className="container mx-auto px-6 md:mb-10 w-[96vw]">
                 {/* Título principal */}
-                <h2 className="font-lt-soul text-5xl md:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-12">
+                <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-10 2xl:mb-12">
                     Self-Summary
                 </h2>
 
@@ -79,34 +79,34 @@ function SelfSummary() {
 
                     {/* Perfil Profesional */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl col-span-1 md:col-span-2 text-white w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#9C6644] rounded-full">
+                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono simple SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="md:h-6 2xl:h-8 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Brief Professional Profile</h3>
-                        <p className="mb-2">
+                        <h3 className="text-2xl md:text-2xl 2xl:text-3xl font-bold mb-4">Brief Professional Profile</h3>
+                        <p className="md:text-sm 2xl:text-base mb-2">
                             <strong>What Inspires Me:</strong> Technology and creativity. My goal is to connect technical solutions with meaningful human experiences.
                         </p>
-                        <p className="mb-2">
+                        <p className="md:text-sm 2xl:text-base mb-2">
                             <strong>Personal Vision:</strong> Minimalism and functionality are key to solving future problems with smart designs.
                         </p>
-                        <p>
+                        <p className="md:text-sm 2xl:text-base ">
                             <strong>Core Values:</strong> I believe continuous learning and adaptability are essential for growth in all areas of life.
                         </p>
                     </div>
 
                     {/* Datos Curiosos */}
                     <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#7F5539] rounded-full">
+                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16   mb-4 bg-[#7F5539] rounded-full">
                             {/* Icono SVG */}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m-6-8h6m-9 8h.01M3 12h.01M3 16h.01M3 8h.01M21 12h.01M21 16h.01M21 8h.01M12 21a9 9 0 100-18 9 9 0 000 18z" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Fun Facts</h3>
-                        <p>
+                        <h3 className="text-2xl md:text-2xl 2xl:text-3xl font-bold mb-4">Fun Facts</h3>
+                        <p className="md:text-sm 2xl:text-base">
                         Beyond software development, I am fervently passionate about immersive gaming experiences, exploring literature on personal development, and curating compelling content for social media.
                         </p>
                     </div>
@@ -141,55 +141,55 @@ function SelfSummary() {
 
                     {/* Proyectos Destacados */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white col-span-1 md:col-span-2 w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#9C6644] rounded-full">
+                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono SVG */}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Featured Projects</h3>
-                        <p className="mb-2">
+                        <h3 className="text-2xl md:text-2xl 2xl:text-3xl font-bold mb-4">Featured Projects</h3>
+                        <p className="md:text-sm 2xl:text-base mb-2">
                             <strong>Key Achievement:</strong> Successfully delivered multiple freelance projects that improved user experiences and client satisfaction.
                         </p>
-                        <p>
+                        <p className="md:text-sm 2xl:text-base">
                             <strong>Impact:</strong> Transitioned a WordPress site to React, significantly enhancing performance and increasing load speeds by a considerable percentage.
                         </p>
                     </div>
 
                     {/* Cita Personal */}
-                    <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#7F5539] rounded-full">
+                    <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
                             {/* Icono SVG */}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold md:mb-2">Personal Quote</h3>
+                        <h3 className="text-2xl md:text-2xl 2xl:text-3xl font-bold md:mb-2">Personal Quote</h3>
                         <div className="flex flex-col items-center justify-center min-h-[142.5px]">
-                            <p className="text-lg md:text-[1.6rem] italic font-lt-soul text-center leading-9">
+                            <p className="text-lg md:text-lg 2xl:text-[1.6rem] italic font-lt-soul text-center md:leading-7 2xl:leading-9">
                                 "Design goes beyond appearance and sensation; it encompasses functionality."
                             </p>
                         </div>
                     </div>
 
                     {/* Estilo de Trabajo */}
-                    <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
-                        <div className="flex items-center justify-center h-16 w-16 mb-4 bg-[#9C6644] rounded-full">
+                    <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
+                        <div className="flex items-center justify-center md:h-12 2xl:h-16 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono SVG */}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4">Work Style</h3>
-                        <p className="mt-6 mb-4">
+                        <h3 className="text-2xl md:text-2xl 2xl:text-3xl font-bold mb-4">Work Style</h3>
+                        <p className="md:text-sm 2xl:text-base md:mt-4 2xl:mt-6 mb-2 2xl:mb-4">
                             <strong>Methodology:</strong> I work with agile methodologies to deliver iterative results that meet clients' changing needs.
                         </p>
-                        <p>
+                        <p className="md:text-sm 2xl:text-base">
                             <strong>Collaboration:</strong> I enjoy working in teams, sharing ideas, and learning from others to build products that have a positive impact.
                         </p>
                     </div>
 
-                    <div className="relative rounded-lg shadow-xl overflow-hidden h-5/6 md:h-[22rem]">
+                    <div className="relative rounded-lg shadow-xl overflow-hidden h-5/6 md:h-[19rem] 2xl:h-[22rem]">
                         <div
                             className={`flex w-full h-full transition-transform duration-${transitionDuration} ease-in-out`}
                             ref={carouselRef}
@@ -202,7 +202,7 @@ function SelfSummary() {
                             <img
                                 src={images[totalImages - 1]}
                                 alt={`Imagen duplicada`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain bg-[#333333]"
                                 style={{ flexShrink: 0, width: '100%' }}
                             />
 
@@ -211,7 +211,7 @@ function SelfSummary() {
                                     key={index}
                                     src={image}
                                     alt={`Imagen ${index + 1}`}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-contain bg-[#333333]"
                                     style={{ flexShrink: 0, width: '100%' }}
                                 />
                             ))}
@@ -220,7 +220,7 @@ function SelfSummary() {
                             <img
                                 src={images[0]}
                                 alt={`Imagen duplicada`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain bg-[#333333]"
                                 style={{ flexShrink: 0, width: '100%' }}
                             />
                         </div>

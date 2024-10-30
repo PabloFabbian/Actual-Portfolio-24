@@ -45,7 +45,7 @@ function ContactForm() {
     };
 
     return (
-        <section className="bg-[#F3D5B5] py-16 h-1/3" id="Contact">
+        <section className="bg-[#F3D5B5] md:py-0 2xl:py-16 h-1/3 md:scale-75 2xl:scale-100" id="Contact">
             <div className="container mx-auto px-4 h-full">
                 <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden h-full">
                     <div className="grid grid-cols-1 md:grid-cols-2 h-full">

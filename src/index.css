@@ -6,8 +6,18 @@ body, a, input, textarea, button, label {
     cursor: none;
 }
 
+body {
+    background: #F3D5B5;
+}
+
 #custom-cursor {
     pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none;
+    }
 }
 
 ::-webkit-scrollbar {width: 14px;}

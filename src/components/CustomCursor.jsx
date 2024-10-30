@@ -45,13 +45,13 @@ export default function CustomCursor() {
     };
 
     return (
-        <div className="fixed top-0 left-0 pointer-events-none z-50">
+        <div className="custom-cursor fixed top-0 left-0 pointer-events-none z-50">
             <div
-                className="absolute ml-3.5 mt-3.5 w-20 h-20 border-2 border-gray-400 rounded-full opacity-40 drop-shadow-sm"
+                className="absolute ml-3.5 mt-3.5 md:w-16 2xl:w-20 md:h-16 2xl:h-20 border-2 border-gray-400 rounded-full opacity-40 drop-shadow-sm"
                 style={circleStyle} // Aplicar estilo al círculo vacío
             ></div>
             <div
-                className="absolute w-5 h-5 bg-gray-400 rounded-full opacity-40 drop-shadow-sm"
+                className="absolute md:w-4 2xl:w-5 md:h-4 2xl:h-5 bg-gray-400 rounded-full opacity-40 drop-shadow-sm"
                 style={pointStyle} // Aplicar estilo al punto gris
             ></div>
         </div>

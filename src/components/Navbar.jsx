@@ -88,16 +88,16 @@ function Navbar() {
         <div className="container mx-auto px-6 py-3 flex justify-between items-center transition-transform duration-500">
         <a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer">
           <div className={`flex items-center mx-0 md:mx-12 hover:translate-y-1 transition-transform duration-500 ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
-            <img src={Logo} alt="Logo" className="mr-1 mt-0.5 h-[3.8rem] w-auto drop-shadow-lg" />
+            <img src={Logo} alt="Logo" className="mr-1 mt-0.5 h-12 2xl:h-[3.8rem] w-auto drop-shadow-lg" />
             <div className="hidden md:inline">
-              <span className="text-gradient-PF block font-black text-3xl -mb-2 drop-shadow-lg">PF</span>
-              <span className="text-gradient-PF block font-black text-3xl drop-shadow-lg">Portfolio</span>
+              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl -mb-2 drop-shadow-lg">PF</span>
+              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl drop-shadow-lg">Portfolio</span>
             </div>
           </div>
         </a>
 
           <div className="hidden md:flex flex-grow justify-center">
-            <div className="flex bg-gradient-to-r from-[#9C6644] to-[#9C6649] pt-3 pb-2 px-32 rounded-full text-lg text-[#EDE0D4] space-x-32 drop-shadow-lg">
+            <div className="flex bg-gradient-to-r from-[#9C6644] to-[#9C6649] mt-1 2xl:mt-1.5 pt-2 2xl:pt-3 pb-1.5 2xl:pb-2 px-20 2xl:px-32 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-24 2xl:space-x-32 drop-shadow-lg">
               {['Home', 'Projects', 'About', 'Tech-Stack'].map((section) => (
                 <button
                   key={section}
@@ -115,17 +115,15 @@ function Navbar() {
 
           {/* Button for Desktop */}
           <div className={`relative inline-block mx-12 transition-all hidden md:inline ${showLogoAndButton ? 'translate-y-0' : '-translate-y-24'}`}>
-            {/* Div que actúa como sombra */}
             <div
               className="absolute top-1 left-1 w-full h-full bg-[#2B2B2B] rounded-lg"
               aria-hidden="true"
             ></div>
 
-            {/* Botón que se hunde hacia la sombra */}
             <button
               type="button"
               onClick={handleButtonClick}
-              className={`relative bg-[#DB5A42] text-white px-12 py-2 rounded-lg hover:bg-[#C95440] hover:border-[#C95440] drop-shadow-lg transition-all duration-200 transform active:translate-x-1 active:translate-y-1 active:scale-95`}
+              className={`relative bg-[#DB5A42] text-white px-10 2xl:px-12 py-1 2xl:py-2 rounded-lg hover:bg-[#C95440] hover:border-[#C95440] drop-shadow-lg transition-all duration-200 transform active:translate-x-1 active:translate-y-1 active:scale-95`}
               style={{ border: '2px solid #DB5A42' }}
             >
               Let's Talk

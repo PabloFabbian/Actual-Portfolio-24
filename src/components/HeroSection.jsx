@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Olas from '../assets/olas2.png';
+import AvatarAI from '../assets/olas2.png';
 import BuenosAiresSVG from '../assets/svg/world-location-icon.svg';
 import LinkedinSVG from '../assets/svg/linkedin-icon.svg';
 import GithubSVG from '../assets/svg/github-icon.svg';
@@ -32,7 +32,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="bg-[#F3D5B5] pt-12 md:pt-24 pb-12 md:pb-36" id="Home">
+    <section className="bg-[#F3D5B5] pt-12 md:pt-24 pb-12 md:pb-36 md:w-[90%] mx-auto" id="Home">
       <motion.div
         className="container mx-auto flex flex-col md:flex-row items-center justify-center h-auto md:h-[65vh] pt-8 md:pt-16 pb-8 md:pb-16 -mb-16 md:-mb-32"
         initial="hidden"
@@ -41,15 +41,15 @@ function HeroSection() {
       >
         <div className="flex-1 text-center md:text-left">
           <motion.div className="-mt-20 md:mt-0 mb-6" variants={fadeInUp}>
-            <h1 className="text-[2.12rem] md:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
+            <h1 className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
               Hi there, my name is&nbsp;
             </h1>
             <motion.h2
-              className="text-[2.5rem] md:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-4 md:-mt-8"
+              className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-3 md:-mt-5 2xl:-mt-8"
               variants={fadeInUp}
             >
               Pablo Fabbian
-              <svg className="h-[2.25rem] md:h-[4.5rem] ml-2 md:ml-8 mb-0 md:-mb-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <svg className="h-[2.25rem] md:h-[3.8rem] 2xl:h-[4.5rem] ml-2 md:ml-8 mb-0 md:-mb-4 md:-mt-2 2xl:mt-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#FFB524">
@@ -79,17 +79,17 @@ function HeroSection() {
             </motion.h2>
           </motion.div>
           <motion.p
-            className="font-lt-soul font-semibold text-xl md:text-4xl text-[#9C6644] md:ml-1 mt-4 md:pr-40 pb-2"
+            className="font-lt-soul font-semibold text-xl md:text-2xl 2xl:text-4xl text-[#9C6644] md:ml-1 mt-4 md:pr-40 pb-2"
             variants={fadeInUp}
           >
             I'm a frontend developer who’s passionate about UX/UI and creating beautiful and functional digital experiences.
           </motion.p>
           <motion.div
-            className="flex flex-col md:flex-row items-center mt-4 text-lg text-gray-600"
+            className="flex flex-col md:flex-row items-center mt-4 md:text-md 2xl:text-lg text-gray-600"
             variants={container}
           >
             <motion.div className="social-pills flex items-center mb-4 md:mb-0 mt-3 md:mt-0" variants={item}>
-              <img src={BuenosAiresSVG} alt="Buenos Aires, Argentina" className="w-6 h-6 md:ml-2 mr-4" />
+              <img src={BuenosAiresSVG} alt="Buenos Aires, Argentina" className="md:w-5 2xl:w-6 md:h-5 2xl:h-6 md:ml-2 mr-4" />
               Buenos Aires, Argentina
             </motion.div>
             <motion.div
@@ -100,33 +100,33 @@ function HeroSection() {
                 href="https://www.linkedin.com/in/pablofabbian/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="linkedin-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group hover:cursor-none"
+                className="linkedin-icon inline-flex items-center rounded-full border-[0.5px] border border-black md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }}
               >
-                <img src={LinkedinSVG} className="h-7 w-7 mr-2" alt="Linkedin" />
+                <img src={LinkedinSVG} className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" alt="Linkedin" />
                 Linkedin
               </motion.a>
               <motion.a
                 href="https://github.com/PabloFabbian"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="github-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group hover:cursor-none"
+                className="github-icon inline-flex items-center rounded-full border-[0.5px] border-black md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }}
               >
-                <img src={GithubSVG} className="h-7 w-7 mr-2" alt="Github" />
+                <img src={GithubSVG} className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" alt="Github" />
                 Github
               </motion.a>
               <motion.a
                 href="https://www.threads.net/@pablo.fabbian"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="threads-icon inline-flex items-center rounded-full border border-black h-12 w-auto px-4 group hover:cursor-none"
+                className="threads-icon inline-flex items-center rounded-full border-[0.5px] border border-black md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none"
                 variants={item}
                 whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }}
               >
-                <img src={ThreadsSVG} className="h-7 w-7 mr-2" alt="Threads" />
+                <img src={ThreadsSVG} className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" alt="Threads" />
                 Threads
               </motion.a>
             </motion.div>
@@ -136,7 +136,7 @@ function HeroSection() {
           className="flex justify-center order-first md:order-last"
           variants={fadeInUp}
         >
-          <img src={Olas} alt="Avatar" className="w-60 h-60 md:w-96 md:h-96 rounded-full mt-2 mb-4 md:mt-8" />
+          <img src={AvatarAI} alt="Avatar" className="w-60 md:w-72 2xl:w-96 md:h-72 2xl:h-96 rounded-full mt-2 mb-4 md:mt-4 2xl:mt-8" />
         </motion.div>
       </motion.div>
     </section>
