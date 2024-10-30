@@ -118,7 +118,7 @@ function ProjectsSection() {
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
                     {/* Imagen del Proyecto (Derecha) */}
-                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-7 md:order-2 md:mx-6 2xl:mx-5 mb-6">
+                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-7 md:-mt-2 md:order-2 md:mx-6 2xl:mx-5 mb-6">
                         <div
                             className="overflow-hidden relative h-[27.5vh] sm:h-[90vh] md:h-[68vh] max-h-[36rem] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
