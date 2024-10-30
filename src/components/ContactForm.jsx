@@ -6,7 +6,8 @@ function ContactForm() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        message: ''
+        message: '',
+        honeypot: ''
     });
     const [loading, setLoading] = useState(false);
 
@@ -18,6 +19,12 @@ function ContactForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.honeypot) {
+            // Bot detected => silently ignore the submission
+            return;
+        }
+
         setLoading(true);
 
         const templateParams = {
@@ -35,7 +42,7 @@ function ContactForm() {
             console.log('Email sent successfully:', response);
             toast.success('Form sent successfully. Thank you for contacting me!');
 
-            setFormData({ name: '', email: '', message: '' });
+            setFormData({ name: '', email: '', message: '', honeypot: '' });
         } catch (error) {
             console.error('Error sending email:', error);
             toast.error('There was an error sending the form. Please try again.');
@@ -91,6 +98,15 @@ function ContactForm() {
                                         required
                                     />
                                 </div>
+                                <input
+                                    type="text"
+                                    name="honeypot"
+                                    value={formData.honeypot}
+                                    onChange={handleChange}
+                                    className="hidden"
+                                    autoComplete="off"
+                                    tabIndex="-1"
+                                />
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-[#9C6548] mb-1">E-mail</label>
                                     <input
