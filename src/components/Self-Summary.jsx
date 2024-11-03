@@ -67,20 +67,16 @@ function SelfSummary() {
     }, [isTransitioning]);
 
     return (
-        <section className="bg-[#7F5539] pt-12" id="About">
+        <section className="bg-[#7F5539] pt-12 z-20" id="About">
             <div className="container mx-auto px-6 md:mb-10 w-[96vw]">
-                {/* Título principal */}
                 <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-10 2xl:mb-12">
                     Self-Summary
                 </h2>
 
-                {/* Grilla responsiva */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                    {/* Perfil Profesional */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl col-span-1 md:col-span-2 text-white w-full h-full transition transform hover:scale-105 duration-300">
                         <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
-                            {/* Icono simple SVG */}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                             </svg>
@@ -97,10 +93,8 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* Datos Curiosos */}
                     <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
                         <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
-                            {/* Icono SVG */}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m-6-8h6m-9 8h.01M3 12h.01M3 16h.01M3 8h.01M21 12h.01M21 16h.01M21 8h.01M12 21a9 9 0 100-18 9 9 0 000 18z" />
                             </svg>
@@ -111,7 +105,6 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* PDF Thumbnail */}
                     <div 
                         className="bg-[#333333] relative rounded-lg shadow-xl overflow-hidden h-52 md:h-[17.2rem] transition transform hover:scale-105 duration-300"
                         onMouseEnter={() => setHovered(true)}
@@ -127,7 +120,7 @@ function SelfSummary() {
                                 alt="Curriculum Vitae Thumbnail"
                                 className="w-full h-full object-contain pr-1.5"
                             />
-                            {(hovered || isMobile) && (  // Mostrar el overlay si está en mobile o si está en hover
+                            {(hovered || isMobile) && (
                                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white md:text-sm 2xl:text-lg font-bold">
                                     <svg viewBox="0 0 24 24" fill="white" className="h-7 md:h-8 2xl:h-10 w-7 md:w-8 2xl:w-10" stroke="white" strokeWidth="0.5">
                                         <path d="M17.07,20.61H9.79a2,2,0,0,1-2-2,2,2,0,0,1,2-2h1.87L5,9.86a2,2,0,0,1-.19-2.65,1.88,1.88,0,0,1,1.47-.68,1.84,1.84,0,0,1,1.35.55l4.06,4.06,4.08-3.06a1.91,1.91,0,0,1,2.5.18h0A17.18,17.18,0,0,1,22.42,15l.06.19"></path>
@@ -139,7 +132,6 @@ function SelfSummary() {
                         </a>
                     </div>
 
-                    {/* Proyectos Destacados */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white col-span-1 md:col-span-2 w-full h-full transition transform hover:scale-105 duration-300">
                         <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono SVG */}
@@ -156,7 +148,6 @@ function SelfSummary() {
                         </p>
                     </div>
 
-                    {/* Cita Personal */}
                     <div className="bg-[#9C6644] p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
                         <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
                             {/* Icono SVG */}
@@ -172,7 +163,6 @@ function SelfSummary() {
                         </div>
                     </div>
 
-                    {/* Estilo de Trabajo */}
                     <div className="bg-[#B08968] p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
                         <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
                             {/* Icono SVG */}
@@ -198,7 +188,6 @@ function SelfSummary() {
                                 transition: isTransitioning ? `transform ${transitionDuration}ms ease-in-out` : 'none'
                             }}
                         >
-                            {/* Duplicamos la última imagen al inicio */}
                             <img
                                 src={images[totalImages - 1]}
                                 alt={`Imagen duplicada`}
@@ -216,7 +205,6 @@ function SelfSummary() {
                                 />
                             ))}
 
-                            {/* Duplicamos la primera imagen al final */}
                             <img
                                 src={images[0]}
                                 alt={`Imagen duplicada`}
@@ -228,7 +216,6 @@ function SelfSummary() {
                 </div>
             </div>
 
-            {/* SVG al final */}
             <div style={{ height: '100px', overflow: 'hidden' }} className={`bg-[#F3D5B5] ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`}>
                 <svg
                     viewBox="0 0 500 150"

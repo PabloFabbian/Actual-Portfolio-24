@@ -9,16 +9,7 @@ import ThreadsSVG from '../assets/svg/twitter-icon.svg';
 function HeroSection() {
   const container = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.1,
-        duration: 0.75,
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.75, when: "beforeChildren", staggerChildren: 0.2 } },
   };
 
   const item = {
@@ -40,10 +31,10 @@ function HeroSection() {
         variants={container}
       >
         <div className="flex-1 text-center md:text-left">
-          <motion.div className="-mt-20 md:mt-0 mb-6" variants={fadeInUp}>
-            <h1 className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
+          <motion.div className="-mt-20 md:mt-0 mb-6 drop-shadow-sm md:drop-shadow-none" variants={fadeInUp}>
+            <motion.h1 className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
               Hi there, my name is&nbsp;
-            </h1>
+            </motion.h1>
             <motion.h2
               className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-3 md:-mt-5 2xl:-mt-8"
               variants={fadeInUp}
@@ -96,38 +87,14 @@ function HeroSection() {
               className="social-pills flex justify-center md:justify-left ml-0 md:ml-6 space-x-4 scale-90 order-first md:order-last"
               variants={container}
             >
-              <motion.a
-                href="https://www.linkedin.com/in/pablofabbian/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="linkedin-icon inline-flex items-center rounded-full border-[0.5px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none"
-                variants={item}
-                whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }}
-              >
-                <img src={LinkedinSVG} className="w-4 md:w-5 2xl:w-7 h-4 md:h-5 2xl:h-7 mr-2" alt="Linkedin" />
-                Linkedin
+              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.5px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
+                <img src={LinkedinSVG} alt="Linkedin" className="w-4 md:w-5 2xl:w-7 h-4 md:h-5 2xl:h-7 mr-2" /> Linkedin
               </motion.a>
-              <motion.a
-                href="https://github.com/PabloFabbian"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="github-icon inline-flex items-center rounded-full border-[0.5px] border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none"
-                variants={item}
-                whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }}
-              >
-                <img src={GithubSVG} className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" alt="Github" />
-                Github
+              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.5px] border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
+                <img src={GithubSVG} alt="Github" className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Github
               </motion.a>
-              <motion.a
-                href="https://www.threads.net/@pablo.fabbian"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="threads-icon inline-flex items-center rounded-full border-[0.5px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none"
-                variants={item}
-                whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }}
-              >
-                <img src={ThreadsSVG} className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" alt="Threads" />
-                Threads
+              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.5px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }} >
+                <img src={ThreadsSVG} alt="Threads" className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Threads
               </motion.a>
             </motion.div>
           </motion.div>
@@ -136,7 +103,7 @@ function HeroSection() {
           className="flex justify-center order-first md:order-last"
           variants={fadeInUp}
         >
-          <img src={AvatarAI} alt="Avatar" className="w-60 md:w-72 2xl:w-96 md:h-72 2xl:h-96 rounded-full mt-2 mb-4 md:mt-4 2xl:mt-8" />
+          <img src={AvatarAI} alt="Avatar AI of Pablo Fabbian" className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8" />
         </motion.div>
       </motion.div>
     </section>

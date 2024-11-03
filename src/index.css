@@ -39,7 +39,6 @@ body {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Projects Scrollbar */
 .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #FFD275 #7F5539;
@@ -70,7 +69,6 @@ body {
     background-clip: text;
 }
 
-/* Home-pills Hover */
 .social-pills a:hover img {
     filter: brightness(0) saturate(100%) invert(38%) sepia(63%) saturate(680%) hue-rotate(340deg) brightness(96%) contrast(91%);
 }
@@ -106,6 +104,23 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%); /* Cambia esto a -50% para un ciclo más suave */
+        transform: translateX(-50%);
     }
 }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: calc(var(--index) * 0.15s);
+}  

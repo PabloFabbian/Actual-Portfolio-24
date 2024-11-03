@@ -1,3 +1,4 @@
+import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -12,11 +13,13 @@ export default function App() {
     <>
       <CustomCursor />
       <Navbar />
-      <HeroSection />
-      <ProjectsSection />
-      <SelfSummary />
-      <TechStack />
-      <ContactForm />
+      <main role="main">
+        <HeroSection />
+        <ProjectsSection />
+        <SelfSummary />
+        <TechStack />
+        <ContactForm />
+      </main>
       <Toaster richColors position="bottom-center" />
     </>
   );

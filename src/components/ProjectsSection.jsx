@@ -117,10 +117,9 @@ function ProjectsSection() {
                 </div>
 
                 <div className="container mx-auto flex flex-col md:flex-row items-start">
-                    {/* Imagen del Proyecto (Derecha) */}
                     <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-7 md:-mt-2 md:order-2 md:mx-6 2xl:mx-5 mb-6">
                         <div
-                            className="overflow-hidden relative h-[25vh] sm:h-[90vh] md:h-[68vh] max-h-[36rem] rounded-md shadow-lg"
+                            className="overflow-hidden relative h-[27vh] sm:h-[90vh] md:h-[70vh] max-h-[36rem] rounded-md shadow-lg"
                             onMouseEnter={() => setIsImageHovered(true)}
                             onMouseLeave={() => setIsImageHovered(false)}
                         >
@@ -144,10 +143,8 @@ function ProjectsSection() {
                         </div>
                     </div>
 
-                    {/* Carrusel en Mobile */}
                     {isMobile && (
                         <div className="flex justify-between items-center w-full mt-0">
-                            {/* Flecha izquierda */}
                             <button
                                 onClick={handlePreviousProject}
                                 className="text-[#FFD275] text-3xl px-4 -mt-1.5"
@@ -155,7 +152,6 @@ function ProjectsSection() {
                                 &#8249;
                             </button>
 
-                            {/* Proyecto Actual */}
                             <div className="flex flex-col items-center text-center mx-0 mt-2">
                                 <motion.h3
                                     className="text-4xl md:text-6xl font-lt-soul text-[#FFD275]"
@@ -179,7 +175,6 @@ function ProjectsSection() {
                                 </motion.p>
                             </div>
 
-                            {/* Flecha derecha */}
                             <button
                                 onClick={handleNextProject}
                                 className="text-[#FFD275] text-3xl px-4 -mt-1.5"
@@ -189,9 +184,8 @@ function ProjectsSection() {
                         </div>
                     )}
 
-                    {/* Acordeón de Proyectos en Escritorio */}
                     {!isMobile && (
-                        <div className="w-full md:w-1/3 overflow-x-auto md:max-h-[27.3rem] 2xl:max-h-[36rem] custom-scrollbar mt-4 md:-mt-4 md:mx-6 2xl:mx-5 order-2 md:order-1">
+                        <div className="w-full md:w-1/3 overflow-x-auto md:max-h-[28.4rem] 2xl:max-h-[36rem] custom-scrollbar mt-4 md:-mt-4 md:mx-6 2xl:mx-5 order-2 md:order-1">
                             <div className="flex flex-col items-start">
                                 {projects.map((project, index) => (
                                     <motion.div
