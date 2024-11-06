@@ -47,7 +47,7 @@ export default function CustomCursor() {
     return (
         <div className="custom-cursor fixed top-0 left-0 pointer-events-none z-50" role="presentation">
             <div
-                className="absolute ml-5 mt-5 md:w-16 2xl:w-20 md:h-16 2xl:h-20 border-2 border-gray-400 rounded-full opacity-40 drop-shadow-sm"
+                className="absolute ml-5 2xl:ml-3.5 mt-5 2xl:mt-3.5 md:w-16 2xl:w-20 md:h-16 2xl:h-20 border-2 border-gray-400 rounded-full opacity-40 drop-shadow-sm"
                 style={circleStyle}
             ></div>
             <div
