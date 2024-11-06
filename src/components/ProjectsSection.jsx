@@ -24,7 +24,7 @@ function ProjectsSection() {
         { name: 'PixelPulse Studio', description: 'Un sitio web creativo desarrollado en React, con Framer Motion, Flowbite UI y Tailwind CSS para un diseño responsive y atractivo. Para optimizar el flujo de trabajo, utilicé Vite y ESlint.', image: PixelPulseImage },
         { name: 'Red Line', description: 'Primer proyecto desarrollado en HTML5 y CSS3, con animaciones nativas y un carrito de compras funcional mediante local storage.', image: RedlineImage },
         { name: 'On Mental', description: 'Desarrollé la sección de servicios, la tarjeta de certificación de entornos mentalmente saludables y el navbar de On Mental, utilizando React, Tailwind CSS y Framer Motion para un diseño dinámico y responsivo.', image: OnMentalImage },
-        { name: 'Kuta Coffee', description: 'Desarrollo de una web app para un café con React, usando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para datos y React Router con Bootstrap para una navegación fluida.', image: KutaCoffeeImage },
+        { name: 'Kuta Coffee', description: 'Desarrollo de una web app para un café con React, utilizando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para la gestión de datos y React Router junto con Bootstrap para una navegación fluida. Además, implementé date-fns, una biblioteca que facilita el formateo y la manipulación de fechas.', image: KutaCoffeeImage },
     ];
 
     const handleNextProject = () => {
