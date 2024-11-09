@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 export default function CustomCursor() {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [circleOffset, setCircleOffset] = useState({ x: 0, y: 0 });
+    const [isVisible, setIsVisible] = useState(true); // Estado de visibilidad del cursor
     const radius = 50;
     const smallCursorSize = 12;
 
@@ -10,13 +11,26 @@ export default function CustomCursor() {
         setCursorPosition({ x: e.clientX, y: e.clientY });
     }, []);
 
+    const handleMouseLeave = useCallback(() => setIsVisible(false), []);
+    const handleMouseEnter = useCallback(() => setIsVisible(true), []);
+
     useEffect(() => {
         document.addEventListener('mousemove', handleMouseMove);
+        
+        // Manejar la visibilidad con eventos de window y document
+        window.addEventListener('mouseleave', handleMouseLeave);
+        window.addEventListener('mouseenter', handleMouseEnter);
+        document.addEventListener('mouseout', handleMouseLeave);
+        document.addEventListener('mouseover', handleMouseEnter);
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseleave', handleMouseLeave);
+            window.removeEventListener('mouseenter', handleMouseEnter);
+            document.removeEventListener('mouseout', handleMouseLeave);
+            document.removeEventListener('mouseover', handleMouseEnter);
         };
-    }, [handleMouseMove]);
+    }, [handleMouseMove, handleMouseLeave, handleMouseEnter]);
 
     useEffect(() => {
         const moveCircle = () => {
@@ -24,7 +38,6 @@ export default function CustomCursor() {
                 x: prevOffset.x + (cursorPosition.x - prevOffset.x) * 0.4,
                 y: prevOffset.y + (cursorPosition.y - prevOffset.y) * 0.4,
             }));
-
             requestAnimationFrame(moveCircle);
         };
 
@@ -43,6 +56,9 @@ export default function CustomCursor() {
         top: `${circleOffset.y - radius}px`,
         left: `${circleOffset.x - radius}px`,
     };
+
+    // Ocultar el cursor si isVisible es false
+    if (!isVisible) return null;
 
     return (
         <div className="custom-cursor fixed top-0 left-0 pointer-events-none z-50" role="presentation">

@@ -87,13 +87,13 @@ function HeroSection() {
               className="social-pills flex justify-center md:justify-left ml-0 md:ml-6 space-x-4 scale-90 order-first md:order-last"
               variants={container}
             >
-              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.5px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
+              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
                 <img src={LinkedinSVG} alt="Linkedin" className="w-4 md:w-5 2xl:w-7 h-4 md:h-5 2xl:h-7 mr-2" /> Linkedin
               </motion.a>
-              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.5px] border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
+              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
                 <img src={GithubSVG} alt="Github" className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Github
               </motion.a>
-              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.5px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }} >
+              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.9px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }} >
                 <img src={ThreadsSVG} alt="Threads" className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Threads
               </motion.a>
             </motion.div>
