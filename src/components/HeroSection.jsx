@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AvatarAI from '../assets/olas2.png';
+import AvatarAI from '../assets/AI Profile 2.mp4';
 import BuenosAiresSVG from '../assets/svg/world-location-icon.svg';
 import LinkedinSVG from '../assets/svg/linkedin-icon.svg';
 import GithubSVG from '../assets/svg/github-icon.svg';
@@ -103,7 +103,12 @@ function HeroSection() {
           className="flex justify-center order-first md:order-last"
           variants={fadeInUp}
         >
-          <img src={AvatarAI} alt="Avatar AI of Pablo Fabbian" className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8" />
+          <video
+            src={AvatarAI}
+            className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8"
+            autoPlay
+            loop
+          ></video>
         </motion.div>
       </motion.div>
     </section>
