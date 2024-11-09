@@ -108,6 +108,7 @@ function HeroSection() {
             className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8"
             autoPlay
             loop
+            muted
           ></video>
         </motion.div>
       </motion.div>
