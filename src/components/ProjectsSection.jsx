@@ -94,14 +94,20 @@ function ProjectsSection() {
                     preserveAspectRatio="none"
                     className="h-full w-full"
                 >
+                    <defs>
+                        <linearGradient id="customGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style={{ stopColor: '#7C4A3A' }} />
+                            <stop offset="100%" style={{ stopColor: '#5A3A2C' }} />
+                        </linearGradient>
+                    </defs>
                     <path
                         d="M-43.73,193.92 C128.38,-52.77 372.17,-43.89 562.36,206.75 L246.89,203.80 L233.92,202.80 Z"
-                        style={{ stroke: 'none', fill: '#7F5539' }}
+                        style={{ stroke: 'none', fill: 'url(#customGradient)' }}
                     />
                 </svg>
             </div>
 
-            <section className="bg-[#7F5539] md:pb-6 md:pt-12 2xl:py-12 relative">
+            <section className="bg-gradient-to-r from-[#7C4A3A] to-[#5A3A2C] md:pb-6 md:pt-12 2xl:py-12 relative">
                 <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-8">
                     <div className="relative flex flex-col items-center -mt-10 md:-mt-36">
                         <img

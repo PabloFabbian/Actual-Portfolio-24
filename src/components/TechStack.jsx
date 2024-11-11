@@ -22,7 +22,7 @@ function TechStack() {
 
     return (
         <div className="bg-[#F3D5B5] overflow-hidden relative pt-0 md:pt-8 2xl:pt-12">
-            <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-bold text-center text-[#9C6548] mb-2 md:mb-6 2xl:mb-9" id="Tech-Stack">
+            <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-bold text-center text-[#7C4A3A] mb-2 md:mb-6 2xl:mb-9" id="Tech-Stack">
                 Tech Stack
             </h2>
             <div className="curved-container relative">

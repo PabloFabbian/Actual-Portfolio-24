@@ -52,11 +52,11 @@ function ContactForm() {
     };
 
     return (
-        <section className="bg-[#F3D5B5] pt-6 pb-10 md:py-0 2xl:py-16 h-1/3 md:scale-75 2xl:scale-100" id="Contact">
+        <section className="pt-6 pb-10 md:py-0 2xl:py-16 h-1/3 md:scale-75 2xl:scale-100" id="Contact">
             <div className="container mx-auto px-4 h-full">
                 <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden h-full">
                     <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-                        <div className="bg-gradient-to-br from-[#9C6548] to-[#7F5539] p-12 text-[#ECDED2] flex items-center justify-center">
+                        <div className="bg-gradient-to-br from-[#7C4A3A] to-[#6B3A2A] p-12 text-[#ECDED2] flex items-center justify-center">
                             <div>
                                 <h2 className="font-lt-soul text-5xl font-bold mb-6">Contact Me</h2>
                                 <p className="text-xl mb-4">Feel free to reach out — I'm here for you.</p>
