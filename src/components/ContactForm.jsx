@@ -134,7 +134,7 @@ function ContactForm() {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="w-full bg-[#9C6548] text-[#ECDED2] font-bold py-3 px-6 rounded-lg hover:bg-[#7F5539] focus:outline-none focus:ring-2 focus:ring-[#9C6548] focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center justify-center"
+                                        className="w-full bg-[#7B4939] text-[#ECDED2] font-bold py-3 px-6 rounded-lg hover:bg-[#6B3A2A] focus:outline-none focus:ring-2 focus:ring-[#9C6548] focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center justify-center"
                                     >
                                         {loading ? 'Sending...' : 'Send Message'}
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
