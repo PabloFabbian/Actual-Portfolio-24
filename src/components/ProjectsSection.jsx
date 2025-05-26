@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import ChevronSVG from '../assets/svg/chevron-arrow-icon.svg';
-import RedlineImage from '../assets/ProjectsImg/Redline.webp';
+import ResumatioImage from '../assets/ProjectsImg/Resumatio.webp';
 import KutaCoffeeImage from '../assets/ProjectsImg/Kuta.webp';
 import PixelPulseImage from '../assets/ProjectsImg/Pixelpulse.webp';
 import VooidImage from '../assets/ProjectsImg/Vooid.webp';
@@ -30,6 +30,7 @@ function ProjectsSection() {
         { name: 'On Mental', description: 'Desarrollé la sección de servicios, la tarjeta de certificación de entornos mentalmente saludables y el navbar de On Mental, utilizando React, Tailwind CSS y Framer Motion para un diseño dinámico y responsivo.', image: OnMentalImage },
         { name: 'Kuta Cafetería', description: 'Desarrollo de una web app para un café con React, utilizando Tailwind CSS para estilos, Toastify para notificaciones, Firestore para la gestión de datos y React Router junto con Bootstrap para una navegación fluida. Además, implementé date-fns, una biblioteca que facilita el formateo y la manipulación de fechas.', image: KutaCoffeeImage },
         { name: 'Vooid Indumentaria', description: 'Desarrollé una tienda online diseñada en Figma, usando React para una experiencia de usuario fluida con Radix UI e integrando pagos con Mercado Pago.', image: VooidImage },
+        { name: 'Resumatio', description: 'Desarrollé el Frontend de una Landing Page con React, con una tienda de Paypal, Tailwind CSS para el diseño y Framer para las animaciones.', image: ResumatioImage },
     ];
 
     const handleNextProject = () => {
