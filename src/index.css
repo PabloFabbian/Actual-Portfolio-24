@@ -79,7 +79,7 @@ body {
     filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(2600%) hue-rotate(250deg) brightness(95%) contrast(90%);
 }
 .social-pills .threads-icon:hover img {
-    filter: brightness(0) saturate(100%) invert(30%) sepia(68%) saturate(1600%) hue-rotate(203deg) brightness(98%) contrast(101%);
+  filter: brightness(0) saturate(100%);
 }
 
 #Tech-Stack {

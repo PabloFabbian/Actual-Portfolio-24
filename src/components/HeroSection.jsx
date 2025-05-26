@@ -87,29 +87,32 @@ function HeroSection() {
               className="social-pills flex justify-center md:justify-left ml-0 md:ml-6 space-x-4 scale-90 order-first md:order-last"
               variants={container}
             >
-              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
+              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none hover:bg-blue-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
                 <img src={LinkedinSVG} alt="Linkedin" className="w-4 md:w-5 2xl:w-7 h-4 md:h-5 2xl:h-7 mr-2" /> Linkedin
               </motion.a>
-              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
+              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none hover:bg-violet-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
                 <img src={GithubSVG} alt="Github" className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Github
               </motion.a>
-              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.9px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none" variants={item} whileHover={{ scale: 1.1, borderColor: "#6366f1", color: "#4338ca" }} >
+              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.9px] border border-black py-1 md:h-8 2xl:h-12 w-auto px-3 2xl:px-4 text-sm 2xl:text-base group hover:cursor-none hover:bg-black/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#000", color: "#000" }} >
                 <img src={ThreadsSVG} alt="Threads" className="w-4 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Threads
               </motion.a>
             </motion.div>
           </motion.div>
         </div>
         <motion.div
-          className="flex justify-center order-first md:order-last"
+          className="flex justify-center order-first md:order-last relative group"
           variants={fadeInUp}
         >
           <video
             src={AvatarAI}
-            className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8"
+            className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8 cursor-pointer"
             autoPlay
             loop
             muted
           ></video>
+          <div className="absolute top-60 left-10 transform -translate-x-1/2 bg-orange-950/50 text-white text-xs px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-400 whitespace-nowrap pointer-events-none z-10">
+            Pablo Fabbian
+          </div>
         </motion.div>
       </motion.div>
     </section>

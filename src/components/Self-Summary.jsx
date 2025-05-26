@@ -67,8 +67,8 @@
         }, [isTransitioning]);
 
         return (
-            <section className="bg-gradient-to-r from-[#7C4A3A] to-[#5A3A2C] pt-12 z-20" id="About">
-                <div className="container mx-auto px-6 md:mb-10 w-[96vw]">
+            <section className="bg-gradient-to-r from-[#7C4A3A] to-[#5A3A2C] pt-24 md:pt-0 2xl:pt-12 z-20" id="About">
+                <div className="container mx-auto px-6 md:mb-10 w-[96vw] md:scale-90 2xl:scale-100">
                     <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-extrabold text-center text-[#FFE8D6] mb-8 md:mb-10 2xl:mb-12">
                         Self-Summary
                     </h2>
@@ -76,7 +76,7 @@
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                         <div className="bg-gradient-to-br from-[#B08968]/50 to-[#7F5539]/50 p-6 md:p-8 rounded-lg shadow-xl col-span-1 md:col-span-2 text-white w-full h-full transition transform hover:scale-105 duration-300">
-                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
+                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-gradient-to-br from-[#9C6644]/50 to-[#7F5539]/50 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                                 </svg>
@@ -94,7 +94,7 @@
                         </div>
 
                         <div className="bg-gradient-to-br from-[#9C6644]/50 to-[#7F5539]/50 p-6 md:p-8 rounded-lg shadow-xl text-white w-full h-full transition transform hover:scale-105 duration-300">
-                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
+                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-gradient-to-br from-[#9C6644]/50 to-[#7F5539]/50 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m-6-8h6m-9 8h.01M3 12h.01M3 16h.01M3 8h.01M21 12h.01M21 16h.01M21 8h.01M12 21a9 9 0 100-18 9 9 0 000 18z" />
                                 </svg>
@@ -133,7 +133,7 @@
                         </div>
 
                         <div className="bg-gradient-to-br from-[#B08968]/70 to-[#9C7F5C]/70 p-6 md:p-8 rounded-lg shadow-xl text-white col-span-1 md:col-span-2 w-full h-full transition transform hover:scale-105 duration-300">
-                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
+                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-gradient-to-br from-[#9C6644]/50 to-[#7F5539]/50 rounded-full">
                                 {/* Icono SVG */}
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
@@ -149,7 +149,7 @@
                         </div>
 
                         <div className="bg-gradient-to-tr from-[#9C6644]/70 to-[#8A4E36]/70 p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
-                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#7F5539] rounded-full">
+                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-gradient-to-br from-[#9C6644]/50 to-[#7F5539]/50 rounded-full">
                                 {/* Icono SVG */}
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
@@ -164,7 +164,7 @@
                         </div>
 
                         <div className="bg-gradient-to-br from-[#B08968]/70 to-[#A17757]/70 p-6 md:p-8 rounded-lg shadow-xl text-white w-full md:h-[19rem] 2xl:h-[22rem] transition transform hover:scale-105 duration-300">
-                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-[#9C6644] rounded-full">
+                            <div className="flex items-center justify-center w-10 md:h-12 2xl:h-16 h-10 md:w-12 2xl:w-16 mb-4 bg-gradient-to-br from-[#9C6644]/50 to-[#7F5539]/50 rounded-full">
                                 {/* Icono SVG */}
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-6 2xl:h-8 w-6 md:w-6 2xl:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -191,7 +191,7 @@
                                 <img
                                     src={images[totalImages - 1]}
                                     alt={`Imagen duplicada`}
-                                    className="w-full h-full object-contain bg-[#333333]"
+                                    className="w-full h-full object-contain bg-[#1c1d1e]/70"
                                     style={{ flexShrink: 0, width: '100%' }}
                                 />
 
@@ -200,7 +200,7 @@
                                         key={index}
                                         src={image}
                                         alt={`Imagen ${index + 1}`}
-                                        className="w-full h-full object-contain bg-[#333333]"
+                                        className="w-full h-full object-contain bg-[#1c1d1e]/70"
                                         style={{ flexShrink: 0, width: '100%' }}
                                     />
                                 ))}
@@ -208,7 +208,7 @@
                                 <img
                                     src={images[0]}
                                     alt={`Imagen duplicada`}
-                                    className="w-full h-full object-contain bg-[#333333]"
+                                    className="w-full h-full object-contain bg-[#1c1d1e]/70"
                                     style={{ flexShrink: 0, width: '100%' }}
                                 />
                             </div>

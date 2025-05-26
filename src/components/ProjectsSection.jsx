@@ -9,8 +9,14 @@ import TowerSoftwareImage from '../assets/ProjectsImg/Tower.webp';
 import RucaviImage from '../assets/ProjectsImg/Rucavi.webp';
 import OnMentalImage from '../assets/ProjectsImg/OnMental.webp';
 
+import ProjectHeader from './Projects/ProjectHeader';
+import ProjectImage from './Projects/ProjectImage';
+import ProjectList from './Projects/ProjectList';
+import MobileProjectNav from './Projects/MobileProjectNav';
+
 function ProjectsSection() {
-    const [hoveredProject, setHoveredProject] = useState('Tower Software');
+    const [hoveredProject, setHoveredProject] = useState(null);
+    const [selectedProject, setSelectedProject] = useState('Tower Software');
     const [isMobile, setIsMobile] = useState(false);
     const [isImageHovered, setIsImageHovered] = useState(false);
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -51,10 +57,18 @@ function ProjectsSection() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const handleProjectHover = (index) => {
-        setHoveredProject(projects[index].name);
+    const handleProjectClick = (index) => {
+        setSelectedProject(projects[index].name);
         setCurrentProjectIndex(index);
         setIsLoading(true);
+    };
+
+    const handleProjectHover = (projectName) => {
+        setHoveredProject(projectName);
+    };
+
+    const handleProjectLeave = () => {
+        setHoveredProject(null);
     };
 
     useEffect(() => {
@@ -88,144 +102,56 @@ function ProjectsSection() {
 
     return (
         <>
-            <div className={`bg-[#F3D5B5] overflow-hidden ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`} id="Projects">
-                <svg
-                    viewBox="0 0 500 150"
-                    preserveAspectRatio="none"
-                    className="h-full w-full"
-                >
-                    <defs>
-                        <linearGradient id="customGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style={{ stopColor: '#7C4A3A' }} />
-                            <stop offset="100%" style={{ stopColor: '#5A3A2C' }} />
-                        </linearGradient>
-                    </defs>
-                    <path
-                        d="M-43.73,193.92 C128.38,-52.77 372.17,-43.89 562.36,206.75 L246.89,203.80 L233.92,202.80 Z"
-                        style={{ stroke: 'none', fill: 'url(#customGradient)' }}
-                    />
-                </svg>
-            </div>
+            <ProjectHeader isMobile={isMobile} chevronSVG={ChevronSVG} />
 
             <section className="bg-gradient-to-r from-[#7C4A3A] to-[#5A3A2C] md:pb-6 md:pt-12 2xl:py-12 relative">
-                <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-8">
-                    <div className="relative flex flex-col items-center -mt-10 md:-mt-36">
+                <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-8 md:scale-90 2xl:scale-100">
+                    <div className="relative flex flex-col items-center -mt-0 md:-mt-10 2xl:-mt-36">
+                      <div
+                        className="animate-bounce cursor-pointer"
+                        onClick={() => {
+                          const section = document.getElementById('Projects');
+                          if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                      >
                         <img
-                            src={ChevronSVG}
-                            loading='lazy'
-                            className="h-10 w-10 rotate-180 mb-3 -ml-1 md:-ml-1 2xl:-ml-2 2xl:mb-4"
-                            aria-hidden="true"
+                          src={ChevronSVG}
+                          loading="lazy"
+                          className="h-8 md:h-10 2xl:h-14 md:h-10 2xl:w-14 rotate-180 mb-3 -ml-1 md:-ml-1 2xl:-ml-2 2xl:mb-4 transition-transform hover:scale-110"
+                          aria-hidden="true"
                         />
-                        <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-medium text-center text-[#FFD275]">
-                            Projects
-                        </h2>
+                      </div>
+                      <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-medium text-center text-[#FFD275] md:mt-0 2xl:-mt-5">
+                          Projects
+                      </h2>
                     </div>
                 </div>
 
-                <div className="container mx-auto flex flex-col md:flex-row items-start">
-                    <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-7 md:-mt-2 md:order-2 md:mx-6 2xl:mx-5 mb-6">
-                        <div
-                            className="overflow-hidden relative h-[27vh] sm:h-[90vh] md:h-[70vh] max-h-[36rem] rounded-md shadow-lg"
-                            onMouseEnter={() => setIsImageHovered(true)}
-                            onMouseLeave={() => setIsImageHovered(false)}
-                        >
-                            <motion.div
-                                key={projects[currentProjectIndex].name}
-                                className="absolute inset-0 bg-cover bg-top"
-                                style={{
-                                    backgroundImage: `url(${projects[currentProjectIndex]?.image})`,
-                                    backgroundSize: 'cover',
-                                    backgroundPositionY: isImageHovered ? '100%' : '0%',
-                                }}
-                                onLoad={() => setIsLoading(false)}
-                                animate={{ backgroundPositionY: isImageHovered ? '100%' : '0%' }}
-                                transition={{
-                                    duration: 5,
-                                    ease: "easeInOut",
-                                }}
-                            >
-                                <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
-                            </motion.div>
-                        </div>
-                    </div>
+                <div className="container mx-auto flex flex-col md:flex-row items-start md:scale-90 2xl:scale-100">
+                    <ProjectImage
+                        currentProject={projects[currentProjectIndex]}
+                        isImageHovered={isImageHovered}
+                        setIsImageHovered={setIsImageHovered}
+                        setIsLoading={setIsLoading}
+                    />
 
-                    {isMobile && (
-                        <div className="flex justify-between items-center w-full mt-0">
-                            <button
-                                onClick={handlePreviousProject}
-                                className="text-[#FFD275] text-3xl px-4 -mt-1.5"
-                            >
-                                &#8249;
-                            </button>
-
-                            <div className="flex flex-col items-center text-center mx-0 mt-2">
-                                <motion.h3
-                                    className="text-4xl md:text-6xl font-lt-soul text-[#FFD275]"
-                                    key={projects[currentProjectIndex].name}
-                                    initial={{ opacity: 0, x: -100 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    {projects[currentProjectIndex].name}
-                                </motion.h3>
-                                <motion.p
-                                    className="text-pretty text-md text-[#FFD275] mt-2"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.5 }}
-                                    style={{
-                                        transitionDelay: '0.5s',
-                                    }}
-                                >
-                                    {projects[currentProjectIndex].description}
-                                </motion.p>
-                            </div>
-
-                            <button
-                                onClick={handleNextProject}
-                                className="text-[#FFD275] text-3xl px-4 -mt-1.5"
-                            >
-                                &#8250;
-                            </button>
-                        </div>
-                    )}
-
-                    {!isMobile && (
-                        <div className="w-full md:w-1/3 overflow-x-auto md:max-h-[28.4rem] 2xl:max-h-[36rem] custom-scrollbar mt-4 md:-mt-4 md:mx-6 2xl:mx-5 order-2 md:order-1">
-                            <div className="flex flex-col items-start">
-                                {projects.map((project, index) => (
-                                    <motion.div
-                                        key={project.name}
-                                        className={`w-full p-4 transition-all duration-300 ${hoveredProject === project.name ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.9)] transition transform'} ${index < projects.length - 1 ? 'border-b border-[#FFD275] delay-300' : ''}`}
-                                        onMouseEnter={() => handleProjectHover(index)}
-                                        onClick={() => handleProjectHover(index)}
-                                    >
-                                        <motion.h3
-                                            className="text-4xl md:text-5xl 2xl:text-6xl font-lt-soul"
-                                            initial={{ opacity: 0, x: -100 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        >
-                                            {project.name}
-                                        </motion.h3>
-                                        {hoveredProject === project.name && (
-                                            <motion.p
-                                                className="md:text-base 2xl:text-lg mt-1 mb-1.5"
-                                                initial={{ opacity: 0, y: -20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{
-                                                    duration: 0.3,
-                                                    ease: 'easeInOut',
-                                                    delay: 0.075,
-                                                }}
-                                            >
-                                                {project.description}
-                                            </motion.p>
-                                        )}
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
+                    {isMobile ? (
+                        <MobileProjectNav
+                            currentProject={projects[currentProjectIndex]}
+                            onNext={handleNextProject}
+                            onPrevious={handlePreviousProject}
+                        />
+                    ) : (
+                        <ProjectList
+                            projects={projects}
+                            hoveredProject={hoveredProject}
+                            selectedProject={selectedProject}
+                            onProjectHover={handleProjectHover}
+                            onProjectLeave={handleProjectLeave}
+                            onProjectClick={handleProjectClick}
+                        />
                     )}
                 </div>
             </section>
