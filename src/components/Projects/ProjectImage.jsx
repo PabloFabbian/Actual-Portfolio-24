@@ -7,10 +7,9 @@ function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIs
   const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
 
-  // Detectar si es mobile
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // sm breakpoint
+      setIsMobile(window.innerWidth < 768);
     };
     handleResize();
     window.addEventListener('resize', handleResize);

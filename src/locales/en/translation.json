@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "techStack": "Tech Stack",
+    "contact": "Let's Talk"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "navbar": {
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Hola, soy Tomás",
+    "subtitle": "Desarrollador Frontend React"
+  }
+}

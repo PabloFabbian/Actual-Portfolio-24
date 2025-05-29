@@ -12,8 +12,10 @@
   "dependencies": {
     "emailjs-com": "^3.2.0",
     "framer-motion": "^11.3.31",
+    "i18next": "^25.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.5.2",
     "sonner": "^1.5.0"
   },
   "devDependencies": {

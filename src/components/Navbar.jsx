@@ -2,21 +2,111 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Logo from '../assets/Logo.webp';
 import '../fonts.css';
 
+const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const languages = [
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'pt', name: 'Português', flag: '🇧🇷' }
+  ];
+
+  const currentLang = languages.find(lang => lang.code === currentLanguage) || languages[0];
+
+  const handleLanguageSelect = (langCode) => {
+    onLanguageChange(langCode);
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.language-selector')) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="language-selector relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`relative group flex items-center font-lt-soul transition-all duration-200 hover:text-[#FFD275] hover:scale-105 text-[#EDE0D4] ${
+          hasLoaded ? 'animate-fade-in-up' : 'opacity-0'
+        }`}
+        style={{
+          animationDelay: hasLoaded ? '1s' : '0s',
+          animationFillMode: 'both'
+        }}
+        aria-label="Seleccionar idioma"
+      >
+        <svg 
+          className="w-5 h-5 mr-1" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={1.5} 
+            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 919-9"
+          />
+        </svg>
+        <span className="text-base 2xl:text-lg">{currentLang.flag}</span>
+        <span
+          className="absolute left-1/2 bottom-0.5 w-full h-0.5 transition-all duration-300 -translate-x-1/2 origin-center rounded-full bg-[#EDE0D4] scale-x-0 group-hover:scale-x-75"
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute -left-16 top-full mt-4 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md rounded-lg shadow-xl border border-[#7B4C33]/30 min-w-[180px] z-50">
+          {languages.map((language) => (
+            <button
+              key={language.code}
+              onClick={() => handleLanguageSelect(language.code)}
+              className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-200 first:rounded-t-lg last:rounded-b-lg ${
+                currentLanguage === language.code 
+                  ? 'bg-[#FFD275]/20 text-[#FFD275]' 
+                  : 'text-[#EDE0D4] hover:bg-[#EDE0D4]/10 hover:text-[#FFD275]'
+              }`}
+            >
+              <span className="text-base">{language.flag}</span>
+              <span className="text-sm font-medium">{language.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Navbar = React.memo(() => {
   const [showLogoAndButton, setShowLogoAndButton] = useState(true);
   const [activeSection, setActiveSection] = useState('Home');
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('es');
   
-  // Referencias para optimizar
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
   const ticking = useRef(false);
 
-  // Constantes para evitar recreación
   const sections = ['Home', 'About', 'Projects', 'Tech-Stack'];
   const navSections = ['Home', 'Projects', 'About', 'Tech-Stack'];
+
+  // Función para manejar el cambio de idioma
+  const handleLanguageChange = useCallback((newLanguage) => {
+    setCurrentLanguage(newLanguage);
+    // Aquí puedes agregar lógica adicional como:
+    // - Guardar en localStorage
+    // - Actualizar contexto global
+    // - Cambiar traducciones
+    console.log('Idioma cambiado a:', newLanguage);
+  }, []);
 
   const updateActiveSection = useCallback(() => {
     let closestSection = 'Home';
@@ -50,11 +140,9 @@ const Navbar = React.memo(() => {
 
     if (isScrollingDownNow && showLogoAndButton) {
       setShowLogoAndButton(false);
-      // Limpiar timeout anterior
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
-      // Mostrar elementos después de 3 segundos (reducido de 4)
       scrollTimeout.current = setTimeout(() => {
         setShowLogoAndButton(true);
       }, 3000);
@@ -78,7 +166,6 @@ const Navbar = React.memo(() => {
   }, [handleScrollLogic]);
 
   useEffect(() => {
-    // Usar requestAnimationFrame para mejor rendimiento
     window.addEventListener('scroll', requestScrollUpdate, { passive: true });
 
     return () => {
@@ -89,7 +176,6 @@ const Navbar = React.memo(() => {
     };
   }, [requestScrollUpdate]);
 
-  // Animación de entrada inicial
   useEffect(() => {
     const timer = setTimeout(() => {
       setHasLoaded(true);
@@ -125,7 +211,6 @@ const Navbar = React.memo(() => {
     setIsMenuOpen(prev => !prev);
   }, []);
 
-  // Cerrar menú al presionar Escape
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && isMenuOpen) {
@@ -135,7 +220,6 @@ const Navbar = React.memo(() => {
 
     if (isMenuOpen) {
       document.addEventListener('keydown', handleEscape);
-      // Prevenir scroll del body cuando el menú está abierto
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -153,7 +237,6 @@ const Navbar = React.memo(() => {
         hasLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
         <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-          {/* Logo */}
           <a 
             href="https://github.com/PabloFabbian" 
             target="_blank" 
@@ -181,7 +264,6 @@ const Navbar = React.memo(() => {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
           <div className={`hidden md:flex flex-grow justify-center ${
             hasLoaded ? 'animate-slide-in-down' : 'opacity-0'
           }`}
@@ -189,7 +271,7 @@ const Navbar = React.memo(() => {
             animationDelay: hasLoaded ? '0.4s' : '0s',
             animationFillMode: 'both'
           }}>
-            <div className="flex bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 2xl:pt-3 pb-1.5 2xl:pb-2 px-20 2xl:px-32 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-24 2xl:space-x-32 drop-shadow backdrop-blur-sm">
+            <div className="flex bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 2xl:pt-3 pb-1.5 2xl:pb-2 px-20 2xl:px-24 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-24 2xl:space-x-20 drop-shadow backdrop-blur-sm">
               {navSections.map((section, index) => (
                 <button
                   key={section}
@@ -216,48 +298,55 @@ const Navbar = React.memo(() => {
                   />
                 </button>
               ))}
+              
+              <div className="w-px h-6 bg-[#EDE0D4]/30 self-center"></div>
+              
+              <LanguageSelector 
+                currentLanguage={currentLanguage} 
+                onLanguageChange={handleLanguageChange}
+                hasLoaded={hasLoaded}
+              />
             </div>
           </div>
 
-          {/* Desktop Contact Button */}
-          <div className={`relative inline-block mx-12 transition-all duration-500 hidden md:inline ${
-            showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
-          } ${
-            hasLoaded ? 'animate-slide-in-right' : 'opacity-0'
-          }`}
-          style={{
-            animationDelay: hasLoaded ? '0.8s' : '0s',
-            animationFillMode: 'both'
-          }}>
-            <div
-              className="absolute top-1 left-1 w-full h-full bg-[#2B2B2B] rounded-lg"
-              aria-hidden="true"
-            />
-            <button
-              type="button"
-              onClick={handleButtonClick}
-              className="relative flex items-center justify-center space-x-2 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] md:text-sm 2xl:text-base text-white px-6 md:px-8 2xl:px-10 py-1 md:py-1.5 2xl:py-2 rounded-lg hover:from-[#C95440] hover:to-[#B8432A] drop-shadow-lg transition-all duration-200 transform hover:scale-105 active:translate-x-1 active:translate-y-1 active:scale-95 border-2 border-[#DB5A42] hover:border-[#C95440]"
-              aria-label="Contactarme"
-            >
-              <span>Let's Talk</span>
-              <svg className="h-5 w-auto transition-transform duration-200 group-hover:rotate-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M8 10.5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M8 14H13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </button>
+          <div className="hidden md:flex items-center">
+            <div className={`relative inline-block mx-12 transition-all duration-500 ${
+              showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
+            } ${
+              hasLoaded ? 'animate-slide-in-right' : 'opacity-0'
+            }`}
+            style={{
+              animationDelay: hasLoaded ? '0.8s' : '0s',
+              animationFillMode: 'both'
+            }}>
+              <div
+                className="absolute top-1 left-1 w-full h-full bg-[#2B2B2B] rounded-lg"
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                onClick={handleButtonClick}
+                className="relative flex items-center justify-center space-x-2 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] md:text-sm 2xl:text-base text-white px-6 md:px-8 2xl:px-10 py-1 md:py-1.5 2xl:py-2 rounded-lg hover:from-[#C95440] hover:to-[#B8432A] drop-shadow-lg transition-all duration-200 transform hover:scale-105 active:translate-x-1 active:translate-y-1 active:scale-95 border-2 border-[#DB5A42] hover:border-[#C95440]"
+                aria-label="Contactarme"
+              >
+                <span>Let's Talk</span>
+                <svg className="h-5 w-auto transition-transform duration-200 group-hover:rotate-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M8 10.5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M8 14H13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </div>
           </div>
 
-          {/* Mobile Section */}
-          <div className={`md:hidden flex items-center ${
+          <div className={`md:hidden flex items-center space-x-3 ${
             hasLoaded ? 'animate-slide-in-right' : 'opacity-0'
           }`}
           style={{
             animationDelay: hasLoaded ? '0.5s' : '0s',
             animationFillMode: 'both'
           }}>
-            {/* Mobile Contact Button */}
-            <div className="relative mr-6">
+            <div className="relative">
               <div
                 className="absolute top-1.5 left-1.5 w-full h-full bg-[#2B2B2B] rounded-lg"
                 aria-hidden="true"
@@ -277,7 +366,6 @@ const Navbar = React.memo(() => {
               </button>
             </div>
 
-            {/* Hamburger Menu */}
             <button
               className="z-50 relative focus:outline-none focus:ring-2 focus:ring-[#DB5A42] focus:ring-opacity-50 rounded p-1 mt-0.5 hover:scale-110 transition-transform duration-200"
               onClick={toggleMenu}
@@ -300,7 +388,6 @@ const Navbar = React.memo(() => {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
         <div 
           id="mobile-menu"
           className={`fixed inset-0 bg-gradient-to-br from-[rgba(156,102,68,0.95)] via-[rgba(94,59,28,0.9)] to-[rgba(43,26,15,0.85)] z-40 transition-all duration-500 backdrop-blur-md ${
@@ -338,4 +425,4 @@ const Navbar = React.memo(() => {
 
 Navbar.displayName = 'Navbar';
 
-export default Navbar;
+export default Navbar
