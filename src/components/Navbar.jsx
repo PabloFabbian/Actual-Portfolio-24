@@ -33,7 +33,7 @@ const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
     <div className="language-selector relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`relative group flex items-center font-lt-soul transition-all duration-200 hover:text-[#FFD275] hover:scale-105 text-[#EDE0D4] ${
+        className={`relative group flex items-center font-lt-soul transition-all duration-200 ${
           hasLoaded ? 'animate-fade-in-up' : 'opacity-0'
         }`}
         style={{
@@ -42,35 +42,34 @@ const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
         }}
         aria-label="Seleccionar idioma"
       >
-        <svg 
-          className="w-5 h-5 mr-1" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={1.5} 
-            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 919-9"
-          />
-        </svg>
-        <span className="text-base 2xl:text-lg">{currentLang.flag}</span>
-        <span
-          className="absolute left-1/2 bottom-0.5 w-full h-0.5 transition-all duration-300 -translate-x-1/2 origin-center rounded-full bg-[#EDE0D4] scale-x-0 group-hover:scale-x-75"
-        />
+        <div className="flex items-center px-3 py-1 rounded-full group-hover:bg-[#EDE0D4]/20 group-hover:text-[#FFD275] transition-all duration-300">
+          <svg 
+            className="w-5 h-5 mr-1" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={1.5} 
+              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 919-9"
+            />
+          </svg>
+          <span className="text-base 2xl:text-lg">{currentLang.flag}</span>
+        </div>
       </button>
 
       {isOpen && (
-        <div className="absolute -left-16 top-full mt-4 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md rounded-lg shadow-xl border border-[#7B4C33]/30 min-w-[180px] z-50">
+        <div className="absolute -left-16 top-full mt-2 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md rounded-lg shadow-xl border border-[#7B4C33]/30 min-w-[180px] z-50 overflow-hidden">
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => handleLanguageSelect(language.code)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-200 first:rounded-t-lg last:rounded-b-lg ${
+              className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-200 ${
                 currentLanguage === language.code 
                   ? 'bg-[#FFD275]/20 text-[#FFD275]' 
-                  : 'text-[#EDE0D4] hover:bg-[#EDE0D4]/10 hover:text-[#FFD275]'
+                  : 'text-[#EDE0D4] hover:bg-[#EDE0D4]/20 hover:text-[#FFD275]'
               }`}
             >
               <span className="text-base">{language.flag}</span>
@@ -98,13 +97,8 @@ const Navbar = React.memo(() => {
   const sections = ['Home', 'About', 'Projects', 'Tech-Stack'];
   const navSections = ['Home', 'Projects', 'About', 'Tech-Stack'];
 
-  // Función para manejar el cambio de idioma
   const handleLanguageChange = useCallback((newLanguage) => {
     setCurrentLanguage(newLanguage);
-    // Aquí puedes agregar lógica adicional como:
-    // - Guardar en localStorage
-    // - Actualizar contexto global
-    // - Cambiar traducciones
     console.log('Idioma cambiado a:', newLanguage);
   }, []);
 
@@ -258,56 +252,61 @@ const Navbar = React.memo(() => {
               className="mr-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg" 
               loading="eager"
             />
-            <div className="hidden md:inline">
-              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl -mb-2 drop-shadow-lg">PF</span>
-              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl drop-shadow-lg">Portfolio</span>
+            <div className="">
+              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl -mb-2 drop-shadow-lg whitespace-nowrap">Pablo</span>
+              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl drop-shadow-lg whitespace-nowrap">E. Fabbian</span>
             </div>
           </a>
 
-          <div className={`hidden md:flex flex-grow justify-center ${
-            hasLoaded ? 'animate-slide-in-down' : 'opacity-0'
+<div className={`hidden md:flex flex-grow justify-center ${
+  hasLoaded ? 'animate-slide-in-down' : 'opacity-0'
+}`}
+style={{
+  animationDelay: hasLoaded ? '0.4s' : '0s',
+  animationFillMode: 'both'
+}}>
+  <div className="flex items-center bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 md:pt-2 2xl:pt-3 pb-2 md:pb-1.5 2xl:pb-2 px-6 md:pl-16 md:pr-8 2xl:px-20 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-16 md:space-x-max 2xl:space-x-20 drop-shadow backdrop-blur-sm">
+    {navSections.map((section, index) => (
+      <button
+        key={section}
+        onClick={() => handleSelect(section)}
+        className={`relative group flex items-center font-lt-soul transition-all duration-200 hover:text-[#FFD275] hover:scale-105 whitespace-nowrap ${
+          activeSection === section ? 'text-[#FFD275]' : 'text-[#EDE0D4]'
+        } ${
+          hasLoaded ? 'animate-fade-in-up' : 'opacity-0'
+        }`}
+        style={{
+          animationDelay: hasLoaded ? `${0.6 + index * 0.1}s` : '0s',
+          animationFillMode: 'both'
+        }}
+        aria-label={`Ir a sección ${section}`}
+        aria-current={activeSection === section ? 'page' : undefined}
+      >
+        {section}
+        <span
+          className={`absolute left-1/2 bottom-0.5 w-full h-0.5 transition-all duration-300 -translate-x-1/2 origin-center rounded-full ${
+            activeSection === section 
+              ? 'bg-[#FFD275] scale-x-100' 
+              : 'bg-[#FFD275] scale-x-0 group-hover:scale-x-75'
           }`}
-          style={{
-            animationDelay: hasLoaded ? '0.4s' : '0s',
-            animationFillMode: 'both'
-          }}>
-            <div className="flex bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 2xl:pt-3 pb-1.5 2xl:pb-2 px-20 2xl:px-24 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-24 2xl:space-x-20 drop-shadow backdrop-blur-sm">
-              {navSections.map((section, index) => (
-                <button
-                  key={section}
-                  onClick={() => handleSelect(section)}
-                  className={`relative group flex items-center font-lt-soul transition-all duration-200 hover:text-[#FFD275] hover:scale-105 ${
-                    activeSection === section ? 'text-[#FFD275]' : 'text-[#EDE0D4]'
-                  } ${
-                    hasLoaded ? 'animate-fade-in-up' : 'opacity-0'
-                  }`}
-                  style={{
-                    animationDelay: hasLoaded ? `${0.6 + index * 0.1}s` : '0s',
-                    animationFillMode: 'both'
-                  }}
-                  aria-label={`Ir a sección ${section}`}
-                  aria-current={activeSection === section ? 'page' : undefined}
-                >
-                  {section}
-                  <span
-                    className={`absolute left-1/2 bottom-0.5 w-full h-0.5 transition-all duration-300 -translate-x-1/2 origin-center rounded-full ${
-                      activeSection === section 
-                        ? 'bg-[#FFD275] scale-x-100' 
-                        : 'bg-[#EDE0D4] scale-x-0 group-hover:scale-x-75'
-                    }`}
-                  />
-                </button>
-              ))}
-              
-              <div className="w-px h-6 bg-[#EDE0D4]/30 self-center"></div>
-              
-              <LanguageSelector 
-                currentLanguage={currentLanguage} 
-                onLanguageChange={handleLanguageChange}
-                hasLoaded={hasLoaded}
-              />
-            </div>
-          </div>
+        />
+      </button>
+    ))}
+    
+    {/* Contenedor para la barra vertical y el selector de idioma */}
+    <div className="flex items-center">
+      <div className="w-px h-6 bg-[#EDE0D4]/30 mr-4 md:mr-6 2xl:mr-8"></div>
+      
+      <div className="relative -mt-0.5"> {/* Ajuste fino de posición vertical */}
+        <LanguageSelector 
+          currentLanguage={currentLanguage} 
+          onLanguageChange={handleLanguageChange}
+          hasLoaded={hasLoaded}
+        />
+      </div>
+    </div>
+  </div>
+</div>
 
           <div className="hidden md:flex items-center">
             <div className={`relative inline-block mx-12 transition-all duration-500 ${
@@ -326,10 +325,10 @@ const Navbar = React.memo(() => {
               <button
                 type="button"
                 onClick={handleButtonClick}
-                className="relative flex items-center justify-center space-x-2 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] md:text-sm 2xl:text-base text-white px-6 md:px-8 2xl:px-10 py-1 md:py-1.5 2xl:py-2 rounded-lg hover:from-[#C95440] hover:to-[#B8432A] drop-shadow-lg transition-all duration-200 transform hover:scale-105 active:translate-x-1 active:translate-y-1 active:scale-95 border-2 border-[#DB5A42] hover:border-[#C95440]"
+                className="relative flex items-center justify-center space-x-2 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] md:text-sm 2xl:text-base text-white px-6 md:px-5 2xl:px-10 py-1 md:py-1.5 2xl:py-2 rounded-lg hover:from-[#C95440] hover:to-[#B8432A] drop-shadow-lg transition-all duration-200 transform hover:scale-105 active:translate-x-1 active:translate-y-1 active:scale-95 border-2 border-[#DB5A42] hover:border-[#C95440]"
                 aria-label="Contactarme"
               >
-                <span>Let's Talk</span>
+                <span className="whitespace-nowrap">Let's Talk</span>
                 <svg className="h-5 w-auto transition-transform duration-200 group-hover:rotate-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M8 10.5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   <path d="M8 14H13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -339,7 +338,7 @@ const Navbar = React.memo(() => {
             </div>
           </div>
 
-          <div className={`md:hidden flex items-center space-x-3 ${
+          <div className={`md:hidden flex items-center space-x-6 ${
             hasLoaded ? 'animate-slide-in-right' : 'opacity-0'
           }`}
           style={{
@@ -367,20 +366,20 @@ const Navbar = React.memo(() => {
             </div>
 
             <button
-              className="z-50 relative focus:outline-none focus:ring-2 focus:ring-[#DB5A42] focus:ring-opacity-50 rounded p-1 mt-0.5 hover:scale-110 transition-transform duration-200"
+              className="z-50 relative rounded p-1 mt-1 hover:scale-110 transition-transform duration-200"
               onClick={toggleMenu}
               aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
               <div className="space-y-1">
-                <span className={`block w-8 h-1 bg-[#DB5A42] transition-all duration-300 ${
+                <span className={`block w-6 h-1 bg-[#DB5A42] transition-all duration-300 ${
                   isMenuOpen ? 'rotate-45 translate-y-2' : ''
                 }`}/>
-                <span className={`block w-8 h-1 bg-[#DB5A42] transition-all duration-300 ${
+                <span className={`block w-6 h-1 bg-[#DB5A42] transition-all duration-300 ${
                   isMenuOpen ? 'opacity-0' : ''
                 }`}/>
-                <span className={`block w-8 h-1 bg-[#DB5A42] transition-all duration-300 ${
+                <span className={`block w-6 h-1 bg-[#DB5A42] transition-all duration-300 ${
                   isMenuOpen ? '-rotate-45 -translate-y-2' : ''
                 }`}/>
               </div>
@@ -388,16 +387,21 @@ const Navbar = React.memo(() => {
           </div>
         </div>
 
+        {/* Mobile Menu - Fixed Section */}
         <div 
           id="mobile-menu"
-          className={`fixed inset-0 bg-gradient-to-br from-[rgba(156,102,68,0.95)] via-[rgba(94,59,28,0.9)] to-[rgba(43,26,15,0.85)] z-40 transition-all duration-500 backdrop-blur-md ${
-            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          className={`fixed inset-0 bg-gradient-to-br from-[rgba(156,102,68,0.95)] via-[rgba(94,59,28,0.9)] to-[rgba(43,26,15,0.85)] z-30 transition-all duration-500 ease-in-out backdrop-blur-md ${
+            isMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'
           }`}
+          style={{
+            top: '0rem',
+            height: 'calc(100vh - 4.5rem)'
+          }}
           role="dialog"
           aria-modal="true"
           aria-labelledby="mobile-menu-title"
         >
-          <div className={`flex flex-col items-center justify-center h-full space-y-12 text-4xl transition-all duration-700 ${
+          <div className={`flex flex-col items-center justify-center h-full space-y-12 text-4xl transition-all duration-700 -mt-6 ${
             isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             <h2 id="mobile-menu-title" className="sr-only">Menú de navegación</h2>
@@ -425,4 +429,4 @@ const Navbar = React.memo(() => {
 
 Navbar.displayName = 'Navbar';
 
-export default Navbar
+export default Navbar;
