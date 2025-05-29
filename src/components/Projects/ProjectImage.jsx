@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 
-function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIsLoading }) {
+function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIsLoading, direction }) {
   const [showInitialOverlay, setShowInitialOverlay] = useState(true);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -41,24 +41,27 @@ function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIs
   return (
     <div className="w-11/12 sm:10/12 md:w-2/3 relative mx-auto mt-7 md:-mt-2 md:order-2 md:mx-6 2xl:mx-5 mb-6">
       <div
-        className="overflow-hidden relative h-[27vh] sm:h-[90vh] md:h-[70vh] max-h-[36rem] rounded-md shadow-lg"
+        className="overflow-hidden relative h-[24.5vh] sm:h-[90vh] md:h-[70vh] max-h-[36rem] rounded-md shadow-lg"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeaveCombined}
         onMouseDown={() => setIsMouseDown(true)}
         onMouseUp={() => setIsMouseDown(false)}
+        onTouchStart={() => setIsMouseDown(true)}
+        onTouchEnd={() => setIsMouseDown(false)}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentProject.name}
+            custom={direction}
             className="absolute inset-0 bg-cover bg-top"
             style={{
               backgroundImage: `url(${currentProject?.image})`,
               backgroundSize: 'cover',
             }}
-            initial={isMobile ? { x: '100%' } : false}
-            animate={isMobile ? { x: 0 } : controls}
-            exit={isMobile ? { x: '0%' } : {}}
-            transition={isMobile ? { duration: 0.6, ease: 'easeOut' } : {}}
+            initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
             onLoad={() => setIsLoading(false)}
           >
             <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
@@ -92,7 +95,7 @@ function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIs
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
                   >
-                    Hover to Explore
+                    {isMobile ? 'Tap to Explore' : 'Hover to Explore'}
                   </motion.p>
 
                   <motion.div

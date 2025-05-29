@@ -21,6 +21,7 @@ function ProjectsSection() {
     const [isImageHovered, setIsImageHovered] = useState(false);
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [direction, setDirection] = useState(1);
     const projectRefs = useRef([]);
 
     const projects = [
@@ -34,6 +35,7 @@ function ProjectsSection() {
     ];
 
     const handleNextProject = () => {
+        setDirection(1);
         setCurrentProjectIndex((prevIndex) =>
             prevIndex === projects.length - 1 ? 0 : prevIndex + 1
         );
@@ -41,6 +43,7 @@ function ProjectsSection() {
     };
 
     const handlePreviousProject = () => {
+        setDirection(-1);
         setCurrentProjectIndex((prevIndex) =>
             prevIndex === 0 ? projects.length - 1 : prevIndex - 1
         );
@@ -58,6 +61,7 @@ function ProjectsSection() {
     }, []);
 
     const handleProjectClick = (index) => {
+        setDirection(index > currentProjectIndex ? 1 : -1);
         setSelectedProject(projects[index].name);
         setCurrentProjectIndex(index);
         setIsLoading(true);
@@ -135,6 +139,7 @@ function ProjectsSection() {
                         isImageHovered={isImageHovered}
                         setIsImageHovered={setIsImageHovered}
                         setIsLoading={setIsLoading}
+                        direction={direction}
                     />
 
                     {isMobile ? (
