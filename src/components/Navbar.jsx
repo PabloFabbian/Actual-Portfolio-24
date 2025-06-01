@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { motion } from 'framer-motion';
 import Logo from '../assets/Logo.webp';
 import GitHubPreview from '../assets/github-preview.png';
 import '../fonts.css';
@@ -127,7 +128,83 @@ const RotatingText = ({ hasLoaded }) => {
   );
 };
 
-
+const GitHubPreviewCard = ({ isVisible, onMouseEnter, onMouseLeave }) => {
+  return (
+    <motion.div 
+      className="absolute top-full left-12 mt-4 z-50 pointer-events-auto"
+      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0, 
+        y: isVisible ? 0 : -10,
+        scale: isVisible ? 1 : 0.95
+      }}
+      transition={{ 
+        duration: 0.2,
+        ease: "easeOut"
+      }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+    >
+      <div className="relative bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md rounded-lg shadow-2xl border border-[#7B4C33]/30 overflow-hidden w-80">
+        <div className="absolute -top-2 left-8 w-4 h-4 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 border-l border-t border-[#7B4C33]/30 transform rotate-45"></div>
+        
+        <div className="p-4">
+          <div className="flex items-center space-x-2 mb-3">
+            <svg className="w-5 h-5 text-[#EDE0D4]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span className="font-semibold text-[#EDE0D4]">GitHub Profile</span>
+          </div>
+          
+          <div className="relative mb-3 rounded border border-[#7B4C33]/20 overflow-hidden bg-[#EDE0D4]/10">
+            <img 
+              src={GitHubPreview} 
+              alt="GitHub Profile Preview" 
+              className="w-full h-40 object-cover object-top"
+              onError={() => {
+                console.warn('GitHub preview image not found');
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#7B4C33]/20 to-transparent"></div>
+          </div>
+          
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium text-[#FFD275] text-sm">@PabloFabbian</p>
+                <p className="text-xs text-[#EDE0D4]/80">Frontend Developer & UX/UI Designer</p>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-3 py-1.5 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] text-white text-xs rounded-full hover:from-[#C95440] hover:to-[#B8432A] transition-all duration-200 font-medium"
+                onClick={() => window.open('https://github.com/PabloFabbian', '_blank')}
+              >
+                Visit Profile
+              </motion.button>
+            </div>
+            
+            <div className="flex items-center space-x-4 pt-2 border-t border-[#7B4C33]/30">
+              <div className="flex items-center space-x-1 text-xs text-[#EDE0D4]/70">
+                <div className="w-2 h-2 bg-[#FFD275] rounded-full"></div>
+                <span>11 repos</span>
+              </div>
+              <div className="flex items-center space-x-1 text-xs text-[#EDE0D4]/70">
+                <div className="w-2 h-2 bg-[#DB5A42] rounded-full"></div>
+                <span>JavaScript</span>
+              </div>
+              <div className="flex items-center space-x-1 text-xs text-[#EDE0D4]/70">
+                <div className="w-2 h-2 bg-[#9C6644] rounded-full"></div>
+                <span>React</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const Navbar = React.memo(() => {
   const [showLogoAndButton, setShowLogoAndButton] = useState(true);
@@ -141,6 +218,7 @@ const Navbar = React.memo(() => {
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
   const ticking = useRef(false);
+  const hoverTimeoutRef = useRef(null);
 
   const sections = ['Home', 'About', 'Projects', 'Tech-Stack'];
   const navSections = ['Home', 'Projects', 'About', 'Tech-Stack'];
@@ -206,6 +284,30 @@ const Navbar = React.memo(() => {
       ticking.current = true;
     }
   }, [handleScrollLogic]);
+
+  const handleLogoMouseEnter = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setShowPreview(true);
+  }, []);
+
+  const handleLogoMouseLeave = useCallback(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setShowPreview(false);
+    }, 300);
+  }, []);
+
+  const handlePreviewMouseEnter = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setShowPreview(true);
+  }, []);
+
+  const handlePreviewMouseLeave = useCallback(() => {
+    setShowPreview(false);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', requestScrollUpdate, { passive: true });
@@ -278,7 +380,7 @@ const Navbar = React.memo(() => {
       <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all duration-1000 ${
         hasLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
-        <div className="container mx-auto px-6 py-3 flex items-center">
+        <div className="container mx-auto px-4 py-3 flex items-center">
           <div className="flex-shrink-0 w-[280px] 2xl:w-[320px] relative">
             <a 
               href="https://github.com/PabloFabbian" 
@@ -294,8 +396,8 @@ const Navbar = React.memo(() => {
                 animationDelay: hasLoaded ? '0.2s' : '0s',
                 animationFillMode: 'both'
               }}
-              onMouseEnter={() => setShowPreview(true)}
-              onMouseLeave={() => setShowPreview(false)}
+              onMouseEnter={handleLogoMouseEnter}
+              onMouseLeave={handleLogoMouseLeave}
             >
               <img 
                 src={Logo} 
@@ -306,36 +408,11 @@ const Navbar = React.memo(() => {
               <RotatingText hasLoaded={hasLoaded} />
             </a>
 
-            {showPreview && (
-              <div className="absolute top-full left-12 mt-4 z-50 opacity-0 animate-fade-in pointer-events-none">
-                <div className="relative bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden w-80">
-                  <div className="absolute -top-2 left-8 w-4 h-4 bg-white border-l border-t border-gray-200 transform rotate-45"></div>
-                  
-                  <div className="p-4">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                      </svg>
-                      <span className="font-semibold text-gray-900">GitHub Profile</span>
-                    </div>
-                    
-                    <img 
-                      src={GitHubPreview} 
-                      alt="GitHub Profile Preview" 
-                      className="w-full h-40 object-cover object-top rounded border"
-                      onError={() => {
-                        console.warn('GitHub preview image not found');
-                      }}
-                    />
-                    
-                    <div className="mt-3 text-sm text-gray-600">
-                      <p className="font-medium">@PabloFabbian</p>
-                      <p className="text-xs">Frontend Developer & UX/UI Designer</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+            <GitHubPreviewCard 
+              isVisible={showPreview}
+              onMouseEnter={handlePreviewMouseEnter}
+              onMouseLeave={handlePreviewMouseLeave}
+            />
           </div>
 
           <div className={`hidden md:flex flex-1 justify-center ${
@@ -404,7 +481,7 @@ const Navbar = React.memo(() => {
               <button
                 type="button"
                 onClick={handleButtonClick}
-                className="relative flex items-center justify-center space-x-2 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] md:text-sm 2xl:text-base text-white px-6 md:px-5 2xl:px-10 py-1 md:py-1.5 2xl:py-2 rounded-lg hover:from-[#C95440] hover:to-[#B8432A] drop-shadow-lg transition-all duration-200 transform hover:scale-105 active:translate-x-1 active:translate-y-1 active:scale-95 border-2 border-[#DB5A42] hover:border-[#C95440]"
+                className="relative flex items-center justify-center space-x-2 bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] md:text-sm 2xl:text-base text-white px-6 md:px-6 2xl:px-10 py-1 md:py-1.5 2xl:py-2 rounded-lg hover:from-[#C95440] hover:to-[#B8432A] drop-shadow-lg transition-all duration-200 transform hover:scale-105 active:translate-x-1 active:translate-y-1 active:scale-95 border-2 border-[#DB5A42] hover:border-[#C95440]"
                 aria-label="Contactarme"
               >
                 <span className="whitespace-nowrap">Let's Talk</span>
