@@ -146,8 +146,7 @@ const GitHubPreviewCard = ({ isVisible, onMouseEnter, onMouseLeave }) => {
       onMouseLeave={onMouseLeave}
       style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
     >
-      <div className="relative bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md rounded-lg shadow-2xl border border-[#7B4C33]/30 overflow-hidden w-80">
-        <div className="absolute -top-2 left-8 w-4 h-4 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 border-l border-t border-[#7B4C33]/30 transform rotate-45"></div>
+      <div className="relative bg-gradient-to-br from-[#7B4C33]/75 to-[#7B4C35]/50 backdrop-blur-md rounded-lg shadow-2xl border border-[#7B4C33]/30 overflow-hidden w-80">
         
         <div className="p-4">
           <div className="flex items-center space-x-2 mb-3">

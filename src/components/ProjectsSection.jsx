@@ -109,8 +109,8 @@ function ProjectsSection() {
             <ProjectHeader isMobile={isMobile} chevronSVG={ChevronSVG} />
 
             <section className="bg-gradient-to-r from-[#7C4A3A] to-[#5A3A2C] md:pb-6 md:pt-12 2xl:py-12 relative">
-                <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-8 md:scale-90 2xl:scale-100">
-                    <div className="relative flex flex-col items-center -mt-0 md:-mt-10 2xl:-mt-36">
+                <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-16 md:scale-90 2xl:scale-100">
+                    <div className="relative flex flex-col items-center -mt-0 md:-mt-[9.5rem] 2xl:-mt-24">
                       <div
                         className="animate-bounce cursor-pointer"
                         onClick={() => {
@@ -127,7 +127,7 @@ function ProjectsSection() {
                           aria-hidden="true"
                         />
                       </div>
-                      <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-medium text-center text-[#FFD275] md:mt-0 2xl:-mt-5">
+                      <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-medium text-center text-[#FFD275] mt-0 md:mt-10 2xl:mt-10">
                           Projects
                       </h2>
                     </div>
