@@ -22,7 +22,7 @@ function ProjectItem({
         >
             <motion.h3
                 className={`text-4xl md:text-5xl 2xl:text-6xl font-lt-soul transition-colors duration-300 ${
-                    isHovered ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.7)]'
+                    isSelected || isHovered ? 'text-[#FFD275]' : 'text-[rgba(230,189,106,0.7)]'
                 }`}
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}

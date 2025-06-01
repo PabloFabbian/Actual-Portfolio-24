@@ -49,7 +49,7 @@ function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIs
         onTouchStart={() => setIsMouseDown(true)}
         onTouchEnd={() => setIsMouseDown(false)}
       >
-        <AnimatePresence mode="wait" custom={direction}>
+        <AnimatePresence custom={direction}>
           <motion.div
             key={currentProject.name}
             custom={direction}
@@ -58,12 +58,29 @@ function ProjectImage({ currentProject, isImageHovered, setIsImageHovered, setIs
               backgroundImage: `url(${currentProject?.image})`,
               backgroundSize: 'cover',
             }}
-            initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            initial={{ scale: 0.8, opacity: 0, zIndex: 1 }}
+            animate={{ 
+              scale: 1,
+              opacity: 1,
+              zIndex: 2
+            }}
+            exit={{ 
+              scale: 0.9,
+              opacity: 0,
+              zIndex: 1
+            }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
             onLoad={() => setIsLoading(false)}
           >
+            <motion.div 
+              className="absolute inset-0 bg-cover bg-top"
+              style={{
+                backgroundImage: `url(${currentProject?.image})`,
+                backgroundSize: 'cover',
+              }}
+              animate={controls}
+            />
+            
             <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
 
             {showInitialOverlay && (
