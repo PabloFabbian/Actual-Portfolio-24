@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Logo from '../assets/Logo.webp';
+import GitHubPreview from '../assets/github-preview.png';
 import '../fonts.css';
 
 const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
@@ -82,6 +83,52 @@ const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
   );
 };
 
+const RotatingText = ({ hasLoaded }) => {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  const texts = [
+    { line1: "Pablo", line2: "E. Fabbian" },
+    { line1: "Frontend", line2: "Developer" },
+    { line1: "UX/UI", line2: "Designer" },
+    { line1: "Project", line2: "Manager" }
+  ];
+
+  useEffect(() => {
+    if (!hasLoaded) return;
+
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      
+      setTimeout(() => {
+        setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setIsAnimating(false);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [hasLoaded, texts.length]);
+
+  const currentText = texts[currentTextIndex];
+
+  return (
+    <div className="relative overflow-hidden w-[140px] 2xl:w-[168px]">
+      <div className={`transition-all duration-300 transform ${
+        isAnimating ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'
+      }`}>
+        <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl -mb-2 whitespace-nowrap">
+          {currentText.line1}
+        </span>
+        <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl whitespace-nowrap">
+          {currentText.line2}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+
+
 const Navbar = React.memo(() => {
   const [showLogoAndButton, setShowLogoAndButton] = useState(true);
   const [activeSection, setActiveSection] = useState('Home');
@@ -89,6 +136,7 @@ const Navbar = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('es');
+  const [showPreview, setShowPreview] = useState(false);
   
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
@@ -230,85 +278,116 @@ const Navbar = React.memo(() => {
       <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all duration-1000 ${
         hasLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
-        <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-          <a 
-            href="https://github.com/PabloFabbian" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="Github Profile"
-            className={`flex items-center mx-0 md:mx-12 hover:scale-105 transition-all duration-500 ${
-              showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
-            } ${
-              hasLoaded ? 'animate-slide-in-left' : ''
-            }`}
-            style={{
-              animationDelay: hasLoaded ? '0.2s' : '0s',
-              animationFillMode: 'both'
-            }}
-          >
-            <img 
-              src={Logo} 
-              alt="PF Portfolio Logo" 
-              className="mr-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg" 
-              loading="eager"
-            />
-            <div className="">
-              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl -mb-2 drop-shadow-lg whitespace-nowrap">Pablo</span>
-              <span className="text-gradient-PF block font-black text-2xl 2xl:text-3xl drop-shadow-lg whitespace-nowrap">E. Fabbian</span>
-            </div>
-          </a>
+        <div className="container mx-auto px-6 py-3 flex items-center">
+          <div className="flex-shrink-0 w-[280px] 2xl:w-[320px] relative">
+            <a 
+              href="https://github.com/PabloFabbian" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Ver perfil de GitHub"
+              className={`flex items-center mx-0 md:mx-12 hover:scale-105 transition-all duration-500 ${
+                showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
+              } ${
+                hasLoaded ? 'animate-slide-in-left' : ''
+              }`}
+              style={{
+                animationDelay: hasLoaded ? '0.2s' : '0s',
+                animationFillMode: 'both'
+              }}
+              onMouseEnter={() => setShowPreview(true)}
+              onMouseLeave={() => setShowPreview(false)}
+            >
+              <img 
+                src={Logo} 
+                alt="PF Portfolio Logo" 
+                className="mr-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg" 
+                loading="eager"
+              />
+              <RotatingText hasLoaded={hasLoaded} />
+            </a>
 
-<div className={`hidden md:flex flex-grow justify-center ${
-  hasLoaded ? 'animate-slide-in-down' : 'opacity-0'
-}`}
-style={{
-  animationDelay: hasLoaded ? '0.4s' : '0s',
-  animationFillMode: 'both'
-}}>
-  <div className="flex items-center bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 md:pt-2 2xl:pt-3 pb-2 md:pb-1.5 2xl:pb-2 px-6 md:pl-16 md:pr-8 2xl:px-20 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-16 md:space-x-max 2xl:space-x-20 drop-shadow backdrop-blur-sm">
-    {navSections.map((section, index) => (
-      <button
-        key={section}
-        onClick={() => handleSelect(section)}
-        className={`relative group flex items-center font-lt-soul transition-all duration-200 hover:text-[#FFD275] hover:scale-105 whitespace-nowrap ${
-          activeSection === section ? 'text-[#FFD275]' : 'text-[#EDE0D4]'
-        } ${
-          hasLoaded ? 'animate-fade-in-up' : 'opacity-0'
-        }`}
-        style={{
-          animationDelay: hasLoaded ? `${0.6 + index * 0.1}s` : '0s',
-          animationFillMode: 'both'
-        }}
-        aria-label={`Ir a sección ${section}`}
-        aria-current={activeSection === section ? 'page' : undefined}
-      >
-        {section}
-        <span
-          className={`absolute left-1/2 bottom-0.5 w-full h-0.5 transition-all duration-300 -translate-x-1/2 origin-center rounded-full ${
-            activeSection === section 
-              ? 'bg-[#FFD275] scale-x-100' 
-              : 'bg-[#FFD275] scale-x-0 group-hover:scale-x-75'
+            {showPreview && (
+              <div className="absolute top-full left-12 mt-4 z-50 opacity-0 animate-fade-in pointer-events-none">
+                <div className="relative bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden w-80">
+                  <div className="absolute -top-2 left-8 w-4 h-4 bg-white border-l border-t border-gray-200 transform rotate-45"></div>
+                  
+                  <div className="p-4">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                      <span className="font-semibold text-gray-900">GitHub Profile</span>
+                    </div>
+                    
+                    <img 
+                      src={GitHubPreview} 
+                      alt="GitHub Profile Preview" 
+                      className="w-full h-40 object-cover object-top rounded border"
+                      onError={() => {
+                        console.warn('GitHub preview image not found');
+                      }}
+                    />
+                    
+                    <div className="mt-3 text-sm text-gray-600">
+                      <p className="font-medium">@PabloFabbian</p>
+                      <p className="text-xs">Frontend Developer & UX/UI Designer</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className={`hidden md:flex flex-1 justify-center ${
+            hasLoaded ? 'animate-slide-in-down' : 'opacity-0'
           }`}
-        />
-      </button>
-    ))}
-    
-    {/* Contenedor para la barra vertical y el selector de idioma */}
-    <div className="flex items-center">
-      <div className="w-px h-6 bg-[#EDE0D4]/30 mr-4 md:mr-6 2xl:mr-8"></div>
-      
-      <div className="relative -mt-0.5"> {/* Ajuste fino de posición vertical */}
-        <LanguageSelector 
-          currentLanguage={currentLanguage} 
-          onLanguageChange={handleLanguageChange}
-          hasLoaded={hasLoaded}
-        />
-      </div>
-    </div>
-  </div>
-</div>
+          style={{
+            animationDelay: hasLoaded ? '0.4s' : '0s',
+            animationFillMode: 'both'
+          }}>
+            <div className="flex items-center bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 md:pt-2 2xl:pt-3 pb-2 md:pb-1.5 2xl:pb-2 px-6 md:pl-16 md:pr-8 2xl:px-20 rounded-full text-base 2xl:text-lg text-[#EDE0D4] space-x-16 md:space-x-max 2xl:space-x-20 drop-shadow backdrop-blur-sm">
+              {navSections.map((section, index) => (
+                <button
+                  key={section}
+                  onClick={() => handleSelect(section)}
+                  className={`relative group flex items-center font-lt-soul transition-all duration-200 hover:text-[#FFD275] hover:scale-105 whitespace-nowrap ${
+                    activeSection === section ? 'text-[#FFD275]' : 'text-[#EDE0D4]'
+                  } ${
+                    hasLoaded ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
+                  style={{
+                    animationDelay: hasLoaded ? `${0.6 + index * 0.1}s` : '0s',
+                    animationFillMode: 'both'
+                  }}
+                  aria-label={`Ir a sección ${section}`}
+                  aria-current={activeSection === section ? 'page' : undefined}
+                >
+                  {section}
+                  <span
+                    className={`absolute left-1/2 bottom-0.5 w-full h-0.5 transition-all duration-300 -translate-x-1/2 origin-center rounded-full ${
+                      activeSection === section 
+                        ? 'bg-[#FFD275] scale-x-100' 
+                        : 'bg-[#FFD275] scale-x-0 group-hover:scale-x-75'
+                    }`}
+                  />
+                </button>
+              ))}
+              
+              <div className="flex items-center">
+                <div className="w-px h-6 bg-[#EDE0D4]/30 mr-4 md:mr-6 2xl:mr-8"></div>
+                
+                <div className="relative -mt-0.5">
+                  <LanguageSelector 
+                    currentLanguage={currentLanguage} 
+                    onLanguageChange={handleLanguageChange}
+                    hasLoaded={hasLoaded}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex flex-shrink-0 w-[280px] 2xl:w-[320px] justify-end">
             <div className={`relative inline-block mx-12 transition-all duration-500 ${
               showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
             } ${
@@ -387,7 +466,6 @@ style={{
           </div>
         </div>
 
-        {/* Mobile Menu - Fixed Section */}
         <div 
           id="mobile-menu"
           className={`fixed inset-0 bg-gradient-to-br from-[rgba(156,102,68,0.95)] via-[rgba(94,59,28,0.9)] to-[rgba(43,26,15,0.85)] z-30 transition-all duration-500 ease-in-out backdrop-blur-md ${
@@ -423,6 +501,23 @@ style={{
           </div>
         </div>
       </nav>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out forwards;
+        }
+      `}</style>
     </>
   );
 });

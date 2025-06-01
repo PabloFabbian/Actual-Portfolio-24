@@ -5,6 +5,7 @@
     import reactImg from '../assets/Certificates/React.webp';
     import frontendImg from '../assets/Certificates/Frontend.webp';
     import campImg from '../assets/Certificates/Camp.webp';
+    import designImg from '../assets/Certificates/Design.webp';
 
     const images = [
         desarrolloImg,
@@ -12,6 +13,7 @@
         reactImg,
         frontendImg,
         campImg,
+        designImg
     ];
 
     function SelfSummary() {
