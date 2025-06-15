@@ -13,8 +13,8 @@ export default function CustomCursor() {
     
     const radius = 40;
     const smallCursorSize = 16;
-    const smoothingFactor = 0.15;
-    const throttleTime = 16;
+    const smoothingFactor = 0.2;
+    const throttleTime = 5;
 
     const detectHoverElement = useCallback((element) => {
         if (!element) return { isHovering: false, type: 'default' };
