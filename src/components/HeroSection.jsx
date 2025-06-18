@@ -30,7 +30,7 @@ function HeroSection() {
         animate="visible"
         variants={container}
       >
-        <div className="flex-1 text-center md:text-left">
+        <div className="flex-1 text-center md:text-left relative z-10">
           <motion.div className="-mt-20 md:mt-0 mb-6 drop-shadow-sm md:drop-shadow-none" variants={fadeInUp}>
             <motion.h1 className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
               Hi there, my name is&nbsp;
@@ -73,7 +73,7 @@ function HeroSection() {
             className="font-lt-soul font-semibold text-xl md:text-2xl 2xl:text-4xl text-[#9C6644] md:ml-1 mt-4 md:pr-40 pb-0 md:pb-0 2xl:pb-2 mx-1 text-pretty"
             variants={fadeInUp}
           >
-            I'm a frontend developer who’s passionate about UX/UI and creating beautiful and functional digital experiences.
+            I'm a frontend developer who's passionate about UX/UI and creating beautiful and functional digital experiences.
           </motion.p>
           <motion.div
             className="flex flex-col md:flex-row items-center mt-4 md:text-md 2xl:text-lg text-gray-600"
@@ -87,10 +87,10 @@ function HeroSection() {
               className="social-pills flex justify-center md:justify-left ml-0 md:ml-6 space-x-2 md:space-x-4 scale-90 order-first md:order-last"
               variants={container}
             >
-              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-[#5A3A2C] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-md 2xl:text-base group hover:cursor-none bg-blue-500/10 md:bg-gray-500/5 md:hover:bg-blue-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
+              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-md 2xl:text-base group hover:cursor-none bg-blue-500/10 md:bg-gray-500/5 md:hover:bg-blue-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
                 <img src={LinkedinSVG} alt="Linkedin" className="w-5 md:w-5 2xl:w-7 h-5 md:h-5 2xl:h-7 mr-2" /> Linkedin
               </motion.a>
-              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-[#5A3A2C] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-md 2xl:text-base group hover:cursor-none bg-violet-500/10 md:bg-gray-500/5 md:hover:bg-violet-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
+              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-md 2xl:text-base group hover:cursor-none bg-violet-500/10 md:bg-gray-500/5 md:hover:bg-violet-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
                 <img src={GithubSVG} alt="Github" className="w-5 md:w-5 2xl:h-7 w-4 md:h-5 2xl:w-7 mr-2" /> Github
               </motion.a>
               <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.9px] border border-[#5A3A2C] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-md 2xl:text-base group hover:cursor-none bg-black/5 md:bg-gray-500/5 md:hover:bg-black/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#000", color: "#000" }} >
@@ -100,7 +100,7 @@ function HeroSection() {
           </motion.div>
         </div>
         <motion.div
-          className="flex justify-center order-first md:order-last relative group"
+          className="flex justify-center order-first md:order-last relative group z-0"
           variants={fadeInUp}
         >
           <video
