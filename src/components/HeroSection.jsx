@@ -23,7 +23,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="bg-[#F3D5B5] pt-12 md:pt-24 pb-12 md:pb-36 md:w-[90%] mx-auto" id="Home">
+    <section className="bg-[#F3D5B5] pt-20 md:pt-24 pb-12 md:pb-36 md:w-[90%] mx-auto" id="Home">
       <motion.div
         className="container mx-auto flex flex-col md:flex-row items-center justify-center h-auto md:h-[65vh] pt-8 md:pt-16 pb-8 md:pb-16 -mb-16 md:-mb-32"
         initial="hidden"
@@ -76,10 +76,10 @@ function HeroSection() {
             I'm a frontend developer who's passionate about UX/UI and creating beautiful and functional digital experiences.
           </motion.p>
           <motion.div
-            className="flex flex-col md:flex-row items-center mt-4 md:text-md 2xl:text-lg text-gray-600"
+            className="flex flex-col md:flex-row items-center mb-7 mt-6 md:text-md 2xl:text-lg text-gray-600"
             variants={container}
           >
-            <motion.div className="social-pills flex items-center mb-4 md:mb-0 mt-4 md:mt-0" variants={item}>
+            <motion.div className="social-pills flex items-center mb-4 md:mb-0 mt-6 md:mt-0" variants={item}>
               <img src={BuenosAiresSVG} alt="Buenos Aires, Argentina" className="w-5 md:w-5 2xl:w-6 w-5 md:h-5 2xl:h-6 md:ml-2 mr-2 md:mr-4" />
               Buenos Aires, Argentina
             </motion.div>
@@ -105,7 +105,7 @@ function HeroSection() {
         >
           <video
             src={AvatarAI}
-            className="w-60 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8 cursor-pointer"
+            className="w-64 md:w-72 2xl:w-96 h-auto rounded-full md:drop-shadow-xl mt-2 mb-4 md:mt-4 2xl:mt-8 cursor-pointer"
             autoPlay
             loop
             muted
