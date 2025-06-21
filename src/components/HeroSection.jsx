@@ -32,11 +32,11 @@ function HeroSection() {
       >
         <div className="flex-1 text-center md:text-left relative z-10">
           <motion.div className="-mt-20 md:mt-0 mb-6 drop-shadow-sm md:drop-shadow-none" variants={fadeInUp}>
-            <motion.h1 className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
+            <motion.h1 className="text-[2.15rem] md:text-[3.6rem] 2xl:text-[5rem] font-extrabold inline-flex items-center text-[#FF6B4D]">
               Hi there, my name is&nbsp;
             </motion.h1>
             <motion.h2
-              className="text-[2.12rem] md:text-[3.6rem] 2xl:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-3 md:-mt-5 2xl:-mt-8"
+              className="text-[2.4rem] md:text-[3.6rem] 2xl:text-[5rem] font-black md:font-extrabold inline-flex items-center text-gradient -mb-3 -mt-3.5 md:-mt-5 2xl:-mt-8"
               variants={fadeInUp}
             >
               Pablo Fabbian
@@ -70,7 +70,7 @@ function HeroSection() {
             </motion.h2>
           </motion.div>
           <motion.p
-            className="font-lt-soul font-semibold text-xl md:text-2xl 2xl:text-4xl text-[#9C6644] md:ml-1 mt-4 md:pr-40 pb-0 md:pb-0 2xl:pb-2 mx-1 text-pretty"
+            className="font-lt-soul font-semibold text-xl md:text-2xl 2xl:text-4xl text-[#6d4235]/80 md:ml-1 mt-4 md:pr-40 pb-0 md:pb-0 2xl:pb-2 mx-1 text-pretty"
             variants={fadeInUp}
           >
             I'm a frontend developer who's passionate about UX/UI and creating beautiful and functional digital experiences.
@@ -87,14 +87,14 @@ function HeroSection() {
               className="social-pills flex justify-center md:justify-left ml-0 md:ml-6 space-x-2.5 md:space-x-3 2xl:space-x-4 scale-90 order-first md:order-last"
               variants={container}
             >
-              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-sm md:text-sm 2xl:text-lg group hover:cursor-none bg-blue-500/10 md:bg-gray-500/5 md:hover:bg-blue-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
-                <img src={LinkedinSVG} alt="Linkedin" className="w-5 md:w-5 2xl:w-7 h-5 md:h-6 2xl:h-7 mr-2" /> Linkedin
+              <motion.a href="https://www.linkedin.com/in/pablofabbian/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Profile" className="linkedin-icon inline-flex items-center rounded-full border-[0.9px] border border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-[#9C6644] text-sm md:text-sm 2xl:text-lg group hover:cursor-none bg-[#9C6644]/15 md:bg-gray-500/5 md:hover:bg-blue-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#3b82f6", color: "#1d4ed8" }} >
+                <img src={LinkedinSVG} alt="Linkedin" className="w-5 md:w-5 2xl:w-7 h-5 md:h-6 2xl:h-7 mr-2" style={{ filter: 'invert(30%) sepia(61%) saturate(349%) hue-rotate(357deg) brightness(91%) contrast(88%)' }} /> Linkedin
               </motion.a>
-              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-sm md:text-sm 2xl:text-lg group hover:cursor-none bg-violet-500/10 md:bg-gray-500/5 md:hover:bg-violet-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
-                <img src={GithubSVG} alt="Github" className="w-5 md:w-5 2xl:h-7 h-5 md:h-6 2xl:w-7 mr-2" /> Github
+              <motion.a href="https://github.com/PabloFabbian" target="_blank" rel="noopener noreferrer" aria-label="Github Profile" className="github-icon inline-flex items-center rounded-full border-[0.9px] border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-[#9C6644] text-sm md:text-sm 2xl:text-lg group hover:cursor-none bg-[#9C6644]/15 md:bg-gray-500/5 md:hover:bg-violet-500/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#8b5cf6", color: "#6d28d9" }} >
+                <img src={GithubSVG} alt="Github" className="w-5 md:w-5 2xl:h-7 h-5 md:h-6 2xl:w-7 mr-2" style={{ filter: 'invert(30%) sepia(61%) saturate(349%) hue-rotate(357deg) brightness(91%) contrast(88%)' }} /> Github
               </motion.a>
-              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.9px] border border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-sm md:text-sm 2xl:text-lg group hover:cursor-none bg-gray-500/10 md:bg-gray-500/5 md:hover:bg-gray/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#343a40", color: "#343a40" }} >
-                <img src={ThreadsSVG} alt="Threads" className="w-5 md:w-5 2xl:h-7 h-5 md:h-6 2xl:w-7 mr-2" /> Threads
+              <motion.a href="https://www.threads.net/@pablo.fabbian" target="_blank" rel="noopener noreferrer" aria-label="Threads Profile" className="threads-icon inline-flex items-center rounded-full border-[0.9px] border border-[#9C6644] py-1.5 px-3.5 2xl:px-4 md:h-8 2xl:h-12 w-auto text-[#9C6644] text-sm md:text-sm 2xl:text-lg group hover:cursor-none bg-[#9C6644]/15 md:bg-gray-500/5 md:hover:bg-gray/10" variants={item} whileHover={{ scale: 1.1, borderColor: "#343a40", color: "#343a40" }} >
+                <img src={ThreadsSVG} alt="Threads" className="w-5 md:w-5 2xl:h-7 h-5 md:h-6 2xl:w-7 mr-2" style={{ filter: 'invert(30%) sepia(61%) saturate(349%) hue-rotate(357deg) brightness(91%) contrast(88%)' }} /> Threads
               </motion.a>
             </motion.div>
           </motion.div>

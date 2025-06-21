@@ -5,7 +5,7 @@ export const LANGUAGES = [
 ];
 
 export const ROTATING_TEXTS = [
-  { line1: "Pablo", line2: "E. Fabbian" },
+  { line1: "Pablo E.", line2: "Fabbian" },
   { line1: "Frontend", line2: "Developer" },
   { line1: "UX/UI", line2: "Designer" },
   { line1: "Project", line2: "Manager" }

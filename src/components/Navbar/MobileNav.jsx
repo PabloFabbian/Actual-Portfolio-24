@@ -2,22 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ContactButton from './ContactButton';
 
-const MobileNav = ({ hasLoaded, handleContactClick, setIsMenuOpen, isMenuOpen }) => {
+const MobileNav = ({ hasLoaded, handleContactClick, setIsMenuOpen, isMenuOpen, isScrollingDown }) => {
+  // Determinar si el MobileNav debe estar visible (misma lógica que navbar)
+  const isMobileNavVisible = hasLoaded && !isScrollingDown;
+
   return (
-    <motion.div 
-      className={`md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 ${
-        hasLoaded ? 'animate-slide-in-up' : 'opacity-0'
+    <div 
+      className={`md:hidden fixed bottom-4.5 right-4 z-50 transition-all delay-300 duration-300 ${
+        isMobileNavVisible ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
       }`}
-      style={{ animationDelay: hasLoaded ? '0.5s' : '0s', animationFillMode: 'both' }}
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
     >
-      <div className="relative group">
-        {/* Barra flotante principal */}
-        <div className="flex items-center justify-center bg-gradient-to-br from-[#7B4C33]/80 to-[#7B4C35]/80 backdrop-blur-lg rounded-full shadow-2xl border border-[#7B4C33]/40 p-2 px-4">
+      <div className="relative group scale-90">
+        <div className="flex items-center justify-center bg-gradient-to-br from-[#7B4C33]/90 to-[#7B4C35]/50 backdrop-blur-sm rounded-full shadow-2xl border border-[#7B4C33]/40 p-2 px-4">
           
-          {/* Botón de menú (hamburguesa) */}
           <motion.button
             onClick={() => setIsMenuOpen(prev => !prev)}
             className="relative z-10 h-10 w-10 flex items-center justify-center rounded-full mr-2"
@@ -42,26 +39,98 @@ const MobileNav = ({ hasLoaded, handleContactClick, setIsMenuOpen, isMenuOpen })
             </div>
           </motion.button>
           
-          {/* Separador */}
           <div className="w-px h-6 bg-white/30 mx-2" />
           
-          {/* Botón de contacto */}
+          {/* Botón mejorado con física de hundimiento precisa */}
           <motion.button
             onClick={handleContactClick}
-            className="relative h-10 px-4 flex items-center justify-center rounded-full bg-gradient-to-r from-[#DB5A42] to-[#C94A3B] text-white transition-all duration-200 hover:from-[#C95440] hover:to-[#B8432A]"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="
+              relative overflow-hidden
+              h-10 px-4 ml-1 
+              flex items-center justify-center 
+              rounded-full text-white text-sm font-medium
+              transition-all duration-75 ease-out
+            "
+            style={{
+              background: 'linear-gradient(145deg, #E86B52, #DB5A42)',
+              boxShadow: `
+                0 4px 8px rgba(219, 90, 66, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.2),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.1)
+              `,
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            }}
+            initial={{ 
+              y: 0,
+              boxShadow: `
+                0 4px 8px rgba(219, 90, 66, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.2),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.1)
+              `,
+              background: 'linear-gradient(145deg, #E86B52, #DB5A42)'
+            }}
+            whileHover={{ 
+              y: -1,
+              scale: 1.02,
+              boxShadow: `
+                0 6px 12px rgba(219, 90, 66, 0.5),
+                0 3px 6px rgba(0, 0, 0, 0.25),
+                inset 0 1px 3px rgba(255, 255, 255, 0.25),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.05)
+              `,
+              background: 'linear-gradient(145deg, #F07A61, #E86B52)',
+              transition: { duration: 0.15, ease: "easeOut" }
+            }}
+            whileTap={{ 
+              y: 2,
+              scale: 0.98,
+              boxShadow: `
+                0 1px 3px rgba(219, 90, 66, 0.3),
+                0 1px 2px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(0, 0, 0, 0.2),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.1)
+              `,
+              background: 'linear-gradient(145deg, #C95440, #B8432A)',
+              transition: { duration: 0.05, ease: "easeInOut" }
+            }}
           >
-            <span className="text-sm font-medium">Let's Talk</span>
-            <svg className="h-4 w-4 ml-1" viewBox="0 0 24 24" fill="none">
-              <path d="M8 10.5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M8 14H13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
+            {/* Contenido del botón con movimiento sutil */}
+            <motion.div 
+              className="flex items-center relative z-10"
+              whileTap={{ y: 0.5 }}
+              transition={{ duration: 0.05 }}
+            >
+              <span className="font-medium">Let's Talk</span>
+              <motion.svg 
+                className="h-4 w-4 ml-1" 
+                viewBox="0 0 24 24" 
+                fill="none"
+                whileHover={{ x: 1 }}
+                whileTap={{ x: 0 }}
+              >
+                <path d="M8 10.5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M8 14H13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </motion.svg>
+            </motion.div>
+
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-t from-black/10 to-transparent opacity-0"
+              whileTap={{ opacity: 1 }}
+              transition={{ duration: 0.05 }}
+            />
+            
+            <motion.div
+              className="absolute top-0 left-1/4 right-1/4 h-px bg-white/30 rounded-full"
+              whileTap={{ opacity: 0.1 }}
+              transition={{ duration: 0.05 }}
+            />
           </motion.button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

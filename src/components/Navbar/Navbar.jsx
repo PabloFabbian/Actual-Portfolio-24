@@ -44,7 +44,7 @@ const Navbar = React.memo(() => {
     setActiveSection(closestSection);
   }, []);
 
-  const { showLogoAndButton } = useScrollHandler(updateActiveSection);
+  const { showLogoAndButton, isScrollingDown } = useScrollHandler(updateActiveSection);
 
   const handleSelect = useCallback((section) => {
     document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -94,26 +94,29 @@ const Navbar = React.memo(() => {
     };
   }, [isMenuOpen]);
 
+  // Determinar si el navbar debe estar visible
+  const isNavbarVisible = hasLoaded && !isScrollingDown;
+
   return (
     <>
-      <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all duration-1000 ${
-        hasLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isNavbarVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
         <div className="container mx-auto px-4 py-3 flex items-center">
-          <div className="flex-shrink-0 w-[280px] 2xl:w-[320px] relative">
+          <div className="flex-shrink-0 w-full md:w-[280px] 2xl:w-[320px] relative">
             <a 
               href="https://github.com/PabloFabbian" 
               target="_blank" 
               rel="noopener noreferrer"
               className={`flex items-center mx-0 md:mx-12 hover:scale-105 transition-all duration-500 ${
                 showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
-              } ${hasLoaded ? 'animate-slide-in-left' : ''}`}
+              } ${hasLoaded ? 'animate-slide-in-left' : ''} md:bg-transparent md:backdrop-blur-none backdrop-blur-sm bg-gradient-to-r md:bg-none from-white/20 to-[#7B4C33]/15 border border-white/15 rounded-xl md:rounded-none pl-3 py-1 md:pl-0 md:py-0`}
               style={{ animationDelay: hasLoaded ? '0.2s' : '0s', animationFillMode: 'both' }}
               onMouseEnter={() => handlePreviewHover(true)}
               onMouseLeave={() => handlePreviewHover(false)}
             >
-              <img src={Logo} alt="PF Portfolio Logo" className="mr-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg" />
-              <RotatingText hasLoaded={hasLoaded} />
+              <img src={Logo} alt="PF Portfolio Logo" className="mr-1 -ml-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg" />
+              <RotatingText hasLoaded={hasLoaded} isInsideSharedContainer={true} />
             </a>
 
             <GitHubPreviewCard 
@@ -143,6 +146,7 @@ const Navbar = React.memo(() => {
             handleContactClick={handleContactClick}
             setIsMenuOpen={setIsMenuOpen}
             isMenuOpen={isMenuOpen}
+            isScrollingDown={isScrollingDown}
           />
         </div>
 
