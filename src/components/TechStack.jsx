@@ -25,7 +25,7 @@ function TechStack() {
             <h2 className="font-lt-soul text-5xl md:text-6xl 2xl:text-7xl font-bold text-center text-[#7C4A3A] mb-2 md:mb-6 2xl:mb-9" id="Tech-Stack">
                 Tech Stack
             </h2>
-            <div className="curved-container relative">
+            <div className="curved-container relative select-none">
                 <div className="marquee">
                     <div className="animate-scroll flex items-center justify-center">
                         {technologies.map((tech, index) => (

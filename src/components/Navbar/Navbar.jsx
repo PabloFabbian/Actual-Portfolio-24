@@ -110,12 +110,12 @@ const Navbar = React.memo(() => {
               rel="noopener noreferrer"
               className={`flex items-center mx-0 md:mx-12 hover:scale-105 transition-all duration-500 ${
                 showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
-              } ${hasLoaded ? 'animate-slide-in-left' : ''} md:bg-transparent md:backdrop-blur-none backdrop-blur-sm bg-gradient-to-r md:bg-none from-white/20 to-[#7B4C33]/15 border border-white/15 rounded-xl md:rounded-none pl-3 py-1 md:pl-0 md:py-0`}
+              } ${hasLoaded ? 'animate-slide-in-left' : ''} md:bg-transparent md:backdrop-blur-none backdrop-blur-sm bg-gradient-to-r md:bg-none from-white/20 to-[#7B4C33]/15 border border-white/15 md:border-none rounded-xl md:rounded-none pl-3 py-1 md:pl-0 md:py-0`}
               style={{ animationDelay: hasLoaded ? '0.2s' : '0s', animationFillMode: 'both' }}
               onMouseEnter={() => handlePreviewHover(true)}
               onMouseLeave={() => handlePreviewHover(false)}
             >
-              <img src={Logo} alt="PF Portfolio Logo" className="mr-1 -ml-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg" />
+              <img src={Logo} alt="PF Portfolio Logo" className="mr-1 -ml-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg select-none" />
               <RotatingText hasLoaded={hasLoaded} isInsideSharedContainer={true} />
             </a>
 

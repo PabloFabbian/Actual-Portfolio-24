@@ -112,7 +112,7 @@ function ProjectsSection() {
                 <div className="container mx-auto flex flex-col items-center md:mb-4 2xl:mb-16 md:scale-90 2xl:scale-100">
                     <div className="relative flex flex-col items-center -mt-0 md:-mt-[9.5rem] 2xl:-mt-24">
                       <div
-                        className="animate-bounce cursor-pointer"
+                        className="animate-bounce cursor-pointer select-none"
                         onClick={() => {
                           const section = document.getElementById('Projects');
                           if (section) {

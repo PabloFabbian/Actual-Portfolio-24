@@ -2,11 +2,11 @@ import React from 'react';
 
 function ProjectHeader({ isMobile, chevronSVG }) {
     return (
-        <div className={`bg-[#F3D5B5] overflow-hidden ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`} id="Projects">
+        <div className={`bg-[#F3D5B5] overflow-hidden select-none ${isMobile ? 'h-16' : 'h-[150px]'} -mt-2 md:mt-0`} id="Projects">
             <svg
                 viewBox="0 0 500 150"
                 preserveAspectRatio="none"
-                className="h-full w-full"
+                className="h-full w-full select-none"
             >
                 <defs>
                     <linearGradient id="customGradient" x1="0%" y1="0%" x2="100%" y2="0%">

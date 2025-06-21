@@ -18,7 +18,7 @@ const CardIcon = ({ path }) => (
 );
 
 const Card = ({ children, className = "", height = "" }) => (
-    <div className={`bg-gradient-to-br ${className} p-6 md:p-6 rounded-3xl shadow-xl text-white w-full ${height} transition transform hover:scale-[1.025] duration-300`}>
+    <div className={`bg-gradient-to-br ${className} p-6 md:p-6 rounded-3xl shadow-xl text-white w-full ${height} transition transform hover:scale-[1.025] hover:ring-[1.5px] md:hover:ring-0 hover:ring-[#f4c442] duration-300`}>
         {children}
     </div>
 );
@@ -73,7 +73,7 @@ function SelfSummary() {
                     </Card>
 
                     <div 
-                        className="bg-gradient-to-br from-[#000000]/60 to-[#1a1a1a]/60 relative rounded-2xl shadow-xl overflow-hidden h-52 md:h-[17.2rem] transition-transform duration-300"
+                        className="bg-gradient-to-br from-[#000000]/60 to-[#1a1a1a]/60 relative rounded-2xl shadow-xl overflow-hidden h-52 md:h-[17.2rem] transition-transform duration-300 select-none"
                         onMouseEnter={() => setCvHovered(true)}
                         onMouseLeave={() => setCvHovered(false)}
                     >
@@ -91,7 +91,7 @@ function SelfSummary() {
                             <div 
                                 className={`
                                     absolute inset-0 flex flex-col items-center justify-center text-white
-                                    bg-gradient-to-br from-black/70 to-black/50 transition-all duration-500 ease-in-out
+                                    bg-gradient-to-br from-black/70 to-black/50 transition-all duration-500 ease-in-out select-none
                                     ${cvHovered || isMobile ? 'opacity-100 backdrop-blur-[3px]' : 'opacity-0 backdrop-blur-none'}
                                 `}
                             >
@@ -171,18 +171,18 @@ function SelfSummary() {
                             style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                             {images.map((image, index) => (
                                 <img key={index} src={image} alt={`Certificate ${index + 1}`}
-                                    className="w-full h-full object-contain bg-[#1c1d1e]/70 flex-none" />
+                                    className="w-full h-full object-contain select-none bg-[#1c1d1e]/70 flex-none" />
                             ))}
                         </div>
 
                         <div 
                             className={`
                                 absolute inset-0 flex flex-col items-center justify-center text-white px-8 py-6
-                                bg-gradient-to-br from-black/70 to-black/50 transition-all duration-500 ease-in-out
+                                bg-gradient-to-br from-black/70 to-black/50 transition-all duration-500 ease-in-out select-none
                                 ${certificatesHovered || isMobile ? 'opacity-100 backdrop-blur-[3px]' : 'opacity-0 backdrop-blur-none'}
                             `}
                         >
-                            <div className="text-center space-y-4">
+                            <div className="text-center space-y-4 select-none">
                                 <h3 className="text-xl 2xl:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                                     Formaciones Completadas
                                 </h3>

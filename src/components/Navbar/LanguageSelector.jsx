@@ -6,10 +6,10 @@ const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
   const [isOpen, setIsOpen] = useState(false);
   const currentLang = LANGUAGES.find(lang => lang.code === currentLanguage) || LANGUAGES[0];
 
-  useClickOutside(() => setIsOpen(false));
+  const ref = useClickOutside(() => setIsOpen(false));
 
   return (
-    <div className="language-selector relative">
+    <div className="language-selector relative" ref={ref}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`relative group flex items-center font-lt-soul transition-all duration-200 ${
@@ -26,27 +26,29 @@ const LanguageSelector = ({ currentLanguage, onLanguageChange, hasLoaded }) => {
         </div>
       </button>
 
-      {isOpen && (
-        <div className="absolute -left-16 top-full mt-2 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md rounded-lg shadow-xl border border-[#7B4C33]/30 min-w-[180px] z-50">
-          {LANGUAGES.map((language) => (
-            <button
-              key={language.code}
-              onClick={() => {
-                onLanguageChange(language.code);
-                setIsOpen(false);
-              }}
-              className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-200 ${
-                currentLanguage === language.code 
-                  ? 'bg-[#FFD275]/20 text-[#FFD275]' 
-                  : 'text-[#EDE0D4] hover:bg-[#EDE0D4]/20 hover:text-[#FFD275]'
-              }`}
-            >
-              <span className="text-base">{language.flag}</span>
-              <span className="text-sm font-medium">{language.name}</span>
-            </button>
-          ))}
-        </div>
-      )}
+      <div className={`
+          absolute -left-16 top-full mt-2 bg-gradient-to-br from-[#7B4C33]/95 to-[#7B4C35]/95 backdrop-blur-md 
+          rounded-lg shadow-xl min-w-[180px] z-50 transform transition-all duration-300
+          ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-3 pointer-events-none'}
+        `}>
+        {LANGUAGES.map((language) => (
+          <button
+            key={language.code}
+            onClick={() => {
+              onLanguageChange(language.code);
+              setIsOpen(false);
+            }}
+            className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-200 ${
+              currentLanguage === language.code 
+                ? 'bg-[#FFD275]/20 text-[#FFD275]' 
+                : 'text-[#EDE0D4] hover:bg-[#EDE0D4]/20 hover:text-[#FFD275]'
+            }`}
+          >
+            <span className="text-base">{language.flag}</span>
+            <span className="text-sm font-medium">{language.name}</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
