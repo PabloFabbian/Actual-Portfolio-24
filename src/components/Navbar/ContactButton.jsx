@@ -20,15 +20,15 @@ const ContactButton = ({ handleContactClick, showLogoAndButton, hasLoaded, isMob
       className={`
         relative overflow-hidden group
         flex items-center justify-center gap-2
-        font-medium text-white font-lt-soul
+        sm:font-sm 2xl:font-medium text-white font-lt-soul
         transition-all duration-75 ease-out
         ${isMobile 
           ? 'mt-0 px-4 py-2 rounded-full text-sm' 
-          : `mt-1 sm:mt-1 md:mt-1 lg:mt-1 xl:mt-1 2xl:mt-2
-             px-4 sm:px-4 md:px-5 lg:px-6 xl:px-6 2xl:px-6
-             py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-2.5 2xl:py-2.5
+          : `mt-1 sm:mt-1 md:mt-1 2xl:mt-2
+             px-4 sm:px-4 md:px-5 2xl:px-10
+             py-2 sm:py-2 md:py-2.5 2xl:py-2.5
              rounded-full
-             text-sm sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-lg`
+             text-sm sm:text-sm md:text-base 2xl:text-lg`
         }
       `}
       style={{
@@ -82,7 +82,7 @@ const ContactButton = ({ handleContactClick, showLogoAndButton, hasLoaded, isMob
         whileTap={{ y: 0.5 }}
         transition={{ duration: 0.05 }}
       >
-        <span className="font-medium whitespace-nowrap">
+        <span className="md:font-sm 2xl:font-medium whitespace-nowrap">
           Let's Talk
         </span>
         

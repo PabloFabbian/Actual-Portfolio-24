@@ -3,13 +3,15 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 export default function CustomCursor() {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [circleOffset, setCircleOffset] = useState({ x: 0, y: 0 });
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
     const [hoverType, setHoverType] = useState('default');
+    const [isInDevTools, setIsInDevTools] = useState(false);
     
     const animationFrameRef = useRef();
     const lastTimeRef = useRef(0);
     const targetRef = useRef({ x: 0, y: 0 });
+    const visibilityTimeoutRef = useRef();
     
     const radius = 40;
     const smallCursorSize = 16;
@@ -67,37 +69,156 @@ export default function CustomCursor() {
         return checkElement(element);
     }, []);
 
+    // Detectar si el cursor está en un área "externa" como DevTools
+    const detectDevToolsArea = useCallback((x, y) => {
+        const viewportWidth = document.documentElement.clientWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Si las dimensiones son diferentes, probablemente hay DevTools abierto
+        const hasDevTools = windowWidth !== viewportWidth || windowHeight !== viewportHeight;
+        
+        // Verificar si está fuera del área del documento pero dentro de la ventana
+        const isOutsideDocument = x < 0 || y < 0 || x > viewportWidth || y > viewportHeight;
+        const isInsideWindow = x >= 0 && y >= 0 && x <= windowWidth && y <= windowHeight;
+        
+        return hasDevTools && isOutsideDocument && isInsideWindow;
+    }, []);
+
     const handleMouseMove = useCallback((e) => {
         const now = Date.now();
         if (now - lastTimeRef.current < throttleTime) return;
         
         lastTimeRef.current = now;
+        
+        // Limpiar timeout de visibilidad si existe
+        if (visibilityTimeoutRef.current) {
+            clearTimeout(visibilityTimeoutRef.current);
+        }
+        
+        // Verificar si el cursor está realmente dentro del viewport
+        const isInViewport = e.clientY >= 0 && e.clientX >= 0 && 
+                            e.clientX <= window.innerWidth && 
+                            e.clientY <= window.innerHeight;
+        
+        if (!isInViewport) {
+            setIsVisible(false);
+            return;
+        }
+        
+        // Actualizar posición
         targetRef.current = { x: e.clientX, y: e.clientY };
         setCursorPosition({ x: e.clientX, y: e.clientY });
         
-        const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
-        const hoverState = detectHoverElement(elementUnderCursor);
+        // Detectar si está en DevTools
+        const inDevTools = detectDevToolsArea(e.clientX, e.clientY);
+        setIsInDevTools(inDevTools);
         
-        setIsHovering(hoverState.isHovering);
-        setHoverType(hoverState.type);
-    }, [detectHoverElement]);
+        // Mostrar cursor
+        setIsVisible(true);
+        
+        // Solo detectar hover si no está en DevTools
+        if (!inDevTools) {
+            const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+            if (elementUnderCursor) {
+                const hoverState = detectHoverElement(elementUnderCursor);
+                setIsHovering(hoverState.isHovering);
+                setHoverType(hoverState.type);
+            }
+        } else {
+            // Resetear estado de hover en DevTools
+            setIsHovering(false);
+            setHoverType('default');
+        }
+    }, [detectHoverElement, detectDevToolsArea]);
 
-    const handleMouseLeave = useCallback(() => setIsVisible(false), []);
-    const handleMouseEnter = useCallback(() => setIsVisible(true), []);
+    const handleMouseLeave = useCallback((e) => {
+        // Si el mouse se va a null (fuera del navegador) o a la barra de marcadores
+        if (e.relatedTarget === null || e.clientY < 0) {
+            setIsVisible(false);
+        } else {
+            // Usar timeout para evitar parpadeo en otros casos
+            visibilityTimeoutRef.current = setTimeout(() => {
+                setIsVisible(false);
+            }, 150);
+        }
+    }, []);
+
+    const handleMouseEnter = useCallback(() => {
+        if (visibilityTimeoutRef.current) {
+            clearTimeout(visibilityTimeoutRef.current);
+        }
+        setIsVisible(true);
+    }, []);
+
+    // Detectar cuando el foco cambia (útil para DevTools)
+    const handleFocusChange = useCallback(() => {
+        if (document.hasFocus()) {
+            setIsVisible(true);
+        }
+    }, []);
+
+    // Detectar cambios en el tamaño de la ventana (DevTools opening/closing)
+    const handleResize = useCallback(() => {
+        // Pequeño delay para permitir que las dimensiones se actualicen
+        setTimeout(() => {
+            const hasDevTools = window.innerWidth !== document.documentElement.clientWidth || 
+                               window.innerHeight !== document.documentElement.clientHeight;
+            
+            if (hasDevTools) {
+                setIsVisible(true);
+            }
+        }, 100);
+    }, []);
 
     useEffect(() => {
-        const options = { passive: true };
+        const options = { passive: true, capture: true };
         
+        // Event listeners principales
         document.addEventListener('mousemove', handleMouseMove, options);
-        document.addEventListener('mouseleave', handleMouseLeave, options);
-        document.addEventListener('mouseenter', handleMouseEnter, options);
+        document.addEventListener('mouseleave', handleMouseLeave);
+        document.addEventListener('mouseenter', handleMouseEnter);
+        
+        // Event listeners adicionales para DevTools
+        window.addEventListener('focus', handleFocusChange);
+        window.addEventListener('blur', handleFocusChange);
+        window.addEventListener('resize', handleResize);
+        
+        // Listener global en window para capturar eventos fuera del documento
+        const globalMouseMove = (e) => {
+            // Verificar si el mouse está fuera del viewport
+            const isOutsideBrowser = e.clientY < 0 || e.clientX < 0 || 
+                                    e.clientX > window.innerWidth || 
+                                    e.clientY > window.innerHeight;
+            
+            if (isOutsideBrowser) {
+                setIsVisible(false);
+                return;
+            }
+            
+            // Solo procesar si el evento viene de fuera del documento pero dentro del viewport
+            if (e.target === window || !document.contains(e.target)) {
+                handleMouseMove(e);
+            }
+        };
+        
+        window.addEventListener('mousemove', globalMouseMove, { passive: true, capture: true });
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseleave', handleMouseLeave);
             document.removeEventListener('mouseenter', handleMouseEnter);
+            window.removeEventListener('focus', handleFocusChange);
+            window.removeEventListener('blur', handleFocusChange);
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('mousemove', globalMouseMove);
+            
+            if (visibilityTimeoutRef.current) {
+                clearTimeout(visibilityTimeoutRef.current);
+            }
         };
-    }, [handleMouseMove, handleMouseLeave, handleMouseEnter]);
+    }, [handleMouseMove, handleMouseLeave, handleMouseEnter, handleFocusChange, handleResize]);
 
     useEffect(() => {
         const animateCircle = () => {
@@ -127,36 +248,44 @@ export default function CustomCursor() {
         };
     }, []);
 
+    // No renderizar si no es visible
     if (!isVisible) return null;
 
     const getCircleStyles = () => {
-        const baseSize = isHovering ? 80 : radius * 2;
-        const baseOpacity = isHovering ? 0.6 : 0.7;
+        const baseSize = isHovering && !isInDevTools ? 80 : radius * 2;
+        let baseOpacity = isHovering && !isInDevTools ? 0.6 : 0.7;
+        
+        // Reducir opacidad si está en DevTools
+        if (isInDevTools) {
+            baseOpacity *= 0.4;
+        }
         
         let borderColor = 'border-gray-400';
         let backgroundColor = '';
         
-        switch (hoverType) {
-            case 'link':
-                borderColor = 'border-orange-400';
-                backgroundColor = 'bg-orange-400/20';
-                break;
-            case 'button':
-                borderColor = 'border-orange-400';
-                backgroundColor = 'bg-orange-400/20';
-                break;
-            case 'input':
-                borderColor = 'border-orange-400';
-                backgroundColor = 'bg-orange-400/20';
-                break;
-            case 'hover-effect':
-            case 'interactive':
-                borderColor = 'border-orange-400';
-                backgroundColor = 'bg-orange-400/20';
-                break;
-            default:
-                borderColor = 'border-gray-400';
-                break;
+        if (!isInDevTools) {
+            switch (hoverType) {
+                case 'link':
+                    borderColor = 'border-orange-400';
+                    backgroundColor = 'bg-orange-400/20';
+                    break;
+                case 'button':
+                    borderColor = 'border-orange-400';
+                    backgroundColor = 'bg-orange-400/20';
+                    break;
+                case 'input':
+                    borderColor = 'border-orange-400';
+                    backgroundColor = 'bg-orange-400/20';
+                    break;
+                case 'hover-effect':
+                case 'interactive':
+                    borderColor = 'border-orange-400';
+                    backgroundColor = 'bg-orange-400/20';
+                    break;
+                default:
+                    borderColor = 'border-gray-400';
+                    break;
+            }
         }
         
         return {
@@ -169,8 +298,13 @@ export default function CustomCursor() {
     };
 
     const getPointStyles = () => {
-        const baseSize = isHovering ? 12 : smallCursorSize;
-        const baseOpacity = isHovering ? 0.7 : 0.4;
+        const baseSize = isHovering && !isInDevTools ? 12 : smallCursorSize;
+        let baseOpacity = isHovering && !isInDevTools ? 0.7 : 0.4;
+        
+        // Reducir opacidad si está en DevTools
+        if (isInDevTools) {
+            baseOpacity *= 0.4;
+        }
         
         return {
             width: `${baseSize}px`,
@@ -180,18 +314,18 @@ export default function CustomCursor() {
     };
 
     const getPointColorClass = () => {
-        return isHovering ? 'bg-orange-400/70' : 'bg-gray-400';
+        return isHovering && !isInDevTools ? 'bg-orange-400/70' : 'bg-gray-400';
     };
 
     const pointStyle = {
-        transform: `translate3d(${cursorPosition.x - (isHovering ? 6 : smallCursorSize / 2)}px, ${cursorPosition.y - (isHovering ? 6 : smallCursorSize / 2)}px, 0)`,
+        transform: `translate3d(${cursorPosition.x - (isHovering && !isInDevTools ? 6 : smallCursorSize / 2)}px, ${cursorPosition.y - (isHovering && !isInDevTools ? 6 : smallCursorSize / 2)}px, 0)`,
         willChange: 'transform',
         transition: 'width 0.2s ease, height 0.2s ease, opacity 0.2s ease',
         ...getPointStyles()
     };
 
     const circleStyle = {
-        transform: `translate3d(${circleOffset.x - (isHovering ? 40 : radius)}px, ${circleOffset.y - (isHovering ? 40 : radius)}px, 0)`,
+        transform: `translate3d(${circleOffset.x - (isHovering && !isInDevTools ? 40 : radius)}px, ${circleOffset.y - (isHovering && !isInDevTools ? 40 : radius)}px, 0)`,
         willChange: 'transform',
         transition: 'width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border-color 0.3s ease',
         ...getCircleStyles()

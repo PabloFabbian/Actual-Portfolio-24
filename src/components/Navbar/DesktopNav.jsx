@@ -14,7 +14,7 @@ const DesktopNav = ({
   <div className={`hidden md:flex flex-1 justify-center items-center ${
     hasLoaded ? 'animate-slide-in-down' : 'opacity-0'
   }`} style={{ animationDelay: hasLoaded ? '0.4s' : '0s', animationFillMode: 'both' }}>
-    <div className="flex items-center bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 md:pt-1.5 2xl:pt-2.5 pb-2 md:pb-1 2xl:pb-2 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 rounded-full text-sm sm:text-base md:text-base lg:text-sm 2xl:text-lg text-[#EDE0D4] space-x-2 sm:space-x-3 md:space-x-20 lg:space-x-10 xl:space-x-14 2xl:space-x-20 drop-shadow backdrop-blur-sm">
+    <div className="flex items-center bg-gradient-to-r from-[#7B4C33]/80 to-[#7B4C35]/80 mt-1 2xl:mt-1.5 pt-2 md:pt-1.5 2xl:pt-2.5 pb-2 md:pb-1 2xl:pb-2 px-4 sm:px-6 md:pl-16 md:pr-12 2xl:pl-20 2xl:pr-[4.5rem] rounded-full text-sm sm:text-base md:text-base lg:text-sm 2xl:text-lg text-[#EDE0D4] space-x-2 sm:space-x-3 md:space-x-20 lg:space-x-10 xl:space-x-14 2xl:space-x-20 drop-shadow backdrop-blur-sm">
       {NAV_SECTIONS.map((section, index) => (
         <button
           key={section}
@@ -34,7 +34,7 @@ const DesktopNav = ({
       ))}
       
       <div className="flex items-center">
-        <div className="w-px h-4 sm:h-5 md:h-6 lg:h-6 2xl:h-6 bg-[#EDE0D4]/30 mr-2 sm:mr-3 md:mr-4 lg:mr-6 xl:mr-8 2xl:mr-10" />
+        <div className="w-px h-4 sm:h-5 md:h-6 lg:h-6 2xl:h-6 bg-[#EDE0D4]/30 mr-2 sm:mr-3 md:mr-4 lg:mr-6 xl:mr-8 2xl:mr-12" />
         <div className="relative -mt-0.5">
           <LanguageSelector 
             currentLanguage={currentLanguage} 

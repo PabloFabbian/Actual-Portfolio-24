@@ -2,30 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-body, a, input, textarea, button, label {
-    cursor: none;
+/* Cursor personalizado - Configuración mejorada */
+*, *::before, *::after {
+    cursor: none !important;
 }
 
+/* Excepción para inputs y textareas para mantener funcionalidad */
+input, textarea, select {
+    cursor: text !important;
+}
+
+/* Configuración del cursor personalizado */
+.custom-cursor {
+    pointer-events: none;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Para compatibilidad con extensiones de Chrome y DevTools */
+html .custom-cursor {
+    position: fixed !important;
+    z-index: 2147483647 !important; /* Máximo z-index posible */
+}
+
+/* Ocultar cursor personalizado en dispositivos móviles */
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none !important;
+    }
+    
+    /* Restaurar cursor nativo en móviles */
+    *, *::before, *::after {
+        cursor: auto !important;
+    }
+}
+
+/* Configuración del body */
 body {
     background: #F3D5B5;
 }
 
+/* Configuración del cursor personalizado legacy (mantener por compatibilidad) */
 #custom-cursor {
     pointer-events: none;
 }
 
-@media (max-width: 768px) {
-    .custom-cursor {
-        display: none;
-    }
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 14px;
 }
 
-::-webkit-scrollbar {width: 14px;}
-::-webkit-scrollbar-track {background-color: #F3D5B5;border-radius: 6px;}
-::-webkit-scrollbar-thumb {background-color: #7A4D36;border-radius: 6px;border: 3px solid #F3D5B5;}
-::-webkit-scrollbar-thumb:hover {background-color: #A05B45;}
-::-webkit-scrollbar-thumb:active {background-color: #9C6649;}
+::-webkit-scrollbar-track {
+    background-color: #F3D5B5;
+    border-radius: 6px;
+}
 
+::-webkit-scrollbar-thumb {
+    background-color: #7A4D36;
+    border-radius: 6px;
+    border: 3px solid #F3D5B5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #A05B45;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #9C6649;
+}
+
+/* Selección de texto */
 ::selection {
     background-color: #FFD275;
     color: #4b5462;
@@ -36,35 +86,44 @@ body {
     color: #4b5462;
 }
 
+/* Animaciones del menú hamburguesa */
 .hamburger span {
     transition: all 0.3s ease-in-out;
 }
+
 .hamburger.open span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
+
 .hamburger.open span:nth-child(2) {
     opacity: 0;
 }
+
 .hamburger.open span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
 
+/* Scrollbar personalizada para elementos específicos */
 .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #FFD275 #7F5539;
-    cursor:none;
+    cursor: none;
 }
+
 .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
     background: #E6CCB2;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #7F5539;
     border-radius: 10px;
 }
 
+/* Gradientes de texto */
 .text-gradient-PF {
     background: linear-gradient(to right, #FDB3DF, #ff8db1, #ff6999, #ff5fa2);
     background-clip: text;
@@ -79,23 +138,29 @@ body {
     background-clip: text;
 }
 
+/* Efectos hover para iconos sociales */
 .social-pills a:hover img {
     filter: brightness(0) saturate(100%) invert(38%) sepia(63%) saturate(680%) hue-rotate(340deg) brightness(96%) contrast(91%);
 }
+
 .social-pills .linkedin-icon:hover img {
     filter: brightness(0) saturate(100%) invert(21%) sepia(89%) saturate(1217%) hue-rotate(203deg) brightness(102%) contrast(97%);
 }
+
 .social-pills .github-icon:hover img {
     filter: brightness(0) saturate(100%) invert(12%) sepia(98%) saturate(2600%) hue-rotate(250deg) brightness(95%) contrast(90%);
 }
+
 .social-pills .threads-icon:hover img {
-  filter: brightness(0) saturate(100%);
+    filter: brightness(0) saturate(100%);
 }
 
+/* Scroll margin para Tech Stack */
 #Tech-Stack {
     scroll-margin-top: 150px;
 }
 
+/* Animaciones de scroll */
 .animate-scroll {
     display: flex;
     animation: scroll linear infinite;
@@ -109,6 +174,7 @@ body {
     width: 100%;
 }
 
+/* Keyframes */
 @keyframes scroll {
     0% {
         transform: translateX(0);

@@ -111,12 +111,12 @@ const Navbar = React.memo(() => {
 
   return (
     <>
-      <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all ${
+      <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all md:translate-y-0 md:opacity-100 ${
         isNavbarVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
         <div className="container mx-auto px-4 md:px-0 2xl:px-0 py-3 flex items-center justify-between">
           {/* Logo Container con ancho fijo para consistencia */}
-          <div className="flex-shrink-0 w-full md:w-[300px] 2xl:w-[320px] relative">
+          <div className="flex-shrink-0 w-full md:w-[300px] 2xl:w-[320px] relative z-40">
             <a 
               href="https://github.com/PabloFabbian" 
               target="_blank" 
@@ -144,7 +144,7 @@ const Navbar = React.memo(() => {
 
           {/* Desktop Navigation con espaciado consistente */}
           <div className="hidden md:flex items-center flex-1 justify-end">
-            <div className="flex items-center mr-8 sm:mr-10 md:mr-16 lg:mr-16 xl:mr-16 2xl:mr-36">
+            <div className="flex items-center mr-8 sm:mr-10 md:mr-16 lg:mr-16 xl:mr-16 2xl:mr-28">
               <DesktopNav 
                 hasLoaded={hasLoaded}
                 activeSection={activeSection}
