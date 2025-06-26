@@ -2,25 +2,35 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const ContactButton = ({ handleContactClick, showLogoAndButton, hasLoaded, isMobile = false }) => (
-  <div className={`relative ${isMobile ? '' : 'inline-block mx-12'} transition-all duration-500 ${
-    !isMobile && (showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0')
+  <div className={`relative transition-all duration-500 md:scale-90 2xl:scale-100 ${
+    isMobile 
+      ? '' 
+      : `inline-block 
+         ml-8 sm:ml-10 md:mr-14 2xl:mr-0
+         ${showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'}`
   } ${hasLoaded ? 'animate-slide-in-right' : 'opacity-0'}`}
   style={{
     animationDelay: hasLoaded ? '0.8s' : '0s',
     animationFillMode: 'both'
   }}>
     
-    {/* Botón con físicas avanzadas mejorado */}
+    {/* Botón con físicas mejoradas y consistencia visual */}
     <motion.button
       onClick={handleContactClick}
-      className="
+      className={`
         relative overflow-hidden group
         flex items-center justify-center gap-2
-        mt-1 px-5 py-2.5 rounded-xl
-        font-medium text-white
+        font-medium text-white font-lt-soul
         transition-all duration-75 ease-out
-        text-sm
-      "
+        ${isMobile 
+          ? 'mt-0 px-4 py-2 rounded-full text-sm' 
+          : `mt-1 sm:mt-1 md:mt-1 lg:mt-1 xl:mt-1 2xl:mt-2
+             px-4 sm:px-4 md:px-5 lg:px-6 xl:px-6 2xl:px-6
+             py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-2.5 2xl:py-2.5
+             rounded-full
+             text-sm sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-lg`
+        }
+      `}
       style={{
         background: 'linear-gradient(145deg, #E86B52, #DB5A42)',
         boxShadow: `
@@ -68,16 +78,19 @@ const ContactButton = ({ handleContactClick, showLogoAndButton, hasLoaded, isMob
     >
       {/* Contenido del botón con movimiento sutil */}
       <motion.div 
-        className="flex items-center gap-2 relative z-10"
+        className="flex items-center gap-1.5 sm:gap-1.5 md:gap-2 relative z-10"
         whileTap={{ y: 0.5 }}
         transition={{ duration: 0.05 }}
       >
-        <span className={`font-medium ${isMobile ? '' : 'whitespace-nowrap'}`}>
+        <span className="font-medium whitespace-nowrap">
           Let's Talk
         </span>
         
         <motion.svg 
-          className="h-4 w-4" 
+          className={`${isMobile 
+            ? 'h-4 w-4' 
+            : 'h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 xl:h-5 xl:w-5 2xl:h-5 2xl:w-5'
+          }`}
           viewBox="0 0 24 24" 
           fill="none"
           whileHover={{ x: 1 }}
@@ -91,7 +104,7 @@ const ContactButton = ({ handleContactClick, showLogoAndButton, hasLoaded, isMob
 
       {/* Overlay de presión */}
       <motion.div
-        className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/10 to-transparent opacity-0"
+        className="absolute inset-0 rounded-full bg-gradient-to-t from-black/10 to-transparent opacity-0"
         whileTap={{ opacity: 1 }}
         transition={{ duration: 0.05 }}
       />

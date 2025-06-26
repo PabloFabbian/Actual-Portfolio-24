@@ -23,7 +23,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="bg-[#F3D5B5] pt-20 md:pt-24 pb-12 md:pb-36 md:w-[90%] mx-auto" id="Home">
+    <section className="bg-[#F3D5B5] pt-20 md:pt-24 2xl:pt-28 pb-12 md:pb-36 md:w-[90%] mx-auto" id="Home">
       <motion.div
         className="container mx-auto flex flex-col md:flex-row items-center justify-center h-auto md:h-[65vh] pt-8 md:pt-16 pb-8 md:pb-16 -mb-16 md:-mb-32"
         initial="hidden"

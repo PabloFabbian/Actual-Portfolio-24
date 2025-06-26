@@ -23,6 +23,7 @@ const Navbar = React.memo(() => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('es');
   const [showPreview, setShowPreview] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const hoverTimeoutRef = useRef(null);
 
   const updateActiveSection = useCallback(() => {
@@ -63,13 +64,15 @@ const Navbar = React.memo(() => {
   }, []);
 
   const handlePreviewHover = useCallback((show) => {
+    if (isMobile) return;
+    
     clearTimeout(hoverTimeoutRef.current);
     if (show) {
       setShowPreview(true);
     } else {
       hoverTimeoutRef.current = setTimeout(() => setShowPreview(false), 300);
     }
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     const timer = setTimeout(() => setHasLoaded(true), 100);
@@ -94,53 +97,73 @@ const Navbar = React.memo(() => {
     };
   }, [isMenuOpen]);
 
-  // Determinar si el navbar debe estar visible
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const isNavbarVisible = hasLoaded && !isScrollingDown;
 
   return (
     <>
-      <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      <nav className={`bg-transparent fixed top-0 left-0 right-0 z-40 transition-all ${
         isNavbarVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
-        <div className="container mx-auto px-4 py-3 flex items-center">
-          <div className="flex-shrink-0 w-full md:w-[280px] 2xl:w-[320px] relative">
+        <div className="container mx-auto px-4 md:px-0 2xl:px-0 py-3 flex items-center justify-between">
+          {/* Logo Container con ancho fijo para consistencia */}
+          <div className="flex-shrink-0 w-full md:w-[300px] 2xl:w-[320px] relative">
             <a 
               href="https://github.com/PabloFabbian" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`flex items-center mx-0 md:mx-12 hover:scale-105 transition-all duration-500 ${
+              className={`flex items-center mx-0 md:mx-12 lg:mx-12 xl:mx-12 2xl:mx-0 hover:scale-105 transition-all duration-500 ${
                 showLogoAndButton ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0'
-              } ${hasLoaded ? 'animate-slide-in-left' : ''} md:bg-transparent md:backdrop-blur-none backdrop-blur-sm bg-gradient-to-r md:bg-none from-white/20 to-[#7B4C33]/15 border border-white/15 md:border-none rounded-xl md:rounded-none pl-3 py-1 md:pl-0 md:py-0`}
-              style={{ animationDelay: hasLoaded ? '0.2s' : '0s', animationFillMode: 'both' }}
+              } ${hasLoaded ? 'animate-slide-in-left' : ''} md:bg-transparent md:backdrop-blur-none backdrop-blur-sm bg-gradient-to-r md:bg-none from-white/20 to-[#7B4C33]/15 border border-white/15 md:border-none rounded-xl md:rounded-none pl-3 py-1 md:pl-16 lg:pl-8 xl:pl-4 2xl:pl-2 md:py-0`}
+              style={{ animationDelay: hasLoaded ? '0.1s' : '0s', animationFillMode: 'both' }}
               onMouseEnter={() => handlePreviewHover(true)}
               onMouseLeave={() => handlePreviewHover(false)}
             >
-              <img src={Logo} alt="PF Portfolio Logo" className="mr-1 -ml-1 mt-0.5 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg select-none" />
+              <img src={Logo} alt="PF Portfolio Logo" className="mr-1 -ml-1 mt-1 h-14 2xl:h-[3.8rem] w-auto drop-shadow-lg select-none" />
               <RotatingText hasLoaded={hasLoaded} isInsideSharedContainer={true} />
             </a>
 
-            <GitHubPreviewCard 
-              isVisible={showPreview}
-              onMouseEnter={() => handlePreviewHover(true)}
-              onMouseLeave={() => handlePreviewHover(false)}
-            />
+            {/* Solo mostrar GitHubPreviewCard en desktop */}
+            {!isMobile && (
+              <GitHubPreviewCard 
+                isVisible={showPreview}
+                onMouseEnter={() => handlePreviewHover(true)}
+                onMouseLeave={() => handlePreviewHover(false)}
+              />
+            )}
           </div>
 
-          <DesktopNav 
-            hasLoaded={hasLoaded}
-            activeSection={activeSection}
-            handleSelect={handleSelect}
-            currentLanguage={currentLanguage}
-            handleLanguageChange={handleLanguageChange}
-            showLogoAndButton={showLogoAndButton}
-          >
+          {/* Desktop Navigation con espaciado consistente */}
+          <div className="hidden md:flex items-center flex-1 justify-end">
+            <div className="flex items-center mr-8 sm:mr-10 md:mr-16 lg:mr-16 xl:mr-16 2xl:mr-36">
+              <DesktopNav 
+                hasLoaded={hasLoaded}
+                activeSection={activeSection}
+                handleSelect={handleSelect}
+                currentLanguage={currentLanguage}
+                handleLanguageChange={handleLanguageChange}
+                showLogoAndButton={showLogoAndButton}
+              />
+            </div>
+            
             <ContactButton 
               handleContactClick={handleContactClick}
               showLogoAndButton={showLogoAndButton}
               hasLoaded={hasLoaded}
+              isMobile={false}
             />
-          </DesktopNav>
+          </div>
 
+          {/* Mobile Navigation */}
           <MobileNav 
             hasLoaded={hasLoaded}
             handleContactClick={handleContactClick}
